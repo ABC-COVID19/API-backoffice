@@ -1,0 +1,102 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-article-heading">Create or edit a Article</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_fetchedFrom">Fetched From</label>
+                    <select class="form-control" name="fetchedFrom" formControlName="fetchedFrom" id="field_fetchedFrom">
+                        <option value="PubMed">PubMed</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_sourceID">Source ID</label>
+                    <input type="number" class="form-control" name="sourceID" id="field_sourceID"
+                           formControlName="sourceID"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_sourceDate">Source Date</label>
+                    <div class="input-group">
+                        <input id="field_sourceDate" type="text" class="form-control" name="sourceDate" ngbDatepicker #sourceDateDp="ngbDatepicker" formControlName="sourceDate"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="sourceDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_sourceTitle">Source Title</label>
+                    <input type="text" class="form-control" name="sourceTitle" id="field_sourceTitle"
+                           formControlName="sourceTitle"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_sourceAbstract">Source Abstract</label>
+                    <input type="text" class="form-control" name="sourceAbstract" id="field_sourceAbstract"
+                           formControlName="sourceAbstract"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_importDate">Import Date</label>
+                    <div class="input-group">
+                        <input id="field_importDate" type="text" class="form-control" name="importDate" ngbDatepicker #importDateDp="ngbDatepicker" formControlName="importDate"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="importDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_outboundLink">Outbound Link</label>
+                    <input type="text" class="form-control" name="outboundLink" id="field_outboundLink"
+                           formControlName="outboundLink"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_keywords">Keywords</label>
+                    <textarea class="form-control" name="keywords" id="field_keywords"
+                              formControlName="keywords"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_reviewState">Review State</label>
+                    <select class="form-control" name="reviewState" formControlName="reviewState" id="field_reviewState">
+                        <option value="Hold">Hold</option>
+                        <option value="OnGoing">OnGoing</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Reviewed">Reviewed</option>
+                        <option value="Accepted">Accepted</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_pubName">Pub Name</label>
+                    <select class="form-control" id="field_pubName" name="pubName" formControlName="pubName">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="publicationSourceOption.id === editForm.get('pubName')!.value?.id ? editForm.get('pubName')!.value : publicationSourceOption" *ngFor="let publicationSourceOption of publicationsources; trackBy: trackById">{{ publicationSourceOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

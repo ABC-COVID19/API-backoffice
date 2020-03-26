@@ -1,0 +1,41 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "pt.tech4covid",
+      "microservicePath": "/mnt/external/data/covid19/abc-covid19/backend"
+    },
+    "jhipsterVersion": "6.8.0",
+    "applicationType": "gateway",
+    "baseName": "ICAMBackOffice",
+    "packageName": "pt.tech4covid",
+    "packageFolder": "pt/tech4covid",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mariadb",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "YzM4NzVkYTkxNWExNDEwNDY4MDY4OTY4Y2VjMTZmNjQwNWQ1ZTQzODA3ZWJhZWVmNDQ0MTkxZTEzODhmOTdlYjUyOTU1YWY0YmFkYzkzMjM2OGZiNjZmODliNTFlYWYzZWRiNzI2MmRkYjgyM2U0ZjY0ZmVhM2JiMzdkZWY1Yjk=",
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "none",
+    "clientThemeVariant": "",
+    "creationTimestamp": 1585195418887,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "blueprints": []
+  }
+}
