@@ -1,0 +1,76 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="article">
+            <h2><span>Article</span> {{ article.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Source ID</span></dt>
+                <dd>
+                    <span>{{ article.sourceID }}</span>
+                </dd>
+                <dt><span>Source Date</span></dt>
+                <dd>
+                    <span>{{ article.sourceDate }}</span>
+                </dd>
+                <dt><span>Source Title</span></dt>
+                <dd>
+                    <span>{{ article.sourceTitle }}</span>
+                </dd>
+                <dt><span>Source Abstract</span></dt>
+                <dd>
+                    <span>{{ article.sourceAbstract }}</span>
+                </dd>
+                <dt><span>Pubmed Date</span></dt>
+                <dd>
+                    <span>{{ article.pubmedDate }}</span>
+                </dd>
+                <dt><span>Official Pub Date</span></dt>
+                <dd>
+                    <span>{{ article.officialPubDate }}</span>
+                </dd>
+                <dt><span>Doi</span></dt>
+                <dd>
+                    <span>{{ article.doi }}</span>
+                </dd>
+                <dt><span>Journal</span></dt>
+                <dd>
+                    <span>{{ article.journal }}</span>
+                </dd>
+                <dt><span>Citation</span></dt>
+                <dd>
+                    <span>{{ article.citation }}</span>
+                </dd>
+                <dt><span>Keywords</span></dt>
+                <dd>
+                    <span>{{ article.keywords }}</span>
+                </dd>
+                <dt><span>Review State</span></dt>
+                <dd>
+                    <span>{{ article.reviewState }}</span>
+                </dd>
+                <dt><span>Content Source</span></dt>
+                <dd>
+                    <div *ngIf="article.cntsource">
+                        <a [routerLink]="['/content-source', article.cntsource?.id, 'view']">{{ article.cntsource?.itemName }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/article', article.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
