@@ -1,0 +1,139 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-article-heading">Create or edit a Article</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_sourceID">Source ID</label>
+                    <input type="number" class="form-control" name="sourceID" id="field_sourceID"
+                           formControlName="sourceID"/>
+                    <div *ngIf="editForm.get('sourceID')!.invalid && (editForm.get('sourceID')!.dirty || editForm.get('sourceID')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('sourceID')?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('sourceID')?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_sourceDate">Source Date</label>
+                    <div class="input-group">
+                        <input id="field_sourceDate" type="text" class="form-control" name="sourceDate" ngbDatepicker #sourceDateDp="ngbDatepicker" formControlName="sourceDate"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="sourceDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div *ngIf="editForm.get('sourceDate')!.invalid && (editForm.get('sourceDate')!.dirty || editForm.get('sourceDate')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('sourceDate')?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_sourceTitle">Source Title</label>
+                    <input type="text" class="form-control" name="sourceTitle" id="field_sourceTitle"
+                           formControlName="sourceTitle"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_sourceAbstract">Source Abstract</label>
+                    <input type="text" class="form-control" name="sourceAbstract" id="field_sourceAbstract"
+                           formControlName="sourceAbstract"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_pubmedDate">Pubmed Date</label>
+                    <div class="input-group">
+                        <input id="field_pubmedDate" type="text" class="form-control" name="pubmedDate" ngbDatepicker #pubmedDateDp="ngbDatepicker" formControlName="pubmedDate"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="pubmedDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_officialPubDate">Official Pub Date</label>
+                    <div class="input-group">
+                        <input id="field_officialPubDate" type="text" class="form-control" name="officialPubDate" ngbDatepicker #officialPubDateDp="ngbDatepicker" formControlName="officialPubDate"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="officialPubDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_doi">Doi</label>
+                    <input type="text" class="form-control" name="doi" id="field_doi"
+                           formControlName="doi"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_journal">Journal</label>
+                    <input type="text" class="form-control" name="journal" id="field_journal"
+                           formControlName="journal"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_citation">Citation</label>
+                    <input type="text" class="form-control" name="citation" id="field_citation"
+                           formControlName="citation"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_keywords">Keywords</label>
+                    <textarea class="form-control" name="keywords" id="field_keywords"
+                              formControlName="keywords"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_reviewState">Review State</label>
+                    <select class="form-control" name="reviewState" formControlName="reviewState" id="field_reviewState">
+                        <option value="Hold">Hold</option>
+                        <option value="OnGoing">OnGoing</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Reviewed">Reviewed</option>
+                        <option value="Accepted">Accepted</option>
+                    </select>
+                    <div *ngIf="editForm.get('reviewState')!.invalid && (editForm.get('reviewState')!.dirty || editForm.get('reviewState')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('reviewState')?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_cntsource">Content Source</label>
+                    <select class="form-control" id="field_cntsource" name="cntsource" formControlName="cntsource">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="contentSourceOption.id === editForm.get('cntsource')!.value?.id ? editForm.get('cntsource')!.value : contentSourceOption" *ngFor="let contentSourceOption of contentsources; trackBy: trackById">{{ contentSourceOption.itemName }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
