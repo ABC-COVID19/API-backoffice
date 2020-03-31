@@ -9,7 +9,7 @@ import { IcamBackOfficeHomeModule } from './home/home.module';
 import { IcamBackOfficeEntityModule } from './entities/entity.module';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { MainComponent } from './layouts/main/main.component';
-import { NavbarComponent } from './layouts/navbar/navbar.component';
+import { SidebarAndContentModule } from './layouts/sidebar-and-content/sidebar-and-content.module';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { ErrorComponent } from './layouts/error/error.component';
 
@@ -18,12 +18,13 @@ import { ErrorComponent } from './layouts/error/error.component';
     BrowserModule,
     IcamBackOfficeSharedModule,
     IcamBackOfficeCoreModule,
+    SidebarAndContentModule,
     IcamBackOfficeHomeModule,
     // jhipster-needle-angular-add-module JHipster will add new module here
     IcamBackOfficeEntityModule,
     IcamBackOfficeAppRoutingModule
   ],
-  declarations: [MainComponent, NavbarComponent, ErrorComponent, FooterComponent],
+  declarations: [MainComponent, ErrorComponent, FooterComponent],
   bootstrap: [MainComponent]
 })
 export class IcamBackOfficeAppModule {}

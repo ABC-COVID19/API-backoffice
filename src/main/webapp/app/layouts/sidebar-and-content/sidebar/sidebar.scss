@@ -1,0 +1,19 @@
+:host {
+  & > nav {
+    height: 100%;
+    width: 320px;
+    padding: 30px;
+
+    img.logo {
+      width: 260px;
+    }
+
+    #menu {
+      margin-top: 20px;
+
+      .sidebar-link {
+        width: 100%;
+      }
+    }
+  }
+}
