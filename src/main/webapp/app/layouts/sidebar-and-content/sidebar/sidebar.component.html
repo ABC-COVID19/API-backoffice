@@ -3,23 +3,11 @@
         <img class="logo" src="../../../../content/images/ICAM2e.svg">
     </a>
     <div id="menu">
-        <a class="sidebar-link">
+        <a class="sidebar-link" *ngFor="let link of links">
             <span>
-                <!-- <fa-icon icon="search"></fa-icon> -->
-                <span>Pesquisa</span>
+                <fa-icon [icon]="link.icon"></fa-icon>
             </span>
-        </a>
-        <a class="sidebar-link active">
-            <span>
-                <!-- <fa-icon icon="search"></fa-icon> -->
-                <span>Pesquisa</span>
-            </span>
-        </a>
-        <a class="sidebar-link">
-            <span>
-                <!-- <fa-icon icon="search"></fa-icon> -->
-                <span>Artigos</span>
-            </span>
+            <span>{{ link.txt }}</span>
         </a>
     </div>
 </nav>
