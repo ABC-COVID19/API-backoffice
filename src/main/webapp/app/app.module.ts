@@ -11,7 +11,6 @@ import { IcamBackOfficeEntityModule } from './entities/entity.module';
 import { MainComponent } from './layouts/main/main.component';
 import { NavbarComponent } from './layouts/navbar/navbar.component';
 import { FooterComponent } from './layouts/footer/footer.component';
-import { PageRibbonComponent } from './layouts/profiles/page-ribbon.component';
 import { ErrorComponent } from './layouts/error/error.component';
 
 @NgModule({
@@ -24,7 +23,7 @@ import { ErrorComponent } from './layouts/error/error.component';
     IcamBackOfficeEntityModule,
     IcamBackOfficeAppRoutingModule
   ],
-  declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent],
+  declarations: [MainComponent, NavbarComponent, ErrorComponent, FooterComponent],
   bootstrap: [MainComponent]
 })
 export class IcamBackOfficeAppModule {}
