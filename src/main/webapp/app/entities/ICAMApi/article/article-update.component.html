@@ -12,91 +12,75 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" for="field_sourceID">Source ID</label>
-                    <input type="number" class="form-control" name="sourceID" id="field_sourceID"
-                           formControlName="sourceID"/>
-                    <div *ngIf="editForm.get('sourceID')!.invalid && (editForm.get('sourceID')!.dirty || editForm.get('sourceID')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('sourceID')?.errors?.required">
-                        This field is required.
-                        </small>
-                        <small class="form-text text-danger"
-                            [hidden]="!editForm.get('sourceID')?.errors?.number">
-                            This field should be a number.
-                        </small>
-                    </div>
+                    <label class="form-control-label" for="field_repoArticleId">Repo Article Id</label>
+                    <input type="number" class="form-control" name="repoArticleId" id="field_repoArticleId"
+                           formControlName="repoArticleId"/>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" for="field_sourceDate">Source Date</label>
+                    <label class="form-control-label" for="field_repoDate">Repo Date</label>
                     <div class="input-group">
-                        <input id="field_sourceDate" type="text" class="form-control" name="sourceDate" ngbDatepicker #sourceDateDp="ngbDatepicker" formControlName="sourceDate"/>
+                        <input id="field_repoDate" type="text" class="form-control" name="repoDate" ngbDatepicker #repoDateDp="ngbDatepicker" formControlName="repoDate"/>
                         <span class="input-group-append">
-                            <button type="button" class="btn btn-secondary" (click)="sourceDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
-                        </span>
-                    </div>
-                    <div *ngIf="editForm.get('sourceDate')!.invalid && (editForm.get('sourceDate')!.dirty || editForm.get('sourceDate')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('sourceDate')?.errors?.required">
-                        This field is required.
-                        </small>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" for="field_sourceTitle">Source Title</label>
-                    <input type="text" class="form-control" name="sourceTitle" id="field_sourceTitle"
-                           formControlName="sourceTitle"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" for="field_sourceAbstract">Source Abstract</label>
-                    <input type="text" class="form-control" name="sourceAbstract" id="field_sourceAbstract"
-                           formControlName="sourceAbstract"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" for="field_pubmedDate">Pubmed Date</label>
-                    <div class="input-group">
-                        <input id="field_pubmedDate" type="text" class="form-control" name="pubmedDate" ngbDatepicker #pubmedDateDp="ngbDatepicker" formControlName="pubmedDate"/>
-                        <span class="input-group-append">
-                            <button type="button" class="btn btn-secondary" (click)="pubmedDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                            <button type="button" class="btn btn-secondary" (click)="repoDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
                         </span>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" for="field_officialPubDate">Official Pub Date</label>
+                    <label class="form-control-label" for="field_repoKeywords">Repo Keywords</label>
+                    <textarea class="form-control" name="repoKeywords" id="field_repoKeywords"
+                              formControlName="repoKeywords"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_articleDate">Article Date</label>
                     <div class="input-group">
-                        <input id="field_officialPubDate" type="text" class="form-control" name="officialPubDate" ngbDatepicker #officialPubDateDp="ngbDatepicker" formControlName="officialPubDate"/>
+                        <input id="field_articleDate" type="text" class="form-control" name="articleDate" ngbDatepicker #articleDateDp="ngbDatepicker" formControlName="articleDate"/>
                         <span class="input-group-append">
-                            <button type="button" class="btn btn-secondary" (click)="officialPubDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                            <button type="button" class="btn btn-secondary" (click)="articleDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
                         </span>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" for="field_doi">Doi</label>
-                    <input type="text" class="form-control" name="doi" id="field_doi"
-                           formControlName="doi"/>
+                    <label class="form-control-label" for="field_articleTitle">Article Title</label>
+                    <input type="text" class="form-control" name="articleTitle" id="field_articleTitle"
+                           formControlName="articleTitle"/>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" for="field_journal">Journal</label>
-                    <input type="text" class="form-control" name="journal" id="field_journal"
-                           formControlName="journal"/>
+                    <label class="form-control-label" for="field_articleAbstract">Article Abstract</label>
+                    <textarea class="form-control" name="articleAbstract" id="field_articleAbstract"
+                              formControlName="articleAbstract"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_articleDoi">Article Doi</label>
+                    <input type="text" class="form-control" name="articleDoi" id="field_articleDoi"
+                           formControlName="articleDoi"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_articleJournal">Article Journal</label>
+                    <input type="text" class="form-control" name="articleJournal" id="field_articleJournal"
+                           formControlName="articleJournal"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_fetchDate">Fetch Date</label>
+                    <div class="input-group">
+                        <input id="field_fetchDate" type="text" class="form-control" name="fetchDate" ngbDatepicker #fetchDateDp="ngbDatepicker" formControlName="fetchDate"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="fetchDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
                 </div>
 
                 <div class="form-group">
                     <label class="form-control-label" for="field_citation">Citation</label>
                     <input type="text" class="form-control" name="citation" id="field_citation"
                            formControlName="citation"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" for="field_keywords">Keywords</label>
-                    <textarea class="form-control" name="keywords" id="field_keywords"
-                              formControlName="keywords"></textarea>
                 </div>
 
                 <div class="form-group">
@@ -117,10 +101,10 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" for="field_cntsource">Content Source</label>
-                    <select class="form-control" id="field_cntsource" name="cntsource" formControlName="cntsource">
+                    <label class="form-control-label" for="field_srepo">Srepo</label>
+                    <select class="form-control" id="field_srepo" name="srepo" formControlName="srepo">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="contentSourceOption.id === editForm.get('cntsource')!.value?.id ? editForm.get('cntsource')!.value : contentSourceOption" *ngFor="let contentSourceOption of contentsources; trackBy: trackById">{{ contentSourceOption.itemName }}</option>
+                        <option [ngValue]="sourceRepoOption.id === editForm.get('srepo')!.value?.id ? editForm.get('srepo')!.value : sourceRepoOption" *ngFor="let sourceRepoOption of sourcerepos; trackBy: trackById">{{ sourceRepoOption.id }}</option>
                     </select>
                 </div>
             </div>

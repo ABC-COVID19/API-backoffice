@@ -1,11 +1,11 @@
 <div>
     <h2 id="page-heading">
-        <span>Content Sources</span>
+        <span>Source Repos</span>
 
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-content-source" [routerLink]="['/content-source/new']">
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-source-repo" [routerLink]="['/source-repo/new']">
             <fa-icon icon="plus"></fa-icon>
             <span>
-            Create a new Content Source
+            Create a new Source Repo
             </span>
         </button>
     </h2>
@@ -14,11 +14,11 @@
 
     <jhi-alert></jhi-alert>
 
-    <div class="alert alert-warning" id="no-result" *ngIf="contentSources?.length === 0">
-        <span>No contentSources found</span>
+    <div class="alert alert-warning" id="no-result" *ngIf="sourceRepos?.length === 0">
+        <span>No sourceRepos found</span>
     </div>
 
-    <div class="table-responsive" id="entities" *ngIf="contentSources?.length > 0">
+    <div class="table-responsive" id="entities" *ngIf="sourceRepos?.length > 0">
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
                 <tr>
@@ -29,27 +29,27 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let contentSource of contentSources ;trackBy: trackId">
-                    <td><a [routerLink]="['/content-source', contentSource.id, 'view']">{{ contentSource.id }}</a></td>
-                    <td>{{ contentSource.itemName }}</td>
-                    <td>{{ contentSource.active }}</td>
+                <tr *ngFor="let sourceRepo of sourceRepos ;trackBy: trackId">
+                    <td><a [routerLink]="['/source-repo', sourceRepo.id, 'view']">{{ sourceRepo.id }}</a></td>
+                    <td>{{ sourceRepo.itemName }}</td>
+                    <td>{{ sourceRepo.active }}</td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"
-                                    [routerLink]="['/content-source', contentSource.id, 'view']"
+                                    [routerLink]="['/source-repo', sourceRepo.id, 'view']"
                                     class="btn btn-info btn-sm">
                                 <fa-icon icon="eye"></fa-icon>
                                 <span class="d-none d-md-inline">View</span>
                             </button>
 
                             <button type="submit"
-                                    [routerLink]="['/content-source', contentSource.id, 'edit']"
+                                    [routerLink]="['/source-repo', sourceRepo.id, 'edit']"
                                     class="btn btn-primary btn-sm">
                                 <fa-icon icon="pencil-alt"></fa-icon>
                                 <span class="d-none d-md-inline">Edit</span>
                             </button>
 
-                            <button type="submit" (click)="delete(contentSource)"
+                            <button type="submit" (click)="delete(sourceRepo)"
                                     class="btn btn-danger btn-sm">
                                 <fa-icon icon="times"></fa-icon>
                                 <span class="d-none d-md-inline">Delete</span>

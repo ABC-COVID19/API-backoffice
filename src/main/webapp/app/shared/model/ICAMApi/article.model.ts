@@ -1,40 +1,40 @@
 import { Moment } from 'moment';
 import { IRevision } from 'app/shared/model/ICAMApi/revision.model';
-import { IContentSource } from 'app/shared/model/ICAMApi/content-source.model';
+import { ISourceRepo } from 'app/shared/model/ICAMApi/source-repo.model';
 import { ReviewState } from 'app/shared/model/enumerations/review-state.model';
 
 export interface IArticle {
   id?: number;
-  sourceID?: number;
-  sourceDate?: Moment;
-  sourceTitle?: string;
-  sourceAbstract?: string;
-  pubmedDate?: Moment;
-  officialPubDate?: Moment;
-  doi?: string;
-  journal?: string;
+  repoArticleId?: number;
+  repoDate?: Moment;
+  repoKeywords?: any;
+  articleDate?: Moment;
+  articleTitle?: string;
+  articleAbstract?: any;
+  articleDoi?: string;
+  articleJournal?: string;
+  fetchDate?: Moment;
   citation?: string;
-  keywords?: any;
   reviewState?: ReviewState;
   revisions?: IRevision[];
-  cntsource?: IContentSource;
+  srepo?: ISourceRepo;
 }
 
 export class Article implements IArticle {
   constructor(
     public id?: number,
-    public sourceID?: number,
-    public sourceDate?: Moment,
-    public sourceTitle?: string,
-    public sourceAbstract?: string,
-    public pubmedDate?: Moment,
-    public officialPubDate?: Moment,
-    public doi?: string,
-    public journal?: string,
+    public repoArticleId?: number,
+    public repoDate?: Moment,
+    public repoKeywords?: any,
+    public articleDate?: Moment,
+    public articleTitle?: string,
+    public articleAbstract?: any,
+    public articleDoi?: string,
+    public articleJournal?: string,
+    public fetchDate?: Moment,
     public citation?: string,
-    public keywords?: any,
     public reviewState?: ReviewState,
     public revisions?: IRevision[],
-    public cntsource?: IContentSource
+    public srepo?: ISourceRepo
   ) {}
 }

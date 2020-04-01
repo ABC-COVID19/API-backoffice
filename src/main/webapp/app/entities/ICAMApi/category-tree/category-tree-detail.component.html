@@ -19,7 +19,7 @@
                 <dt><span>Child</span></dt>
                 <dd>
                     <div *ngIf="categoryTree.child">
-                        <a [routerLink]="['/category-tree', categoryTree.child?.id, 'view']">{{ categoryTree.child?.itemName }}</a>
+                        <a [routerLink]="['/category-tree', categoryTree.child?.id, 'view']">{{ categoryTree.child?.id }}</a>
                     </div>
                 </dd>
             </dl>

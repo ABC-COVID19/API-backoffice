@@ -2,7 +2,7 @@
   "generator-jhipster": {
     "promptValues": {
       "packageName": "pt.tech4covid",
-      "microservicePath": "/mnt/external/data/covid19/abc-covid19/API-backend"
+      "microservicePath": "../API-backend"
     },
     "jhipsterVersion": "6.8.0",
     "applicationType": "gateway",

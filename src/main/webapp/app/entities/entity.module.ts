@@ -13,8 +13,8 @@ import { RouterModule } from '@angular/router';
         loadChildren: () => import('./ICAMApi/category-tree/category-tree.module').then(m => m.IcamApiCategoryTreeModule)
       },
       {
-        path: 'content-source',
-        loadChildren: () => import('./ICAMApi/content-source/content-source.module').then(m => m.IcamApiContentSourceModule)
+        path: 'source-repo',
+        loadChildren: () => import('./ICAMApi/source-repo/source-repo.module').then(m => m.IcamApiSourceRepoModule)
       },
       {
         path: 'revision',

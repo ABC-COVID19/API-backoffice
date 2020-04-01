@@ -1,15 +1,15 @@
 import { TestBed, getTestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { ContentSourceService } from 'app/entities/ICAMApi/content-source/content-source.service';
-import { IContentSource, ContentSource } from 'app/shared/model/ICAMApi/content-source.model';
+import { SourceRepoService } from 'app/entities/ICAMApi/source-repo/source-repo.service';
+import { ISourceRepo, SourceRepo } from 'app/shared/model/ICAMApi/source-repo.model';
 
 describe('Service Tests', () => {
-  describe('ContentSource Service', () => {
+  describe('SourceRepo Service', () => {
     let injector: TestBed;
-    let service: ContentSourceService;
+    let service: SourceRepoService;
     let httpMock: HttpTestingController;
-    let elemDefault: IContentSource;
-    let expectedResult: IContentSource | IContentSource[] | boolean | null;
+    let elemDefault: ISourceRepo;
+    let expectedResult: ISourceRepo | ISourceRepo[] | boolean | null;
 
     beforeEach(() => {
       TestBed.configureTestingModule({
@@ -17,10 +17,10 @@ describe('Service Tests', () => {
       });
       expectedResult = null;
       injector = getTestBed();
-      service = injector.get(ContentSourceService);
+      service = injector.get(SourceRepoService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new ContentSource(0, 'AAAAAAA', false);
+      elemDefault = new SourceRepo(0, 'AAAAAAA', false);
     });
 
     describe('Service methods', () => {
@@ -34,7 +34,7 @@ describe('Service Tests', () => {
         expect(expectedResult).toMatchObject(elemDefault);
       });
 
-      it('should create a ContentSource', () => {
+      it('should create a SourceRepo', () => {
         const returnedFromService = Object.assign(
           {
             id: 0
@@ -44,14 +44,14 @@ describe('Service Tests', () => {
 
         const expected = Object.assign({}, returnedFromService);
 
-        service.create(new ContentSource()).subscribe(resp => (expectedResult = resp.body));
+        service.create(new SourceRepo()).subscribe(resp => (expectedResult = resp.body));
 
         const req = httpMock.expectOne({ method: 'POST' });
         req.flush(returnedFromService);
         expect(expectedResult).toMatchObject(expected);
       });
 
-      it('should update a ContentSource', () => {
+      it('should update a SourceRepo', () => {
         const returnedFromService = Object.assign(
           {
             itemName: 'BBBBBB',
@@ -69,7 +69,7 @@ describe('Service Tests', () => {
         expect(expectedResult).toMatchObject(expected);
       });
 
-      it('should return a list of ContentSource', () => {
+      it('should return a list of SourceRepo', () => {
         const returnedFromService = Object.assign(
           {
             itemName: 'BBBBBB',
@@ -88,7 +88,7 @@ describe('Service Tests', () => {
         expect(expectedResult).toContainEqual(expected);
       });
 
-      it('should delete a ContentSource', () => {
+      it('should delete a SourceRepo', () => {
         service.delete(123).subscribe(resp => (expectedResult = resp.ok));
 
         const req = httpMock.expectOne({ method: 'DELETE' });

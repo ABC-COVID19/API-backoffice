@@ -7,13 +7,13 @@ export interface IRevision {
   id?: number;
   title?: string;
   summary?: any;
-  reviewer?: string;
-  active?: boolean;
-  keywords?: any;
-  reviewState?: ReviewState;
-  returnNotes?: any;
   reviewedByPeer?: boolean;
+  returnNotes?: any;
+  keywords?: any;
+  reviewer?: string;
+  reviewState?: ReviewState;
   communityVotes?: number;
+  active?: boolean;
   atype?: IArticleType;
   ctree?: ICategoryTree;
   article?: IArticle;
@@ -24,18 +24,18 @@ export class Revision implements IRevision {
     public id?: number,
     public title?: string,
     public summary?: any,
-    public reviewer?: string,
-    public active?: boolean,
-    public keywords?: any,
-    public reviewState?: ReviewState,
-    public returnNotes?: any,
     public reviewedByPeer?: boolean,
+    public returnNotes?: any,
+    public keywords?: any,
+    public reviewer?: string,
+    public reviewState?: ReviewState,
     public communityVotes?: number,
+    public active?: boolean,
     public atype?: IArticleType,
     public ctree?: ICategoryTree,
     public article?: IArticle
   ) {
-    this.active = this.active || false;
     this.reviewedByPeer = this.reviewedByPeer || false;
+    this.active = this.active || false;
   }
 }

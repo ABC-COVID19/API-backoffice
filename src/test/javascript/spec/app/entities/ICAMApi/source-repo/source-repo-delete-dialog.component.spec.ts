@@ -6,27 +6,27 @@ import { JhiEventManager } from 'ng-jhipster';
 import { IcamBackOfficeTestModule } from '../../../../test.module';
 import { MockEventManager } from '../../../../helpers/mock-event-manager.service';
 import { MockActiveModal } from '../../../../helpers/mock-active-modal.service';
-import { ContentSourceDeleteDialogComponent } from 'app/entities/ICAMApi/content-source/content-source-delete-dialog.component';
-import { ContentSourceService } from 'app/entities/ICAMApi/content-source/content-source.service';
+import { SourceRepoDeleteDialogComponent } from 'app/entities/ICAMApi/source-repo/source-repo-delete-dialog.component';
+import { SourceRepoService } from 'app/entities/ICAMApi/source-repo/source-repo.service';
 
 describe('Component Tests', () => {
-  describe('ContentSource Management Delete Component', () => {
-    let comp: ContentSourceDeleteDialogComponent;
-    let fixture: ComponentFixture<ContentSourceDeleteDialogComponent>;
-    let service: ContentSourceService;
+  describe('SourceRepo Management Delete Component', () => {
+    let comp: SourceRepoDeleteDialogComponent;
+    let fixture: ComponentFixture<SourceRepoDeleteDialogComponent>;
+    let service: SourceRepoService;
     let mockEventManager: MockEventManager;
     let mockActiveModal: MockActiveModal;
 
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [IcamBackOfficeTestModule],
-        declarations: [ContentSourceDeleteDialogComponent]
+        declarations: [SourceRepoDeleteDialogComponent]
       })
-        .overrideTemplate(ContentSourceDeleteDialogComponent, '')
+        .overrideTemplate(SourceRepoDeleteDialogComponent, '')
         .compileComponents();
-      fixture = TestBed.createComponent(ContentSourceDeleteDialogComponent);
+      fixture = TestBed.createComponent(SourceRepoDeleteDialogComponent);
       comp = fixture.componentInstance;
-      service = fixture.debugElement.injector.get(ContentSourceService);
+      service = fixture.debugElement.injector.get(SourceRepoService);
       mockEventManager = TestBed.get(JhiEventManager);
       mockActiveModal = TestBed.get(NgbActiveModal);
     });
