@@ -3,7 +3,7 @@
         <span>Newsletters</span>
 
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-newsletter" [routerLink]="['/newsletter/new']">
-            <fa-icon icon="plus"></fa-icon>
+            <i class="fa-plus"></i>
             <span>
             Create a new Newsletter
             </span>
@@ -22,12 +22,12 @@
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
-                    <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="firstName"><span>First Name</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="lastName"><span>Last Name</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="email"><span>Email</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="registrationDate"><span>Registration Date</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="rgpdAuth"><span>Rgpd Auth</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="id"><span>ID</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="firstName"><span>First Name</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="lastName"><span>Last Name</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="email"><span>Email</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="registrationDate"><span>Registration Date</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="rgpdAuth"><span>Rgpd Auth</span> <i class="fa-sort"></i></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -44,20 +44,20 @@
                             <button type="submit"
                                     [routerLink]="['/newsletter', newsletter.id, 'view']"
                                     class="btn btn-info btn-sm">
-                                <fa-icon icon="eye"></fa-icon>
+                                <i class="fa-eye"></i>
                                 <span class="d-none d-md-inline">View</span>
                             </button>
 
                             <button type="submit"
                                     [routerLink]="['/newsletter', newsletter.id, 'edit']"
                                     class="btn btn-primary btn-sm">
-                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <i class="pencil-alt"></i>
                                 <span class="d-none d-md-inline">Edit</span>
                             </button>
 
                             <button type="submit" (click)="delete(newsletter)"
                                     class="btn btn-danger btn-sm">
-                                <fa-icon icon="times"></fa-icon>
+                                <i class="fa-times"></i>
                                 <span class="d-none d-md-inline">Delete</span>
                             </button>
                         </div>

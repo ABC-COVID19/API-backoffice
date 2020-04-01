@@ -3,7 +3,7 @@
         <span>Revisions</span>
 
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-revision" [routerLink]="['/revision/new']">
-            <fa-icon icon="plus"></fa-icon>
+            <i class="fa-plus"></i>
             <span>
             Create a new Revision
             </span>
@@ -22,19 +22,19 @@
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
-                    <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="title"><span>Title</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="summary"><span>Summary</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="reviewer"><span>Reviewer</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="active"><span>Active</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="keywords"><span>Keywords</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="reviewState"><span>Review State</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="returnNotes"><span>Return Notes</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="reviewedByPeer"><span>Reviewed By Peer</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="communityVotes"><span>Community Votes</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="atype.id"><span>Article Type</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="ctree.id"><span>Category</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="article.id"><span>Article</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="id"><span>ID</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="title"><span>Title</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="summary"><span>Summary</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="reviewer"><span>Reviewer</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="active"><span>Active</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="keywords"><span>Keywords</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="reviewState"><span>Review State</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="returnNotes"><span>Return Notes</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="reviewedByPeer"><span>Reviewed By Peer</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="communityVotes"><span>Community Votes</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="atype.id"><span>Article Type</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="ctree.id"><span>Category</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="article.id"><span>Article</span> <i class="fa-sort"></i></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -70,20 +70,20 @@
                             <button type="submit"
                                     [routerLink]="['/revision', revision.id, 'view']"
                                     class="btn btn-info btn-sm">
-                                <fa-icon icon="eye"></fa-icon>
+                                <i class="fa-eye"></i>
                                 <span class="d-none d-md-inline">View</span>
                             </button>
 
                             <button type="submit"
                                     [routerLink]="['/revision', revision.id, 'edit']"
                                     class="btn btn-primary btn-sm">
-                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <i class="pencil-alt"></i>
                                 <span class="d-none d-md-inline">Edit</span>
                             </button>
 
                             <button type="submit" (click)="delete(revision)"
                                     class="btn btn-danger btn-sm">
-                                <fa-icon icon="times"></fa-icon>
+                                <i class="fa-times"></i>
                                 <span class="d-none d-md-inline">Delete</span>
                             </button>
                         </div>

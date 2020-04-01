@@ -32,7 +32,7 @@
                     <div class="input-group">
                         <input id="field_sourceDate" type="text" class="form-control" name="sourceDate" ngbDatepicker #sourceDateDp="ngbDatepicker" formControlName="sourceDate"/>
                         <span class="input-group-append">
-                            <button type="button" class="btn btn-secondary" (click)="sourceDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                            <button type="button" class="btn btn-secondary" (click)="sourceDateDp.toggle()"><i class="calendar-alt"></i></button>
                         </span>
                     </div>
                     <div *ngIf="editForm.get('sourceDate')!.invalid && (editForm.get('sourceDate')!.dirty || editForm.get('sourceDate')!.touched)">
@@ -60,7 +60,7 @@
                     <div class="input-group">
                         <input id="field_pubmedDate" type="text" class="form-control" name="pubmedDate" ngbDatepicker #pubmedDateDp="ngbDatepicker" formControlName="pubmedDate"/>
                         <span class="input-group-append">
-                            <button type="button" class="btn btn-secondary" (click)="pubmedDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                            <button type="button" class="btn btn-secondary" (click)="pubmedDateDp.toggle()"><i class="calendar-alt"></i></button>
                         </span>
                     </div>
                 </div>
@@ -70,7 +70,7 @@
                     <div class="input-group">
                         <input id="field_officialPubDate" type="text" class="form-control" name="officialPubDate" ngbDatepicker #officialPubDateDp="ngbDatepicker" formControlName="officialPubDate"/>
                         <span class="input-group-append">
-                            <button type="button" class="btn btn-secondary" (click)="officialPubDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                            <button type="button" class="btn btn-secondary" (click)="officialPubDateDp.toggle()"><i class="calendar-alt"></i></button>
                         </span>
                     </div>
                 </div>
@@ -127,11 +127,11 @@
 
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
-                    <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+                    <i class="fa-ban"></i>&nbsp;<span>Cancel</span>
                 </button>
 
                 <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
-                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+                    <i class="fa-save"></i>&nbsp;<span>Save</span>
                 </button>
             </div>
         </form>

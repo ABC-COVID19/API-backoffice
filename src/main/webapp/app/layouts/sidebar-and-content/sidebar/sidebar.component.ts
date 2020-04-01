@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { faSearch, faFileMedical, faInfo, faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'sidebar',
   templateUrl: './sidebar.component.html',
@@ -9,23 +8,23 @@ export class SidebarComponent {
   links = [
     {
       txt: 'Pesquisa',
-      icon: faSearch
+      icon: 'fa-search'
     },
     {
       txt: 'Artigos',
-      icon: faFileMedical
+      icon: 'fa-file-medical'
     },
     {
       txt: 'Sobre o ICAM',
-      icon: faInfo
+      icon: 'fa-info'
     },
     {
       txt: 'Receber Atualizações',
-      icon: faEnvelope
+      icon: 'fa-envelope'
     },
     {
       txt: 'Contatos',
-      icon: faPhone
+      icon: 'fa-phone'
     }
   ];
   constructor() {}

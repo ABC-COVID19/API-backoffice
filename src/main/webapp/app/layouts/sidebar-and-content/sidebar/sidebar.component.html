@@ -5,7 +5,8 @@
     <div id="menu">
         <a class="sidebar-link" *ngFor="let link of links">
             <span>
-                <fa-icon [icon]="link.icon"></fa-icon>
+                <!-- <fa-icon [icon]="link.icon"></fa-icon> -->
+                <i [ngClass]="['fal', link.icon]"></i>
             </span>
             <span>{{ link.txt }}</span>
         </a>
