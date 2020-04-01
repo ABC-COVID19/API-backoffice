@@ -36,6 +36,30 @@
                 </div>
 
                 <div class="form-group">
+                    <label class="form-control-label" for="field_reviewedByPeer">Reviewed By Peer</label>
+                    <input type="checkbox" class="form-control" name="reviewedByPeer" id="field_reviewedByPeer"
+                           formControlName="reviewedByPeer"/>
+                    <div *ngIf="editForm.get('reviewedByPeer')!.invalid && (editForm.get('reviewedByPeer')!.dirty || editForm.get('reviewedByPeer')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('reviewedByPeer')?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_returnNotes">Return Notes</label>
+                    <textarea class="form-control" name="returnNotes" id="field_returnNotes"
+                              formControlName="returnNotes"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_keywords">Keywords</label>
+                    <textarea class="form-control" name="keywords" id="field_keywords"
+                              formControlName="keywords"></textarea>
+                </div>
+
+                <div class="form-group">
                     <label class="form-control-label" for="field_reviewer">Reviewer</label>
                     <input type="text" class="form-control" name="reviewer" id="field_reviewer"
                            formControlName="reviewer"/>
@@ -45,24 +69,6 @@
                         This field is required.
                         </small>
                     </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" for="field_active">Active</label>
-                    <input type="checkbox" class="form-control" name="active" id="field_active"
-                           formControlName="active"/>
-                    <div *ngIf="editForm.get('active')!.invalid && (editForm.get('active')!.dirty || editForm.get('active')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('active')?.errors?.required">
-                        This field is required.
-                        </small>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" for="field_keywords">Keywords</label>
-                    <textarea class="form-control" name="keywords" id="field_keywords"
-                              formControlName="keywords"></textarea>
                 </div>
 
                 <div class="form-group">
@@ -83,42 +89,36 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" for="field_returnNotes">Return Notes</label>
-                    <textarea class="form-control" name="returnNotes" id="field_returnNotes"
-                              formControlName="returnNotes"></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" for="field_reviewedByPeer">Reviewed By Peer</label>
-                    <input type="checkbox" class="form-control" name="reviewedByPeer" id="field_reviewedByPeer"
-                           formControlName="reviewedByPeer"/>
-                    <div *ngIf="editForm.get('reviewedByPeer')!.invalid && (editForm.get('reviewedByPeer')!.dirty || editForm.get('reviewedByPeer')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('reviewedByPeer')?.errors?.required">
-                        This field is required.
-                        </small>
-                    </div>
-                </div>
-
-                <div class="form-group">
                     <label class="form-control-label" for="field_communityVotes">Community Votes</label>
                     <input type="number" class="form-control" name="communityVotes" id="field_communityVotes"
                            formControlName="communityVotes"/>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" for="field_atype">Article Tpe</label>
+                    <label class="form-control-label" for="field_active">Active</label>
+                    <input type="checkbox" class="form-control" name="active" id="field_active"
+                           formControlName="active"/>
+                    <div *ngIf="editForm.get('active')!.invalid && (editForm.get('active')!.dirty || editForm.get('active')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('active')?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_atype">Atype</label>
                     <select class="form-control" id="field_atype" name="atype" formControlName="atype">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="articleTypeOption.id === editForm.get('atype')!.value?.id ? editForm.get('atype')!.value : articleTypeOption" *ngFor="let articleTypeOption of articletypes; trackBy: trackById">{{ articleTypeOption.itemName }}</option>
+                        <option [ngValue]="articleTypeOption.id === editForm.get('atype')!.value?.id ? editForm.get('atype')!.value : articleTypeOption" *ngFor="let articleTypeOption of articletypes; trackBy: trackById">{{ articleTypeOption.id }}</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" for="field_ctree">Category</label>
+                    <label class="form-control-label" for="field_ctree">Ctree</label>
                     <select class="form-control" id="field_ctree" name="ctree" formControlName="ctree">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="categoryTreeOption.id === editForm.get('ctree')!.value?.id ? editForm.get('ctree')!.value : categoryTreeOption" *ngFor="let categoryTreeOption of categorytrees; trackBy: trackById">{{ categoryTreeOption.itemName }}</option>
+                        <option [ngValue]="categoryTreeOption.id === editForm.get('ctree')!.value?.id ? editForm.get('ctree')!.value : categoryTreeOption" *ngFor="let categoryTreeOption of categorytrees; trackBy: trackById">{{ categoryTreeOption.id }}</option>
                     </select>
                 </div>
 
@@ -126,7 +126,7 @@
                     <label class="form-control-label" for="field_article">Article</label>
                     <select class="form-control" id="field_article" name="article" formControlName="article">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="articleOption.id === editForm.get('article')!.value?.id ? editForm.get('article')!.value : articleOption" *ngFor="let articleOption of articles; trackBy: trackById">{{ articleOption.sourceTitle }}</option>
+                        <option [ngValue]="articleOption.id === editForm.get('article')!.value?.id ? editForm.get('article')!.value : articleOption" *ngFor="let articleOption of articles; trackBy: trackById">{{ articleOption.id }}</option>
                     </select>
                 </div>
             </div>

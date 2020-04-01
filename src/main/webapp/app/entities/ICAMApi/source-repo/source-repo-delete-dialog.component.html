@@ -1,4 +1,4 @@
-<form *ngIf="contentSource" name="deleteForm" (ngSubmit)="confirmDelete(contentSource?.id!)">
+<form *ngIf="sourceRepo" name="deleteForm" (ngSubmit)="confirmDelete(sourceRepo?.id!)">
     <div class="modal-header">
         <h4 class="modal-title">Confirm delete operation</h4>
 
@@ -9,7 +9,7 @@
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
 
-        <p id="jhi-delete-contentSource-heading">Are you sure you want to delete this Content Source?</p>
+        <p id="jhi-delete-sourceRepo-heading">Are you sure you want to delete this Source Repo?</p>
     </div>
 
     <div class="modal-footer">
@@ -17,7 +17,7 @@
             <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
         </button>
 
-        <button id="jhi-confirm-delete-contentSource" type="submit" class="btn btn-danger">
+        <button id="jhi-confirm-delete-sourceRepo" type="submit" class="btn btn-danger">
             <fa-icon icon="times"></fa-icon>&nbsp;<span>Delete</span>
         </button>
     </div>

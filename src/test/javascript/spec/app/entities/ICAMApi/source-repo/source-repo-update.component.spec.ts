@@ -4,34 +4,34 @@ import { FormBuilder } from '@angular/forms';
 import { of } from 'rxjs';
 
 import { IcamBackOfficeTestModule } from '../../../../test.module';
-import { ContentSourceUpdateComponent } from 'app/entities/ICAMApi/content-source/content-source-update.component';
-import { ContentSourceService } from 'app/entities/ICAMApi/content-source/content-source.service';
-import { ContentSource } from 'app/shared/model/ICAMApi/content-source.model';
+import { SourceRepoUpdateComponent } from 'app/entities/ICAMApi/source-repo/source-repo-update.component';
+import { SourceRepoService } from 'app/entities/ICAMApi/source-repo/source-repo.service';
+import { SourceRepo } from 'app/shared/model/ICAMApi/source-repo.model';
 
 describe('Component Tests', () => {
-  describe('ContentSource Management Update Component', () => {
-    let comp: ContentSourceUpdateComponent;
-    let fixture: ComponentFixture<ContentSourceUpdateComponent>;
-    let service: ContentSourceService;
+  describe('SourceRepo Management Update Component', () => {
+    let comp: SourceRepoUpdateComponent;
+    let fixture: ComponentFixture<SourceRepoUpdateComponent>;
+    let service: SourceRepoService;
 
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [IcamBackOfficeTestModule],
-        declarations: [ContentSourceUpdateComponent],
+        declarations: [SourceRepoUpdateComponent],
         providers: [FormBuilder]
       })
-        .overrideTemplate(ContentSourceUpdateComponent, '')
+        .overrideTemplate(SourceRepoUpdateComponent, '')
         .compileComponents();
 
-      fixture = TestBed.createComponent(ContentSourceUpdateComponent);
+      fixture = TestBed.createComponent(SourceRepoUpdateComponent);
       comp = fixture.componentInstance;
-      service = fixture.debugElement.injector.get(ContentSourceService);
+      service = fixture.debugElement.injector.get(SourceRepoService);
     });
 
     describe('save', () => {
       it('Should call update service on save for existing entity', fakeAsync(() => {
         // GIVEN
-        const entity = new ContentSource(123);
+        const entity = new SourceRepo(123);
         spyOn(service, 'update').and.returnValue(of(new HttpResponse({ body: entity })));
         comp.updateForm(entity);
         // WHEN
@@ -45,7 +45,7 @@ describe('Component Tests', () => {
 
       it('Should call create service on save for new entity', fakeAsync(() => {
         // GIVEN
-        const entity = new ContentSource();
+        const entity = new SourceRepo();
         spyOn(service, 'create').and.returnValue(of(new HttpResponse({ body: entity })));
         comp.updateForm(entity);
         // WHEN

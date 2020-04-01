@@ -21,7 +21,7 @@ describe('Service Tests', () => {
       service = injector.get(RevisionService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new Revision(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', false, 'AAAAAAA', ReviewState.Hold, 'AAAAAAA', false, 0);
+      elemDefault = new Revision(0, 'AAAAAAA', 'AAAAAAA', false, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', ReviewState.Hold, 0, false);
     });
 
     describe('Service methods', () => {
@@ -57,13 +57,13 @@ describe('Service Tests', () => {
           {
             title: 'BBBBBB',
             summary: 'BBBBBB',
-            reviewer: 'BBBBBB',
-            active: true,
-            keywords: 'BBBBBB',
-            reviewState: 'BBBBBB',
-            returnNotes: 'BBBBBB',
             reviewedByPeer: true,
-            communityVotes: 1
+            returnNotes: 'BBBBBB',
+            keywords: 'BBBBBB',
+            reviewer: 'BBBBBB',
+            reviewState: 'BBBBBB',
+            communityVotes: 1,
+            active: true
           },
           elemDefault
         );
@@ -82,13 +82,13 @@ describe('Service Tests', () => {
           {
             title: 'BBBBBB',
             summary: 'BBBBBB',
-            reviewer: 'BBBBBB',
-            active: true,
-            keywords: 'BBBBBB',
-            reviewState: 'BBBBBB',
-            returnNotes: 'BBBBBB',
             reviewedByPeer: true,
-            communityVotes: 1
+            returnNotes: 'BBBBBB',
+            keywords: 'BBBBBB',
+            reviewer: 'BBBBBB',
+            reviewState: 'BBBBBB',
+            communityVotes: 1,
+            active: true
           },
           elemDefault
         );

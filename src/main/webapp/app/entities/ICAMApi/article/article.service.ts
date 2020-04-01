@@ -51,19 +51,18 @@ export class ArticleService {
 
   protected convertDateFromClient(article: IArticle): IArticle {
     const copy: IArticle = Object.assign({}, article, {
-      sourceDate: article.sourceDate && article.sourceDate.isValid() ? article.sourceDate.format(DATE_FORMAT) : undefined,
-      pubmedDate: article.pubmedDate && article.pubmedDate.isValid() ? article.pubmedDate.format(DATE_FORMAT) : undefined,
-      officialPubDate:
-        article.officialPubDate && article.officialPubDate.isValid() ? article.officialPubDate.format(DATE_FORMAT) : undefined
+      repoDate: article.repoDate && article.repoDate.isValid() ? article.repoDate.format(DATE_FORMAT) : undefined,
+      articleDate: article.articleDate && article.articleDate.isValid() ? article.articleDate.format(DATE_FORMAT) : undefined,
+      fetchDate: article.fetchDate && article.fetchDate.isValid() ? article.fetchDate.format(DATE_FORMAT) : undefined
     });
     return copy;
   }
 
   protected convertDateFromServer(res: EntityResponseType): EntityResponseType {
     if (res.body) {
-      res.body.sourceDate = res.body.sourceDate ? moment(res.body.sourceDate) : undefined;
-      res.body.pubmedDate = res.body.pubmedDate ? moment(res.body.pubmedDate) : undefined;
-      res.body.officialPubDate = res.body.officialPubDate ? moment(res.body.officialPubDate) : undefined;
+      res.body.repoDate = res.body.repoDate ? moment(res.body.repoDate) : undefined;
+      res.body.articleDate = res.body.articleDate ? moment(res.body.articleDate) : undefined;
+      res.body.fetchDate = res.body.fetchDate ? moment(res.body.fetchDate) : undefined;
     }
     return res;
   }
@@ -71,9 +70,9 @@ export class ArticleService {
   protected convertDateArrayFromServer(res: EntityArrayResponseType): EntityArrayResponseType {
     if (res.body) {
       res.body.forEach((article: IArticle) => {
-        article.sourceDate = article.sourceDate ? moment(article.sourceDate) : undefined;
-        article.pubmedDate = article.pubmedDate ? moment(article.pubmedDate) : undefined;
-        article.officialPubDate = article.officialPubDate ? moment(article.officialPubDate) : undefined;
+        article.repoDate = article.repoDate ? moment(article.repoDate) : undefined;
+        article.articleDate = article.articleDate ? moment(article.articleDate) : undefined;
+        article.fetchDate = article.fetchDate ? moment(article.fetchDate) : undefined;
       });
     }
     return res;

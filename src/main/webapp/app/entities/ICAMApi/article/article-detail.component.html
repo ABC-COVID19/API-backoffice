@@ -8,54 +8,54 @@
             <jhi-alert-error></jhi-alert-error>
 
             <dl class="row-md jh-entity-details">
-                <dt><span>Source ID</span></dt>
+                <dt><span>Repo Article Id</span></dt>
                 <dd>
-                    <span>{{ article.sourceID }}</span>
+                    <span>{{ article.repoArticleId }}</span>
                 </dd>
-                <dt><span>Source Date</span></dt>
+                <dt><span>Repo Date</span></dt>
                 <dd>
-                    <span>{{ article.sourceDate }}</span>
+                    <span>{{ article.repoDate }}</span>
                 </dd>
-                <dt><span>Source Title</span></dt>
+                <dt><span>Repo Keywords</span></dt>
                 <dd>
-                    <span>{{ article.sourceTitle }}</span>
+                    <span>{{ article.repoKeywords }}</span>
                 </dd>
-                <dt><span>Source Abstract</span></dt>
+                <dt><span>Article Date</span></dt>
                 <dd>
-                    <span>{{ article.sourceAbstract }}</span>
+                    <span>{{ article.articleDate }}</span>
                 </dd>
-                <dt><span>Pubmed Date</span></dt>
+                <dt><span>Article Title</span></dt>
                 <dd>
-                    <span>{{ article.pubmedDate }}</span>
+                    <span>{{ article.articleTitle }}</span>
                 </dd>
-                <dt><span>Official Pub Date</span></dt>
+                <dt><span>Article Abstract</span></dt>
                 <dd>
-                    <span>{{ article.officialPubDate }}</span>
+                    <span>{{ article.articleAbstract }}</span>
                 </dd>
-                <dt><span>Doi</span></dt>
+                <dt><span>Article Doi</span></dt>
                 <dd>
-                    <span>{{ article.doi }}</span>
+                    <span>{{ article.articleDoi }}</span>
                 </dd>
-                <dt><span>Journal</span></dt>
+                <dt><span>Article Journal</span></dt>
                 <dd>
-                    <span>{{ article.journal }}</span>
+                    <span>{{ article.articleJournal }}</span>
+                </dd>
+                <dt><span>Fetch Date</span></dt>
+                <dd>
+                    <span>{{ article.fetchDate }}</span>
                 </dd>
                 <dt><span>Citation</span></dt>
                 <dd>
                     <span>{{ article.citation }}</span>
                 </dd>
-                <dt><span>Keywords</span></dt>
-                <dd>
-                    <span>{{ article.keywords }}</span>
-                </dd>
                 <dt><span>Review State</span></dt>
                 <dd>
                     <span>{{ article.reviewState }}</span>
                 </dd>
-                <dt><span>Content Source</span></dt>
+                <dt><span>Srepo</span></dt>
                 <dd>
-                    <div *ngIf="article.cntsource">
-                        <a [routerLink]="['/content-source', article.cntsource?.id, 'view']">{{ article.cntsource?.itemName }}</a>
+                    <div *ngIf="article.srepo">
+                        <a [routerLink]="['/source-repo', article.srepo?.id, 'view']">{{ article.srepo?.id }}</a>
                     </div>
                 </dd>
             </dl>

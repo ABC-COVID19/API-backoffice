@@ -30,12 +30,12 @@ describe('Service Tests', () => {
         0,
         currentDate,
         'AAAAAAA',
-        'AAAAAAA',
-        currentDate,
         currentDate,
         'AAAAAAA',
         'AAAAAAA',
         'AAAAAAA',
+        'AAAAAAA',
+        currentDate,
         'AAAAAAA',
         ReviewState.Hold
       );
@@ -45,9 +45,9 @@ describe('Service Tests', () => {
       it('should find an element', () => {
         const returnedFromService = Object.assign(
           {
-            sourceDate: currentDate.format(DATE_FORMAT),
-            pubmedDate: currentDate.format(DATE_FORMAT),
-            officialPubDate: currentDate.format(DATE_FORMAT)
+            repoDate: currentDate.format(DATE_FORMAT),
+            articleDate: currentDate.format(DATE_FORMAT),
+            fetchDate: currentDate.format(DATE_FORMAT)
           },
           elemDefault
         );
@@ -63,18 +63,18 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             id: 0,
-            sourceDate: currentDate.format(DATE_FORMAT),
-            pubmedDate: currentDate.format(DATE_FORMAT),
-            officialPubDate: currentDate.format(DATE_FORMAT)
+            repoDate: currentDate.format(DATE_FORMAT),
+            articleDate: currentDate.format(DATE_FORMAT),
+            fetchDate: currentDate.format(DATE_FORMAT)
           },
           elemDefault
         );
 
         const expected = Object.assign(
           {
-            sourceDate: currentDate,
-            pubmedDate: currentDate,
-            officialPubDate: currentDate
+            repoDate: currentDate,
+            articleDate: currentDate,
+            fetchDate: currentDate
           },
           returnedFromService
         );
@@ -89,16 +89,16 @@ describe('Service Tests', () => {
       it('should update a Article', () => {
         const returnedFromService = Object.assign(
           {
-            sourceID: 1,
-            sourceDate: currentDate.format(DATE_FORMAT),
-            sourceTitle: 'BBBBBB',
-            sourceAbstract: 'BBBBBB',
-            pubmedDate: currentDate.format(DATE_FORMAT),
-            officialPubDate: currentDate.format(DATE_FORMAT),
-            doi: 'BBBBBB',
-            journal: 'BBBBBB',
+            repoArticleId: 1,
+            repoDate: currentDate.format(DATE_FORMAT),
+            repoKeywords: 'BBBBBB',
+            articleDate: currentDate.format(DATE_FORMAT),
+            articleTitle: 'BBBBBB',
+            articleAbstract: 'BBBBBB',
+            articleDoi: 'BBBBBB',
+            articleJournal: 'BBBBBB',
+            fetchDate: currentDate.format(DATE_FORMAT),
             citation: 'BBBBBB',
-            keywords: 'BBBBBB',
             reviewState: 'BBBBBB'
           },
           elemDefault
@@ -106,9 +106,9 @@ describe('Service Tests', () => {
 
         const expected = Object.assign(
           {
-            sourceDate: currentDate,
-            pubmedDate: currentDate,
-            officialPubDate: currentDate
+            repoDate: currentDate,
+            articleDate: currentDate,
+            fetchDate: currentDate
           },
           returnedFromService
         );
@@ -123,16 +123,16 @@ describe('Service Tests', () => {
       it('should return a list of Article', () => {
         const returnedFromService = Object.assign(
           {
-            sourceID: 1,
-            sourceDate: currentDate.format(DATE_FORMAT),
-            sourceTitle: 'BBBBBB',
-            sourceAbstract: 'BBBBBB',
-            pubmedDate: currentDate.format(DATE_FORMAT),
-            officialPubDate: currentDate.format(DATE_FORMAT),
-            doi: 'BBBBBB',
-            journal: 'BBBBBB',
+            repoArticleId: 1,
+            repoDate: currentDate.format(DATE_FORMAT),
+            repoKeywords: 'BBBBBB',
+            articleDate: currentDate.format(DATE_FORMAT),
+            articleTitle: 'BBBBBB',
+            articleAbstract: 'BBBBBB',
+            articleDoi: 'BBBBBB',
+            articleJournal: 'BBBBBB',
+            fetchDate: currentDate.format(DATE_FORMAT),
             citation: 'BBBBBB',
-            keywords: 'BBBBBB',
             reviewState: 'BBBBBB'
           },
           elemDefault
@@ -140,9 +140,9 @@ describe('Service Tests', () => {
 
         const expected = Object.assign(
           {
-            sourceDate: currentDate,
-            pubmedDate: currentDate,
-            officialPubDate: currentDate
+            repoDate: currentDate,
+            articleDate: currentDate,
+            fetchDate: currentDate
           },
           returnedFromService
         );

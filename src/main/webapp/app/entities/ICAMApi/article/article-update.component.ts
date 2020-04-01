@@ -9,8 +9,8 @@ import { JhiDataUtils, JhiFileLoadError, JhiEventManager, JhiEventWithContent } 
 import { IArticle, Article } from 'app/shared/model/ICAMApi/article.model';
 import { ArticleService } from './article.service';
 import { AlertError } from 'app/shared/alert/alert-error.model';
-import { IContentSource } from 'app/shared/model/ICAMApi/content-source.model';
-import { ContentSourceService } from 'app/entities/ICAMApi/content-source/content-source.service';
+import { ISourceRepo } from 'app/shared/model/ICAMApi/source-repo.model';
+import { SourceRepoService } from 'app/entities/ICAMApi/source-repo/source-repo.service';
 
 @Component({
   selector: 'jhi-article-update',
@@ -18,32 +18,32 @@ import { ContentSourceService } from 'app/entities/ICAMApi/content-source/conten
 })
 export class ArticleUpdateComponent implements OnInit {
   isSaving = false;
-  contentsources: IContentSource[] = [];
-  sourceDateDp: any;
-  pubmedDateDp: any;
-  officialPubDateDp: any;
+  sourcerepos: ISourceRepo[] = [];
+  repoDateDp: any;
+  articleDateDp: any;
+  fetchDateDp: any;
 
   editForm = this.fb.group({
     id: [],
-    sourceID: [null, [Validators.required]],
-    sourceDate: [null, [Validators.required]],
-    sourceTitle: [],
-    sourceAbstract: [],
-    pubmedDate: [],
-    officialPubDate: [],
-    doi: [],
-    journal: [],
+    repoArticleId: [],
+    repoDate: [],
+    repoKeywords: [],
+    articleDate: [],
+    articleTitle: [],
+    articleAbstract: [],
+    articleDoi: [],
+    articleJournal: [],
+    fetchDate: [],
     citation: [],
-    keywords: [],
     reviewState: [null, [Validators.required]],
-    cntsource: []
+    srepo: []
   });
 
   constructor(
     protected dataUtils: JhiDataUtils,
     protected eventManager: JhiEventManager,
     protected articleService: ArticleService,
-    protected contentSourceService: ContentSourceService,
+    protected sourceRepoService: SourceRepoService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -52,25 +52,25 @@ export class ArticleUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ article }) => {
       this.updateForm(article);
 
-      this.contentSourceService.query().subscribe((res: HttpResponse<IContentSource[]>) => (this.contentsources = res.body || []));
+      this.sourceRepoService.query().subscribe((res: HttpResponse<ISourceRepo[]>) => (this.sourcerepos = res.body || []));
     });
   }
 
   updateForm(article: IArticle): void {
     this.editForm.patchValue({
       id: article.id,
-      sourceID: article.sourceID,
-      sourceDate: article.sourceDate,
-      sourceTitle: article.sourceTitle,
-      sourceAbstract: article.sourceAbstract,
-      pubmedDate: article.pubmedDate,
-      officialPubDate: article.officialPubDate,
-      doi: article.doi,
-      journal: article.journal,
+      repoArticleId: article.repoArticleId,
+      repoDate: article.repoDate,
+      repoKeywords: article.repoKeywords,
+      articleDate: article.articleDate,
+      articleTitle: article.articleTitle,
+      articleAbstract: article.articleAbstract,
+      articleDoi: article.articleDoi,
+      articleJournal: article.articleJournal,
+      fetchDate: article.fetchDate,
       citation: article.citation,
-      keywords: article.keywords,
       reviewState: article.reviewState,
-      cntsource: article.cntsource
+      srepo: article.srepo
     });
   }
 
@@ -108,18 +108,18 @@ export class ArticleUpdateComponent implements OnInit {
     return {
       ...new Article(),
       id: this.editForm.get(['id'])!.value,
-      sourceID: this.editForm.get(['sourceID'])!.value,
-      sourceDate: this.editForm.get(['sourceDate'])!.value,
-      sourceTitle: this.editForm.get(['sourceTitle'])!.value,
-      sourceAbstract: this.editForm.get(['sourceAbstract'])!.value,
-      pubmedDate: this.editForm.get(['pubmedDate'])!.value,
-      officialPubDate: this.editForm.get(['officialPubDate'])!.value,
-      doi: this.editForm.get(['doi'])!.value,
-      journal: this.editForm.get(['journal'])!.value,
+      repoArticleId: this.editForm.get(['repoArticleId'])!.value,
+      repoDate: this.editForm.get(['repoDate'])!.value,
+      repoKeywords: this.editForm.get(['repoKeywords'])!.value,
+      articleDate: this.editForm.get(['articleDate'])!.value,
+      articleTitle: this.editForm.get(['articleTitle'])!.value,
+      articleAbstract: this.editForm.get(['articleAbstract'])!.value,
+      articleDoi: this.editForm.get(['articleDoi'])!.value,
+      articleJournal: this.editForm.get(['articleJournal'])!.value,
+      fetchDate: this.editForm.get(['fetchDate'])!.value,
       citation: this.editForm.get(['citation'])!.value,
-      keywords: this.editForm.get(['keywords'])!.value,
       reviewState: this.editForm.get(['reviewState'])!.value,
-      cntsource: this.editForm.get(['cntsource'])!.value
+      srepo: this.editForm.get(['srepo'])!.value
     };
   }
 
@@ -139,7 +139,7 @@ export class ArticleUpdateComponent implements OnInit {
     this.isSaving = false;
   }
 
-  trackById(index: number, item: IContentSource): any {
+  trackById(index: number, item: ISourceRepo): any {
     return item.id;
   }
 }
