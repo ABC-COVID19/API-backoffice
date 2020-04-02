@@ -52,7 +52,6 @@ export class ArticleService {
   protected convertDateFromClient(article: IArticle): IArticle {
     const copy: IArticle = Object.assign({}, article, {
       repoDate: article.repoDate && article.repoDate.isValid() ? article.repoDate.format(DATE_FORMAT) : undefined,
-      articleDate: article.articleDate && article.articleDate.isValid() ? article.articleDate.format(DATE_FORMAT) : undefined,
       fetchDate: article.fetchDate && article.fetchDate.isValid() ? article.fetchDate.format(DATE_FORMAT) : undefined
     });
     return copy;
@@ -61,7 +60,6 @@ export class ArticleService {
   protected convertDateFromServer(res: EntityResponseType): EntityResponseType {
     if (res.body) {
       res.body.repoDate = res.body.repoDate ? moment(res.body.repoDate) : undefined;
-      res.body.articleDate = res.body.articleDate ? moment(res.body.articleDate) : undefined;
       res.body.fetchDate = res.body.fetchDate ? moment(res.body.fetchDate) : undefined;
     }
     return res;
@@ -71,7 +69,6 @@ export class ArticleService {
     if (res.body) {
       res.body.forEach((article: IArticle) => {
         article.repoDate = article.repoDate ? moment(article.repoDate) : undefined;
-        article.articleDate = article.articleDate ? moment(article.articleDate) : undefined;
         article.fetchDate = article.fetchDate ? moment(article.fetchDate) : undefined;
       });
     }

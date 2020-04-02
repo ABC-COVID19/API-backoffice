@@ -8,7 +8,7 @@ export interface IArticle {
   repoArticleId?: number;
   repoDate?: Moment;
   repoKeywords?: any;
-  articleDate?: Moment;
+  articleDate?: string;
   articleTitle?: string;
   articleAbstract?: any;
   articleDoi?: string;
@@ -26,7 +26,7 @@ export class Article implements IArticle {
     public repoArticleId?: number,
     public repoDate?: Moment,
     public repoKeywords?: any,
-    public articleDate?: Moment,
+    public articleDate?: string,
     public articleTitle?: string,
     public articleAbstract?: any,
     public articleDoi?: string,
