@@ -8,23 +8,28 @@ export class SidebarComponent {
   links = [
     {
       txt: 'Pesquisa',
-      icon: 'fa-search'
+      icon: 'fa-search',
+      path: '/search'
     },
     {
       txt: 'Artigos',
-      icon: 'fa-file-medical'
+      icon: 'fa-file-medical',
+      path: '/articles'
     },
     {
       txt: 'Sobre o ICAM',
-      icon: 'fa-info'
+      icon: 'fa-info',
+      path: '/about'
     },
     {
       txt: 'Receber Atualizações',
-      icon: 'fa-envelope'
+      icon: 'fa-envelope',
+      path: '/updates'
     },
     {
       txt: 'Contatos',
-      icon: 'fa-phone'
+      icon: 'fa-phone',
+      path: '/contacts'
     }
   ];
   constructor() {}

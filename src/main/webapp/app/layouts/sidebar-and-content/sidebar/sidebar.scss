@@ -1,3 +1,4 @@
+@import '../../../../content/scss/global-variables.scss';
 :host {
   & > nav {
     height: 100vh;
@@ -17,9 +18,22 @@
         width: 100%;
         display: block;
         padding: 13px 15px;
-        color: #848484;
         font-size: 20px;
         font-weight: normal;
+        text-decoration: none;
+        line-height: 20px;
+
+        &.active-link {
+          border-radius: 8px;
+
+          span {
+            color: $dark-blue;
+          }
+        }
+
+        &:not(:last-child) {
+          margin-bottom: 20px;
+        }
 
         & > span:first-child {
           width: 16px;

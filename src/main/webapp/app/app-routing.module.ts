@@ -5,7 +5,6 @@ import { DEBUG_INFO_ENABLED } from 'app/app.constants';
 import { Authority } from 'app/shared/constants/authority.constants';
 
 import { SidebarAndContentComponent } from 'app/layouts/sidebar-and-content/sidebar-and-content.component';
-
 import { UserRouteAccessService } from 'app/core/auth/user-route-access-service';
 
 const LAYOUT_ROUTES = [...errorRoute];
@@ -20,7 +19,12 @@ const LAYOUT_ROUTES = [...errorRoute];
             {
               path: '',
               component: SidebarAndContentComponent,
-              children: []
+              children: [
+                {
+                  path: 'search',
+                  loadChildren: () => import('./search/search.module').then(m => m.SearchModule)
+                }
+              ]
             }
           ]
         },

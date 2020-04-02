@@ -2,6 +2,7 @@
 @import 'bootstrap-variables';
 @import '~bootstrap/scss/functions';
 @import '~bootstrap/scss/variables';
+@import 'global-variables.scss';
 
 /* ==============================================================
 Bootstrap tweaks
@@ -9,6 +10,14 @@ Bootstrap tweaks
 
 * {
   font-family: 'Roboto', sans-serif;
+}
+
+span {
+  color: $text-color;
+}
+
+.selected-yellow {
+  background-color: $selection-yellow;
 }
 
 body,

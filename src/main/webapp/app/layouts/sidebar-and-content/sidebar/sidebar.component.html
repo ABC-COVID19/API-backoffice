@@ -3,7 +3,7 @@
         <img class="logo" src="../../../../content/images/ICAM2e.svg">
     </a>
     <div id="menu">
-        <a class="sidebar-link" *ngFor="let link of links">
+        <a class="sidebar-link" *ngFor="let link of links" [routerLink]="link.path" routerLinkActive="active-link selected-yellow">
             <span>
                 <!-- <fa-icon [icon]="link.icon"></fa-icon> -->
                 <i [ngClass]="['fal', link.icon]"></i>
