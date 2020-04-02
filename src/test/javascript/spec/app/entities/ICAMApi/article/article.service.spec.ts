@@ -30,7 +30,7 @@ describe('Service Tests', () => {
         0,
         currentDate,
         'AAAAAAA',
-        currentDate,
+        'AAAAAAA',
         'AAAAAAA',
         'AAAAAAA',
         'AAAAAAA',
@@ -46,7 +46,6 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             repoDate: currentDate.format(DATE_FORMAT),
-            articleDate: currentDate.format(DATE_FORMAT),
             fetchDate: currentDate.format(DATE_FORMAT)
           },
           elemDefault
@@ -64,7 +63,6 @@ describe('Service Tests', () => {
           {
             id: 0,
             repoDate: currentDate.format(DATE_FORMAT),
-            articleDate: currentDate.format(DATE_FORMAT),
             fetchDate: currentDate.format(DATE_FORMAT)
           },
           elemDefault
@@ -73,7 +71,6 @@ describe('Service Tests', () => {
         const expected = Object.assign(
           {
             repoDate: currentDate,
-            articleDate: currentDate,
             fetchDate: currentDate
           },
           returnedFromService
@@ -92,7 +89,7 @@ describe('Service Tests', () => {
             repoArticleId: 1,
             repoDate: currentDate.format(DATE_FORMAT),
             repoKeywords: 'BBBBBB',
-            articleDate: currentDate.format(DATE_FORMAT),
+            articleDate: 'BBBBBB',
             articleTitle: 'BBBBBB',
             articleAbstract: 'BBBBBB',
             articleDoi: 'BBBBBB',
@@ -107,7 +104,6 @@ describe('Service Tests', () => {
         const expected = Object.assign(
           {
             repoDate: currentDate,
-            articleDate: currentDate,
             fetchDate: currentDate
           },
           returnedFromService
@@ -126,7 +122,7 @@ describe('Service Tests', () => {
             repoArticleId: 1,
             repoDate: currentDate.format(DATE_FORMAT),
             repoKeywords: 'BBBBBB',
-            articleDate: currentDate.format(DATE_FORMAT),
+            articleDate: 'BBBBBB',
             articleTitle: 'BBBBBB',
             articleAbstract: 'BBBBBB',
             articleDoi: 'BBBBBB',
@@ -141,7 +137,6 @@ describe('Service Tests', () => {
         const expected = Object.assign(
           {
             repoDate: currentDate,
-            articleDate: currentDate,
             fetchDate: currentDate
           },
           returnedFromService

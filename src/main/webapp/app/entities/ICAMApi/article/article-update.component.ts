@@ -20,7 +20,6 @@ export class ArticleUpdateComponent implements OnInit {
   isSaving = false;
   sourcerepos: ISourceRepo[] = [];
   repoDateDp: any;
-  articleDateDp: any;
   fetchDateDp: any;
 
   editForm = this.fb.group({
