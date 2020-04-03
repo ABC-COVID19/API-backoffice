@@ -5,6 +5,12 @@
     width: 320px;
     padding: 30px;
     box-shadow: 0px 3px 6px #00000029;
+    display: inline-block;
+    background-image: url('../../../../content/images/sidebar_bg.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: bottom left;
+    background-size: 100%;
 
     img.logo {
       width: 260px;
@@ -22,13 +28,16 @@
         font-weight: normal;
         text-decoration: none;
         line-height: 20px;
+        border-radius: 8px;
 
         &.active-link {
-          border-radius: 8px;
-
           span {
             color: $dark-blue;
           }
+        }
+
+        &:hover {
+          background-color: $selection-yellow;
         }
 
         &:not(:last-child) {
