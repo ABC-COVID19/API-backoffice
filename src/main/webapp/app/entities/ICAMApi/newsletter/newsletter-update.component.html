@@ -40,7 +40,7 @@
                     <div class="input-group">
                         <input id="field_registrationDate" type="text" class="form-control" name="registrationDate" ngbDatepicker #registrationDateDp="ngbDatepicker" formControlName="registrationDate"/>
                         <span class="input-group-append">
-                            <button type="button" class="btn btn-secondary" (click)="registrationDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                            <button type="button" class="btn btn-secondary" (click)="registrationDateDp.toggle()"><i class="calendar-alt"></i></button>
                         </span>
                     </div>
                     <div *ngIf="editForm.get('registrationDate')!.invalid && (editForm.get('registrationDate')!.dirty || editForm.get('registrationDate')!.touched)">
@@ -73,11 +73,11 @@
 
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
-                    <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+                    <i class="fa-ban"></i>&nbsp;<span>Cancel</span>
                 </button>
 
                 <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
-                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+                    <i class="fa-save"></i>&nbsp;<span>Save</span>
                 </button>
             </div>
         </form>

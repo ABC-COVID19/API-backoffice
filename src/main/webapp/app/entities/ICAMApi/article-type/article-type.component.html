@@ -3,7 +3,7 @@
         <span>Article Types</span>
 
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-article-type" [routerLink]="['/article-type/new']">
-            <fa-icon icon="plus"></fa-icon>
+            <i class="fa-plus"></i>
             <span>
             Create a new Article Type
             </span>
@@ -22,9 +22,9 @@
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
-                    <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="itemName"><span>Item Name</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="active"><span>Active</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="id"><span>ID</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="itemName"><span>Item Name</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="active"><span>Active</span> <i class="fa-sort"></i></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -38,20 +38,20 @@
                             <button type="submit"
                                     [routerLink]="['/article-type', articleType.id, 'view']"
                                     class="btn btn-info btn-sm">
-                                <fa-icon icon="eye"></fa-icon>
+                                <i class="fa-eye"></i>
                                 <span class="d-none d-md-inline">View</span>
                             </button>
 
                             <button type="submit"
                                     [routerLink]="['/article-type', articleType.id, 'edit']"
                                     class="btn btn-primary btn-sm">
-                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <i class="pencil-alt"></i>
                                 <span class="d-none d-md-inline">Edit</span>
                             </button>
 
                             <button type="submit" (click)="delete(articleType)"
                                     class="btn btn-danger btn-sm">
-                                <fa-icon icon="times"></fa-icon>
+                                <i class="fa-times"></i>
                                 <span class="d-none d-md-inline">Delete</span>
                             </button>
                         </div>

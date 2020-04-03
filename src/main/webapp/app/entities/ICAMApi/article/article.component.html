@@ -3,7 +3,7 @@
         <span>Articles</span>
 
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-article" [routerLink]="['/article/new']">
-            <fa-icon icon="plus"></fa-icon>
+            <i class="fa-plus"></i>
             <span>
             Create a new Article
             </span>
@@ -22,19 +22,19 @@
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
-                    <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="repoArticleId"><span>Repo Article Id</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="repoDate"><span>Repo Date</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="repoKeywords"><span>Repo Keywords</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="articleDate"><span>Article Date</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="articleTitle"><span>Article Title</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="articleAbstract"><span>Article Abstract</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="articleDoi"><span>Article Doi</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="articleJournal"><span>Article Journal</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="fetchDate"><span>Fetch Date</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="citation"><span>Citation</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="reviewState"><span>Review State</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="srepo.id"><span>Srepo</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="id"><span>ID</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="repoArticleId"><span>Repo Article Id</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="repoDate"><span>Repo Date</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="repoKeywords"><span>Repo Keywords</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="articleDate"><span>Article Date</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="articleTitle"><span>Article Title</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="articleAbstract"><span>Article Abstract</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="articleDoi"><span>Article Doi</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="articleJournal"><span>Article Journal</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="fetchDate"><span>Fetch Date</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="citation"><span>Citation</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="reviewState"><span>Review State</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="srepo.id"><span>Source Repo</span> <i class="fa-sort"></i></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -62,20 +62,20 @@
                             <button type="submit"
                                     [routerLink]="['/article', article.id, 'view']"
                                     class="btn btn-info btn-sm">
-                                <fa-icon icon="eye"></fa-icon>
+                                <i class="fa-eye"></i>
                                 <span class="d-none d-md-inline">View</span>
                             </button>
 
                             <button type="submit"
                                     [routerLink]="['/article', article.id, 'edit']"
                                     class="btn btn-primary btn-sm">
-                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <i class="pencil-alt"></i>
                                 <span class="d-none d-md-inline">Edit</span>
                             </button>
 
                             <button type="submit" (click)="delete(article)"
                                     class="btn btn-danger btn-sm">
-                                <fa-icon icon="times"></fa-icon>
+                                <i class="fa-times"></i>
                                 <span class="d-none d-md-inline">Delete</span>
                             </button>
                         </div>
