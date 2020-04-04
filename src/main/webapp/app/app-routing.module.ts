@@ -21,6 +21,11 @@ const LAYOUT_ROUTES = [...errorRoute];
               component: SidebarAndContentComponent,
               children: [
                 {
+                  path: '',
+                  redirectTo: '/search',
+                  pathMatch: 'full'
+                },
+                {
                   path: 'search',
                   loadChildren: () => import('./search/search.module').then(m => m.SearchModule)
                 },
