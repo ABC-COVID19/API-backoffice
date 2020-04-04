@@ -10,6 +10,13 @@ import { HasAnyAuthorityDirective } from './auth/has-any-authority.directive';
   imports: [IcamBackOfficeSharedLibsModule],
   declarations: [AlertComponent, AlertErrorComponent, LoginModalComponent, HasAnyAuthorityDirective, RoundCardComponent],
   entryComponents: [LoginModalComponent],
-  exports: [IcamBackOfficeSharedLibsModule, AlertComponent, AlertErrorComponent, LoginModalComponent, HasAnyAuthorityDirective]
+  exports: [
+    IcamBackOfficeSharedLibsModule,
+    AlertComponent,
+    AlertErrorComponent,
+    LoginModalComponent,
+    HasAnyAuthorityDirective,
+    RoundCardComponent
+  ]
 })
 export class IcamBackOfficeSharedModule {}

@@ -1,0 +1,18 @@
+<div
+	id="heading"
+	[style.padding-bottom]="headerPaddingBottom"
+	[style.padding-left]="sidePadding"
+	[style.padding-right]="sidePadding"
+>
+		<ng-content select="[heading-content]"></ng-content>
+</div>
+<div
+	id="content-holder"
+	[style.padding-left]="sidePadding"
+	[style.padding-right]="sidePadding"
+	[style.margin-top]="topOffset"
+>
+		<round-card>
+			<ng-content></ng-content>
+		</round-card>
+</div>

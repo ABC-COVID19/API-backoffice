@@ -9,7 +9,7 @@ Bootstrap tweaks
 ===============================================================*/
 
 * {
-  font-family: 'Roboto', sans-serif;
+  font-family: $font-family;
 }
 
 span {
@@ -20,12 +20,42 @@ span {
   background-color: $selection-yellow;
 }
 
-body,
+body {
+  background-color: $bg-color;
+}
+
+h1 {
+  font: 50px/64px $font-family;
+  font-weight: bold;
+}
+
+h2 {
+  font: 20px/30px $font-family;
+  font-weight: normal;
+}
+
 h1,
-h2,
+h2 {
+  color: white;
+}
+
+p {
+  color: $dark-blue;
+}
+
+body,
 h3,
 h4 {
   font-weight: 300;
+}
+
+.section-heading {
+  padding: 30px 30px 50px 30px;
+  background-color: $darker-blue;
+}
+
+.section-content {
+  padding: 0 30px;
 }
 
 /* Increase contrast of links to get 100% on Lighthouse Accessability Audit. Override this color if you want to change the link color, or use a Bootswatch theme */

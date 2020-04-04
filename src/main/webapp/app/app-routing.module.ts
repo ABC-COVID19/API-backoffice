@@ -23,6 +23,10 @@ const LAYOUT_ROUTES = [...errorRoute];
                 {
                   path: 'search',
                   loadChildren: () => import('./search/search.module').then(m => m.SearchModule)
+                },
+                {
+                  path: 'about',
+                  loadChildren: () => import('./about/about.module').then(m => m.AboutModule)
                 }
               ]
             }
