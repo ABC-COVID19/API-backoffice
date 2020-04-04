@@ -1,7 +1,7 @@
 @import '../../../../content/scss/global-variables.scss';
 :host {
   display: inline-block;
-  width: 320px;
+  width: 280px;
 
   & > nav {
     position: relative;
@@ -17,8 +17,8 @@
     background-size: 100%;
 
     img.logo {
-      width: 260px;
-      padding: 0 12px;
+      width: 100%;
+      padding: 0 10px;
     }
 
     #menu {
@@ -27,8 +27,8 @@
       .sidebar-link {
         width: 100%;
         display: block;
-        padding: 13px 15px;
-        font-size: 20px;
+        padding: 10px 15px;
+        font-size: 16px;
         font-weight: normal;
         text-decoration: none;
         line-height: 20px;
@@ -45,7 +45,7 @@
         }
 
         &:not(:last-child) {
-          margin-bottom: 20px;
+          margin-bottom: 15px;
         }
 
         & > span:first-child {
@@ -62,7 +62,7 @@
     #admin-access {
       position: absolute;
       bottom: 30px;
-      padding-left: 20px;
+      padding-left: 15px;
 
       a {
         text-decoration: none;
@@ -70,11 +70,16 @@
 
       span {
         color: $darker-blue;
-        font-size: 20px;
-        font-weight: normal;
 
-        & > svg {
-          margin-right: 12px;
+        &:first-child {
+          display: inline-block;
+          width: 16px;
+        }
+
+        &:last-child {
+          margin-left: 12px;
+          font-size: 16px;
+          font-weight: normal;
         }
       }
     }
