@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./search.scss']
 })
 export class SearchComponent {
+  categories = ['Covid', 'Etiologia-Virus SARS-CoV-2', 'Fatores de risco', 'Tratamento', 'Fisiopatologia', 'Prognóstico', 'Diagnóstico'];
   constructor() {}
 }

@@ -5,4 +5,10 @@
 	<round-card paddingLeft="20px" paddingRight="20px">
 		<icam-search></icam-search>
 	</round-card>
+	<div id="categories">
+		<h1>Acesso direto por categoria:</h1>
+		<div id="category-list">
+			<category-tag *ngFor="let cat of categories">{{ cat }}</category-tag>
+		</div>
+	</div>
 </div>
