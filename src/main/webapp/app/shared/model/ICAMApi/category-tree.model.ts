@@ -1,13 +1,14 @@
-import { IRevision } from 'app/shared/model/ICAMApi/revision.model';
 import { INewsletter } from 'app/shared/model/ICAMApi/newsletter.model';
+import { IRevision } from 'app/shared/model/ICAMApi/revision.model';
 
 export interface ICategoryTree {
   id?: number;
   itemName?: string;
   active?: boolean;
-  revisions?: IRevision[];
-  child?: ICategoryTree;
+  children?: ICategoryTree[];
+  parent?: ICategoryTree;
   newsletters?: INewsletter[];
+  revisions?: IRevision[];
 }
 
 export class CategoryTree implements ICategoryTree {
@@ -15,9 +16,10 @@ export class CategoryTree implements ICategoryTree {
     public id?: number,
     public itemName?: string,
     public active?: boolean,
-    public revisions?: IRevision[],
-    public child?: ICategoryTree,
-    public newsletters?: INewsletter[]
+    public children?: ICategoryTree[],
+    public parent?: ICategoryTree,
+    public newsletters?: INewsletter[],
+    public revisions?: IRevision[]
   ) {
     this.active = this.active || false;
   }

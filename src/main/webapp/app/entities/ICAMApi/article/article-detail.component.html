@@ -55,7 +55,7 @@
                 <dt><span>Srepo</span></dt>
                 <dd>
                     <div *ngIf="article.srepo">
-                        <a [routerLink]="['/source-repo', article.srepo?.id, 'view']">{{ article.srepo?.id }}</a>
+                        <a [routerLink]="['/source-repo', article.srepo?.id, 'view']">{{ article.srepo?.itemName }}</a>
                     </div>
                 </dd>
             </dl>

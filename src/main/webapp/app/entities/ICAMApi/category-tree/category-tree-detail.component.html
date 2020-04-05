@@ -16,10 +16,10 @@
                 <dd>
                     <span>{{ categoryTree.active }}</span>
                 </dd>
-                <dt><span>Child</span></dt>
+                <dt><span>Parent</span></dt>
                 <dd>
-                    <div *ngIf="categoryTree.child">
-                        <a [routerLink]="['/category-tree', categoryTree.child?.id, 'view']">{{ categoryTree.child?.id }}</a>
+                    <div *ngIf="categoryTree.parent">
+                        <a [routerLink]="['/category-tree', categoryTree.parent?.id, 'view']">{{ categoryTree.parent?.itemName }}</a>
                     </div>
                 </dd>
             </dl>

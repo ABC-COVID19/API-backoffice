@@ -34,7 +34,7 @@
                     <th scope="col"  jhiSortBy="fetchDate"><span>Fetch Date</span> <i class="fa-sort"></i></th>
                     <th scope="col"  jhiSortBy="citation"><span>Citation</span> <i class="fa-sort"></i></th>
                     <th scope="col"  jhiSortBy="reviewState"><span>Review State</span> <i class="fa-sort"></i></th>
-                    <th scope="col"  jhiSortBy="srepo.id"><span>Source Repo</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="srepo.itemName"><span>Source Repo</span> <i class="fa-sort"></i></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -54,7 +54,7 @@
                     <td>{{ article.reviewState }}</td>
                     <td>
                         <div *ngIf="article.srepo">
-                            <a [routerLink]="['/source-repo', article.srepo?.id, 'view']" >{{ article.srepo?.id }}</a>
+                            <a [routerLink]="['/source-repo', article.srepo?.id, 'view']" >{{ article.srepo?.itemName }}</a>
                         </div>
                     </td>
                     <td class="text-right">

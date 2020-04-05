@@ -21,14 +21,14 @@
     <div class="table-responsive" id="entities" *ngIf="articleTypes?.length > 0">
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
-                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
-                    <th scope="col"  jhiSortBy="id"><span>ID</span> <i class="fa-sort"></i></th>
-                    <th scope="col"  jhiSortBy="itemName"><span>Item Name</span> <i class="fa-sort"></i></th>
-                    <th scope="col"  jhiSortBy="active"><span>Active</span> <i class="fa-sort"></i></th>
+                <tr>
+                    <th scope="col" ><span>ID</span></th>
+                    <th scope="col" ><span>Item Name</span></th>
+                    <th scope="col" ><span>Active</span></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
-            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tbody>
                 <tr *ngFor="let articleType of articleTypes ;trackBy: trackId">
                     <td><a [routerLink]="['/article-type', articleType.id, 'view']">{{ articleType.id }}</a></td>
                     <td>{{ articleType.itemName }}</td>

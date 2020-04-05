@@ -32,9 +32,9 @@
                     <th scope="col"  jhiSortBy="reviewState"><span>Review State</span> <i class="fa-sort"></i></th>
                     <th scope="col"  jhiSortBy="communityVotes"><span>Community Votes</span> <i class="fa-sort"></i></th>
                     <th scope="col"  jhiSortBy="active"><span>Active</span> <i class="fa-sort"></i></th>
-                    <th scope="col"  jhiSortBy="atype.id"><span>Atype</span> <i class="fa-sort"></i></th>
-                    <th scope="col"  jhiSortBy="ctree.id"><span>Ctree</span> <i class="fa-sort"></i></th>
-                    <th scope="col"  jhiSortBy="article.id"><span>Article</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="atype.itemName"><span>Article Type</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="ctree.itemName"><span>Category</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="article.articleTitle"><span>Article</span> <i class="fa-sort"></i></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -52,17 +52,12 @@
                     <td>{{ revision.active }}</td>
                     <td>
                         <div *ngIf="revision.atype">
-                            <a [routerLink]="['/article-type', revision.atype?.id, 'view']" >{{ revision.atype?.id }}</a>
-                        </div>
-                    </td>
-                    <td>
-                        <div *ngIf="revision.ctree">
-                            <a [routerLink]="['/category-tree', revision.ctree?.id, 'view']" >{{ revision.ctree?.id }}</a>
+                            <a [routerLink]="['/article-type', revision.atype?.id, 'view']" >{{ revision.atype?.itemName }}</a>
                         </div>
                     </td>
                     <td>
                         <div *ngIf="revision.article">
-                            <a [routerLink]="['/article', revision.article?.id, 'view']" >{{ revision.article?.id }}</a>
+                            <a [routerLink]="['/article', revision.article?.id, 'view']" >{{ revision.article?.articleTitle }}</a>
                         </div>
                     </td>
                     <td class="text-right">
