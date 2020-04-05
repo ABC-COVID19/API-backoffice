@@ -1,0 +1,31 @@
+<form [formGroup]="form">
+    <div id="personal-details">
+        <div id="first-name">
+            <div class="form-field-name">Primeiro nome</div>
+            <div class="input-holder"><input type="text" formControlName="firstName"></div>
+        </div>
+        <div id="last-name">
+            <div class="form-field-name">Último nome</div>
+            <div class="input-holder"><input type="text" formControlName="lastName"></div>
+        </div>
+        <div id="email">
+            <div class="form-field-name">Email Profissional</div>
+            <div class="input-holder">
+                <input type="email" formControlName="email">
+            </div>
+        </div>
+    </div>
+    <div id="areas-of-interest">
+        <div>
+            <span class="form-field-name">Selecione as suas áreas de interesse</span>
+            <span (click)="selectAll()">Selecionar tudo</span>
+        </div>
+        <div>
+            <label *ngFor="let cat of categories" class="icam-checkbox-container">{{ cat.name }}
+                <input type="checkbox">
+                <span class="icam-checkmark"></span>
+            </label>
+        </div>
+    </div>
+    <button icam-btn btnText="Submeter" rightArrow type="submit" btnWidth="250px"></button>
+</form>

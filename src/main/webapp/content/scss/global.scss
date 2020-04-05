@@ -53,6 +53,12 @@ h4 {
   font-weight: 300;
 }
 
+input {
+  width: 100%;
+  outline: none;
+  color: $text-color;
+}
+
 .section-heading {
   padding: 30px 30px 50px 30px;
   background-color: $darker-blue;
