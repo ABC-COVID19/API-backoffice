@@ -10,5 +10,6 @@ export class RoundCardComponent {
   @Input() paddingRight = '10px';
   @Input() paddingBottom = '10px';
   @Input() paddingLeft = '10px';
+  @Input() borderRadius = '20px';
   constructor() {}
 }

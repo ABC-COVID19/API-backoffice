@@ -34,6 +34,11 @@ h2 {
   font-weight: normal;
 }
 
+h3 {
+  font: 14px/24px $font-family;
+  font-weight: normal;
+}
+
 h1,
 h2 {
   color: white;
@@ -44,7 +49,6 @@ p {
 }
 
 body,
-h3,
 h4 {
   font-weight: 300;
 }
@@ -55,7 +59,7 @@ h4 {
 }
 
 .section-content {
-  padding: 0 30px;
+  padding: 0 30px 30px 30px;
 }
 
 /* Increase contrast of links to get 100% on Lighthouse Accessability Audit. Override this color if you want to change the link color, or use a Bootswatch theme */

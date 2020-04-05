@@ -11,4 +11,16 @@
 			<category-tag *ngFor="let cat of categories">{{ cat }}</category-tag>
 		</div>
 	</div>
+	<div id="last-revised">
+		<h1>Últimos documentos revistos:</h1>
+		<article-card
+			*ngFor="let card of lastRevisedCards"
+			[title]="card.title"
+			[summary]="card.summary"
+			[articleDate]="card.date"
+			[author]="card.author"
+			[category]="card.category"
+		>
+		</article-card>
+	</div>
 </div>

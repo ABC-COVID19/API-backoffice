@@ -25,3 +25,15 @@
     }
   }
 }
+
+#last-revised {
+  h1 {
+    color: $darker-blue;
+  }
+
+  article-card {
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+  }
+}

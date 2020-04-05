@@ -1,0 +1,16 @@
+<round-card borderRadius="9px" paddingLeft="20px" paddingRight="20px">
+    <h2>{{ title }}</h2>
+    <h3>{{ summary }}</h3>
+    <div class="article-card-footer">
+        <div>
+            <div>
+                <span>
+                    <i class="fal fa-calendar-alt"></i>
+                </span>
+                <span class="article-card-date">{{ articleDate | date: 'dd/MM/yyyy' }}</span>
+            </div>
+            <span class="article-author">{{ author }}</span>
+        </div>
+        <icam-badge iconClass="fa-list" [text]="category"></icam-badge>
+    </div>
+</round-card>

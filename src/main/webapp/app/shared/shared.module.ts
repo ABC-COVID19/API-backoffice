@@ -6,6 +6,8 @@ import { LoginModalComponent } from './login/login.component';
 import { RoundCardComponent } from './round-card/round-card.component';
 import { IcamBtnComponent } from './icam-btn/icam-btn.component';
 import { IcamSearchComponent } from './icam-search/icarm-search.component';
+import { ArticleCardComponent } from './article-card/article-card.component';
+import { IcamBadgeComponent } from './icam-badge/icam-badge.component';
 import { HasAnyAuthorityDirective } from './auth/has-any-authority.directive';
 
 @NgModule({
@@ -17,7 +19,9 @@ import { HasAnyAuthorityDirective } from './auth/has-any-authority.directive';
     HasAnyAuthorityDirective,
     RoundCardComponent,
     IcamBtnComponent,
-    IcamSearchComponent
+    IcamSearchComponent,
+    ArticleCardComponent,
+    IcamBadgeComponent
   ],
   entryComponents: [LoginModalComponent],
   exports: [
@@ -28,7 +32,9 @@ import { HasAnyAuthorityDirective } from './auth/has-any-authority.directive';
     HasAnyAuthorityDirective,
     RoundCardComponent,
     IcamBtnComponent,
-    IcamSearchComponent
+    IcamSearchComponent,
+    ArticleCardComponent,
+    IcamBadgeComponent
   ]
 })
 export class IcamBackOfficeSharedModule {}
