@@ -9,14 +9,14 @@ import { JhiDataUtils, JhiFileLoadError, JhiEventManager, JhiEventWithContent } 
 import { IRevision, Revision } from 'app/shared/model/ICAMApi/revision.model';
 import { RevisionService } from './revision.service';
 import { AlertError } from 'app/shared/alert/alert-error.model';
-import { IArticleType } from 'app/shared/model/ICAMApi/article-type.model';
-import { ArticleTypeService } from 'app/entities/ICAMApi/article-type/article-type.service';
 import { ICategoryTree } from 'app/shared/model/ICAMApi/category-tree.model';
 import { CategoryTreeService } from 'app/entities/ICAMApi/category-tree/category-tree.service';
+import { IArticleType } from 'app/shared/model/ICAMApi/article-type.model';
+import { ArticleTypeService } from 'app/entities/ICAMApi/article-type/article-type.service';
 import { IArticle } from 'app/shared/model/ICAMApi/article.model';
 import { ArticleService } from 'app/entities/ICAMApi/article/article.service';
 
-type SelectableEntity = IArticleType | ICategoryTree | IArticle;
+type SelectableEntity = ICategoryTree | IArticleType | IArticle;
 
 @Component({
   selector: 'jhi-revision-update',
@@ -24,8 +24,8 @@ type SelectableEntity = IArticleType | ICategoryTree | IArticle;
 })
 export class RevisionUpdateComponent implements OnInit {
   isSaving = false;
-  articletypes: IArticleType[] = [];
   categorytrees: ICategoryTree[] = [];
+  articletypes: IArticleType[] = [];
   articles: IArticle[] = [];
 
   editForm = this.fb.group({
@@ -39,8 +39,8 @@ export class RevisionUpdateComponent implements OnInit {
     reviewState: [null, [Validators.required]],
     communityVotes: [],
     active: [null, [Validators.required]],
+    ctrees: [],
     atype: [],
-    ctree: [],
     article: []
   });
 
@@ -48,8 +48,8 @@ export class RevisionUpdateComponent implements OnInit {
     protected dataUtils: JhiDataUtils,
     protected eventManager: JhiEventManager,
     protected revisionService: RevisionService,
-    protected articleTypeService: ArticleTypeService,
     protected categoryTreeService: CategoryTreeService,
+    protected articleTypeService: ArticleTypeService,
     protected articleService: ArticleService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
@@ -59,9 +59,9 @@ export class RevisionUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ revision }) => {
       this.updateForm(revision);
 
-      this.articleTypeService.query().subscribe((res: HttpResponse<IArticleType[]>) => (this.articletypes = res.body || []));
-
       this.categoryTreeService.query().subscribe((res: HttpResponse<ICategoryTree[]>) => (this.categorytrees = res.body || []));
+
+      this.articleTypeService.query().subscribe((res: HttpResponse<IArticleType[]>) => (this.articletypes = res.body || []));
 
       this.articleService.query().subscribe((res: HttpResponse<IArticle[]>) => (this.articles = res.body || []));
     });
@@ -79,8 +79,8 @@ export class RevisionUpdateComponent implements OnInit {
       reviewState: revision.reviewState,
       communityVotes: revision.communityVotes,
       active: revision.active,
+      ctrees: revision.ctrees,
       atype: revision.atype,
-      ctree: revision.ctree,
       article: revision.article
     });
   }
@@ -128,8 +128,8 @@ export class RevisionUpdateComponent implements OnInit {
       reviewState: this.editForm.get(['reviewState'])!.value,
       communityVotes: this.editForm.get(['communityVotes'])!.value,
       active: this.editForm.get(['active'])!.value,
+      ctrees: this.editForm.get(['ctrees'])!.value,
       atype: this.editForm.get(['atype'])!.value,
-      ctree: this.editForm.get(['ctree'])!.value,
       article: this.editForm.get(['article'])!.value
     };
   }
@@ -152,5 +152,16 @@ export class RevisionUpdateComponent implements OnInit {
 
   trackById(index: number, item: SelectableEntity): any {
     return item.id;
+  }
+
+  getSelected(selectedVals: ICategoryTree[], option: ICategoryTree): ICategoryTree {
+    if (selectedVals) {
+      for (let i = 0; i < selectedVals.length; i++) {
+        if (option.id === selectedVals[i].id) {
+          return selectedVals[i];
+        }
+      }
+    }
+    return option;
   }
 }

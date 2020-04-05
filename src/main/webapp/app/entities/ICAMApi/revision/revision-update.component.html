@@ -107,18 +107,17 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" for="field_atype">Atype</label>
-                    <select class="form-control" id="field_atype" name="atype" formControlName="atype">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="articleTypeOption.id === editForm.get('atype')!.value?.id ? editForm.get('atype')!.value : articleTypeOption" *ngFor="let articleTypeOption of articletypes; trackBy: trackById">{{ articleTypeOption.id }}</option>
+                    <label for="field_ctrees">Ctree</label>
+                    <select class="form-control" id="field_ctrees" multiple name="ctrees" formControlName="ctrees">
+                        <option [ngValue]="getSelected(editForm.get('ctrees')!.value, categoryTreeOption)" *ngFor="let categoryTreeOption of categorytrees; trackBy: trackById">{{ categoryTreeOption.itemName }}</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" for="field_ctree">Ctree</label>
-                    <select class="form-control" id="field_ctree" name="ctree" formControlName="ctree">
+                    <label class="form-control-label" for="field_atype">Atype</label>
+                    <select class="form-control" id="field_atype" name="atype" formControlName="atype">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="categoryTreeOption.id === editForm.get('ctree')!.value?.id ? editForm.get('ctree')!.value : categoryTreeOption" *ngFor="let categoryTreeOption of categorytrees; trackBy: trackById">{{ categoryTreeOption.id }}</option>
+                        <option [ngValue]="articleTypeOption.id === editForm.get('atype')!.value?.id ? editForm.get('atype')!.value : articleTypeOption" *ngFor="let articleTypeOption of articletypes; trackBy: trackById">{{ articleTypeOption.itemName }}</option>
                     </select>
                 </div>
 
@@ -126,7 +125,7 @@
                     <label class="form-control-label" for="field_article">Article</label>
                     <select class="form-control" id="field_article" name="article" formControlName="article">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="articleOption.id === editForm.get('article')!.value?.id ? editForm.get('article')!.value : articleOption" *ngFor="let articleOption of articles; trackBy: trackById">{{ articleOption.id }}</option>
+                        <option [ngValue]="articleOption.id === editForm.get('article')!.value?.id ? editForm.get('article')!.value : articleOption" *ngFor="let articleOption of articles; trackBy: trackById">{{ articleOption.articleTitle }}</option>
                     </select>
                 </div>
             </div>

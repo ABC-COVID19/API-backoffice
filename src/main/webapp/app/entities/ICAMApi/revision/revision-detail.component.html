@@ -44,22 +44,22 @@
                 <dd>
                     <span>{{ revision.active }}</span>
                 </dd>
+                <dt><span>Ctree</span></dt>
+                <dd>
+                    <span *ngFor="let ctree of revision.ctrees; let last = last">
+                        <a [routerLink]="['/category-tree', ctree?.id, 'view']">{{ ctree.itemName }}</a>{{ last ? '' : ', ' }}
+                    </span>
+                </dd>
                 <dt><span>Atype</span></dt>
                 <dd>
                     <div *ngIf="revision.atype">
-                        <a [routerLink]="['/article-type', revision.atype?.id, 'view']">{{ revision.atype?.id }}</a>
-                    </div>
-                </dd>
-                <dt><span>Ctree</span></dt>
-                <dd>
-                    <div *ngIf="revision.ctree">
-                        <a [routerLink]="['/category-tree', revision.ctree?.id, 'view']">{{ revision.ctree?.id }}</a>
+                        <a [routerLink]="['/article-type', revision.atype?.id, 'view']">{{ revision.atype?.itemName }}</a>
                     </div>
                 </dd>
                 <dt><span>Article</span></dt>
                 <dd>
                     <div *ngIf="revision.article">
-                        <a [routerLink]="['/article', revision.article?.id, 'view']">{{ revision.article?.id }}</a>
+                        <a [routerLink]="['/article', revision.article?.id, 'view']">{{ revision.article?.articleTitle }}</a>
                     </div>
                 </dd>
             </dl>

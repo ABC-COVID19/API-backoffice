@@ -31,7 +31,7 @@
                 <dt><span>Category Tree</span></dt>
                 <dd>
                     <span *ngFor="let categoryTree of newsletter.categoryTrees; let last = last">
-                        <a [routerLink]="['/category-tree', categoryTree?.id, 'view']">{{ categoryTree.id }}</a>{{ last ? '' : ', ' }}
+                        <a [routerLink]="['/category-tree', categoryTree?.id, 'view']">{{ categoryTree.itemName }}</a>{{ last ? '' : ', ' }}
                     </span>
                 </dd>
             </dl>

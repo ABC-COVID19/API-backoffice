@@ -20,7 +20,7 @@ export class CategoryTreeUpdateComponent implements OnInit {
     id: [],
     itemName: [null, [Validators.required]],
     active: [],
-    child: []
+    parent: []
   });
 
   constructor(protected categoryTreeService: CategoryTreeService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
@@ -38,7 +38,7 @@ export class CategoryTreeUpdateComponent implements OnInit {
       id: categoryTree.id,
       itemName: categoryTree.itemName,
       active: categoryTree.active,
-      child: categoryTree.child
+      parent: categoryTree.parent
     });
   }
 
@@ -62,7 +62,7 @@ export class CategoryTreeUpdateComponent implements OnInit {
       id: this.editForm.get(['id'])!.value,
       itemName: this.editForm.get(['itemName'])!.value,
       active: this.editForm.get(['active'])!.value,
-      child: this.editForm.get(['child'])!.value
+      parent: this.editForm.get(['parent'])!.value
     };
   }
 

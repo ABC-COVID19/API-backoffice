@@ -1,5 +1,5 @@
-import { IArticleType } from 'app/shared/model/ICAMApi/article-type.model';
 import { ICategoryTree } from 'app/shared/model/ICAMApi/category-tree.model';
+import { IArticleType } from 'app/shared/model/ICAMApi/article-type.model';
 import { IArticle } from 'app/shared/model/ICAMApi/article.model';
 import { ReviewState } from 'app/shared/model/enumerations/review-state.model';
 
@@ -14,8 +14,8 @@ export interface IRevision {
   reviewState?: ReviewState;
   communityVotes?: number;
   active?: boolean;
+  ctrees?: ICategoryTree[];
   atype?: IArticleType;
-  ctree?: ICategoryTree;
   article?: IArticle;
 }
 
@@ -31,8 +31,8 @@ export class Revision implements IRevision {
     public reviewState?: ReviewState,
     public communityVotes?: number,
     public active?: boolean,
+    public ctrees?: ICategoryTree[],
     public atype?: IArticleType,
-    public ctree?: ICategoryTree,
     public article?: IArticle
   ) {
     this.reviewedByPeer = this.reviewedByPeer || false;

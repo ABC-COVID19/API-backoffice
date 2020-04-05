@@ -25,7 +25,7 @@
                     <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="itemName"><span>Item Name</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="active"><span>Active</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="child.id"><span>Child</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="parent.itemName"><span>Parent</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -35,8 +35,8 @@
                     <td>{{ categoryTree.itemName }}</td>
                     <td>{{ categoryTree.active }}</td>
                     <td>
-                        <div *ngIf="categoryTree.child">
-                            <a [routerLink]="['/category-tree', categoryTree.child?.id, 'view']" >{{ categoryTree.child?.id }}</a>
+                        <div *ngIf="categoryTree.parent">
+                            <a [routerLink]="['/category-tree', categoryTree.parent?.id, 'view']" >{{ categoryTree.parent?.itemName }}</a>
                         </div>
                     </td>
                     <td class="text-right">

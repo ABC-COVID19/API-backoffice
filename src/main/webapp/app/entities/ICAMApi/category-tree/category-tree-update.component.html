@@ -30,10 +30,10 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" for="field_child">Child</label>
-                    <select class="form-control" id="field_child" name="child" formControlName="child">
+                    <label class="form-control-label" for="field_parent">Parent</label>
+                    <select class="form-control" id="field_parent" name="parent" formControlName="parent">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="categoryTreeOption.id === editForm.get('child')!.value?.id ? editForm.get('child')!.value : categoryTreeOption" *ngFor="let categoryTreeOption of categorytrees; trackBy: trackById">{{ categoryTreeOption.id }}</option>
+                        <option [ngValue]="categoryTreeOption.id === editForm.get('parent')!.value?.id ? editForm.get('parent')!.value : categoryTreeOption" *ngFor="let categoryTreeOption of categorytrees; trackBy: trackById">{{ categoryTreeOption.itemName }}</option>
                     </select>
                 </div>
             </div>
