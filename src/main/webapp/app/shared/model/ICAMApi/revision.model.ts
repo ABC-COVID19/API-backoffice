@@ -9,7 +9,7 @@ export interface IRevision {
   summary?: any;
   reviewedByPeer?: boolean;
   returnNotes?: any;
-  keywords?: any;
+  keywords?: string;
   reviewer?: string;
   reviewState?: ReviewState;
   communityVotes?: number;
@@ -26,7 +26,7 @@ export class Revision implements IRevision {
     public summary?: any,
     public reviewedByPeer?: boolean,
     public returnNotes?: any,
-    public keywords?: any,
+    public keywords?: string,
     public reviewer?: string,
     public reviewState?: ReviewState,
     public communityVotes?: number,
