@@ -17,7 +17,7 @@ pipeline {
     }
 
     environment {
-        DEPLOYMENT_NAME = "api-backoffice"
+        DEPLOYMENT_NAME = "icambackoffice"
         GIT_REPO = "github.com/ABC-COVID19/API-backoffice.git"
         NAMESPACE_DEV = "icam-dev"
         NAMESPACE_PROD = "icam-prod"
@@ -51,8 +51,9 @@ pipeline {
         stage('Build and Test') {
             steps {
                 container('java11'){
-                    sh 'unset MAVEN_CONFIG'
-                    sh "./mvnw package verify jib:dockerBuild"
+                    sh "unset MAVEN_CONFIG"
+                    sh "./mvnw clean compile"
+                    sh "./mvnw -ntp -Pprod jib:dockerBuild"
                     sh "docker tag icambackoffice:latest ${DOCKER_HUB}/${DEPLOYMENT_NAME}:${PROJECT_VERSION}"
                 }
             }
