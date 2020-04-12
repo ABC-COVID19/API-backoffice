@@ -1,12 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CategoryTreeService } from '../entities/ICAMApi/category-tree/category-tree.service';
+import { ICategoryTree } from '../shared/model/ICAMApi/category-tree.model';
 
 @Component({
   selector: 'search',
   templateUrl: 'search.component.html',
   styleUrls: ['./search.scss']
 })
-export class SearchComponent {
-  categories = ['Covid', 'Etiologia-Virus SARS-CoV-2', 'Fatores de risco', 'Tratamento', 'Fisiopatologia', 'Prognóstico', 'Diagnóstico'];
+export class SearchComponent implements OnInit {
+  categories: ICategoryTree[] = [];
   lastRevisedCards = [
     {
       title: `Progressão Rápida para Síndrome do Desconforto Respiratório Agudo:
@@ -36,5 +38,12 @@ export class SearchComponent {
       category: 'Fatores de risco'
     }
   ];
-  constructor() {}
+
+  constructor(private categoryService: CategoryTreeService) {}
+
+  ngOnInit(): void {
+    this.categoryService.getMainCategories().subscribe(cats => {
+      this.categories = cats;
+    });
+  }
 }
