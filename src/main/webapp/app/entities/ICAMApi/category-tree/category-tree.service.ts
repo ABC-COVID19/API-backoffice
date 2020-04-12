@@ -5,16 +5,23 @@ import { Observable } from 'rxjs';
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared/util/request-util';
 import { ICategoryTree } from 'app/shared/model/ICAMApi/category-tree.model';
-import { map } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 
 type EntityResponseType = HttpResponse<ICategoryTree>;
 type EntityArrayResponseType = HttpResponse<ICategoryTree[]>;
+
+const HIGHLIGHT_CATEGORY_NAME = 'Destaques';
 
 @Injectable({ providedIn: 'root' })
 export class CategoryTreeService {
   public resourceUrl = SERVER_API_URL + 'services/icamapi/api/category-trees';
 
   constructor(protected http: HttpClient) {}
+
+  static getHighlightCategoryID(categories: ICategoryTree[]): number | undefined {
+    const category = categories.find(cat => cat.itemName?.toLowerCase() === HIGHLIGHT_CATEGORY_NAME.toLowerCase());
+    return category !== undefined ? category.id : undefined;
+  }
 
   create(categoryTree: ICategoryTree): Observable<EntityResponseType> {
     return this.http.post<ICategoryTree>(this.resourceUrl, categoryTree, { observe: 'response' });
@@ -42,7 +49,8 @@ export class CategoryTreeService {
       map(resp => {
         const body = resp.body || [];
         return body.filter(cat => cat.parent === null);
-      })
+      }),
+      catchError(() => [])
     );
   }
 }

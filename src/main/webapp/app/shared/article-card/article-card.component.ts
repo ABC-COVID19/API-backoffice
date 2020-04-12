@@ -10,7 +10,7 @@ export class ArticleCardComponent {
   @Input() summary = '';
   @Input() articleDate = Date.now();
   @Input() author = '';
-  @Input() category = '';
+  @Input() categories: string[] = [];
   @Output() cardClick = new EventEmitter<void>();
 
   constructor() {}
