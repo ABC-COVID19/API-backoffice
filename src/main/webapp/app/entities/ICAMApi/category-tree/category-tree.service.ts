@@ -10,17 +10,14 @@ import { map, catchError } from 'rxjs/operators';
 type EntityResponseType = HttpResponse<ICategoryTree>;
 type EntityArrayResponseType = HttpResponse<ICategoryTree[]>;
 
-const HIGHLIGHT_CATEGORY_NAME = 'Destaques';
-
 @Injectable({ providedIn: 'root' })
 export class CategoryTreeService {
   public resourceUrl = SERVER_API_URL + 'services/icamapi/api/category-trees';
 
   constructor(protected http: HttpClient) {}
 
-  static getHighlightCategoryID(categories: ICategoryTree[]): number | undefined {
-    const category = categories.find(cat => cat.itemName?.toLowerCase() === HIGHLIGHT_CATEGORY_NAME.toLowerCase());
-    return category !== undefined ? category.id : undefined;
+  static filterChildCategories(categories: ICategoryTree[]): ICategoryTree[] {
+    return categories.filter(cat => cat.parent === null);
   }
 
   create(categoryTree: ICategoryTree): Observable<EntityResponseType> {
@@ -48,7 +45,7 @@ export class CategoryTreeService {
     return this.query().pipe(
       map(resp => {
         const body = resp.body || [];
-        return body.filter(cat => cat.parent === null);
+        return CategoryTreeService.filterChildCategories(body);
       }),
       catchError(() => [])
     );

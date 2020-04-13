@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter, HostListener } from '@angular/core';
+import { ICategoryTree } from '../model/ICAMApi/category-tree.model';
 
 @Component({
   selector: 'article-card',
@@ -10,7 +11,7 @@ export class ArticleCardComponent {
   @Input() summary = '';
   @Input() articleDate = Date.now();
   @Input() author = '';
-  @Input() categories: string[] = [];
+  @Input() categories: ICategoryTree[] = [];
   @Output() cardClick = new EventEmitter<void>();
 
   constructor() {}

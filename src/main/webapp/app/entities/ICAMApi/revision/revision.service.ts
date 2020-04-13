@@ -5,7 +5,17 @@ import { Observable } from 'rxjs';
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared/util/request-util';
 import { IRevision } from 'app/shared/model/ICAMApi/revision.model';
+import { flatCategoryTree } from 'app/shared/util/category-util';
 import { map, catchError } from 'rxjs/operators';
+import { ICategoryTree } from 'app/shared/model/ICAMApi/category-tree.model';
+
+export interface IFlatRevision extends IRevision {
+  categories: ICategoryTree[];
+  date: string;
+  author: string;
+}
+
+const SUMMARY_TRUNC_LENGTH = 200;
 
 type EntityResponseType = HttpResponse<IRevision>;
 type EntityArrayResponseType = HttpResponse<IRevision[]>;
@@ -37,12 +47,38 @@ export class RevisionService {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
-  getByCategoryID(id: number): Observable<IRevision[]> {
+  getByCategoryID(id: number, truncateSummary = false): Observable<IFlatRevision[]> {
     return this.query({
       'active.equals': true,
       'ctreeId.in': id
     }).pipe(
-      map(resp => resp.body || []),
+      map(resp => {
+        const body = resp.body || [];
+        const returnArr: IFlatRevision[] = [];
+        const ctreeArr: ICategoryTree[] = [];
+
+        for (let i = 0; i < body.length; i++) {
+          const revision = body[i];
+          const summary: string = revision.summary || '';
+          if (revision.ctrees) {
+            for (let j = 0; j < revision.ctrees?.length; j++) {
+              const ctrees = revision.ctrees[j];
+              if (ctrees !== undefined) {
+                flatCategoryTree(ctrees, ctreeArr);
+              }
+            }
+            returnArr.push({
+              ...revision,
+              summary: truncateSummary ? `${summary.substr(0, SUMMARY_TRUNC_LENGTH)}...` : summary,
+              categories: ctreeArr,
+              author: revision.article?.citation || '',
+              date: revision.article?.articleDate || ''
+            });
+            revision.ctrees = ctreeArr;
+          }
+        }
+        return returnArr;
+      }),
       catchError(() => [])
     );
   }

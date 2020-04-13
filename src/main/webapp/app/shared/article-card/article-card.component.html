@@ -12,7 +12,7 @@
             <span class="article-author">{{ author }}</span>
         </div>
         <div class="badge-section">
-            <icam-badge *ngFor="let cat of categories" iconClass="fa-list" [text]="cat"></icam-badge>
+            <icam-badge *ngFor="let cat of categories" iconClass="fa-list" [text]="cat.itemName"></icam-badge>
         </div>
     </div>
 </round-card>
