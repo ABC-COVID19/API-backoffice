@@ -36,6 +36,10 @@ const LAYOUT_ROUTES = [...errorRoute];
                 {
                   path: 'updates',
                   loadChildren: () => import('./icam-updates/icam-updates.module').then(m => m.IcamUpdatesModule)
+                },
+                {
+                  path: 'articles',
+                  loadChildren: () => import('./layouts/top-search/top-search.module').then(m => m.TopSearchModule)
                 }
               ]
             }
