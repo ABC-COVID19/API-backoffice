@@ -4,19 +4,20 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { JhiDataUtils, JhiFileLoadError, JhiEventManager, JhiEventWithContent } from 'ng-jhipster';
 
 import { IRevision, Revision } from 'app/shared/model/ICAMApi/revision.model';
 import { RevisionService } from './revision.service';
 import { AlertError } from 'app/shared/alert/alert-error.model';
+import { IArticle } from 'app/shared/model/ICAMApi/article.model';
+import { ArticleService } from 'app/entities/ICAMApi/article/article.service';
 import { ICategoryTree } from 'app/shared/model/ICAMApi/category-tree.model';
 import { CategoryTreeService } from 'app/entities/ICAMApi/category-tree/category-tree.service';
 import { IArticleType } from 'app/shared/model/ICAMApi/article-type.model';
 import { ArticleTypeService } from 'app/entities/ICAMApi/article-type/article-type.service';
-import { IArticle } from 'app/shared/model/ICAMApi/article.model';
-import { ArticleService } from 'app/entities/ICAMApi/article/article.service';
 
-type SelectableEntity = ICategoryTree | IArticleType | IArticle;
+type SelectableEntity = IArticle | ICategoryTree | IArticleType;
 
 @Component({
   selector: 'jhi-revision-update',
@@ -24,33 +25,35 @@ type SelectableEntity = ICategoryTree | IArticleType | IArticle;
 })
 export class RevisionUpdateComponent implements OnInit {
   isSaving = false;
+  articles: IArticle[] = [];
   categorytrees: ICategoryTree[] = [];
   articletypes: IArticleType[] = [];
-  articles: IArticle[] = [];
+  reviewDateDp: any;
 
   editForm = this.fb.group({
     id: [],
     title: [null, [Validators.required]],
     summary: [null, [Validators.required]],
-    reviewedByPeer: [null, [Validators.required]],
-    returnNotes: [],
+    isPeerReviewed: [null, [Validators.required]],
+    country: [],
     keywords: [],
+    reviewDate: [],
+    reviewNotes: [],
+    author: [null, [Validators.required]],
     reviewer: [null, [Validators.required]],
     reviewState: [null, [Validators.required]],
-    communityVotes: [],
-    active: [null, [Validators.required]],
+    article: [],
     ctrees: [],
-    atype: [],
-    article: []
+    atype: []
   });
 
   constructor(
     protected dataUtils: JhiDataUtils,
     protected eventManager: JhiEventManager,
     protected revisionService: RevisionService,
+    protected articleService: ArticleService,
     protected categoryTreeService: CategoryTreeService,
     protected articleTypeService: ArticleTypeService,
-    protected articleService: ArticleService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -59,11 +62,31 @@ export class RevisionUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ revision }) => {
       this.updateForm(revision);
 
+      this.articleService
+        .query({ 'revisionId.specified': 'false' })
+        .pipe(
+          map((res: HttpResponse<IArticle[]>) => {
+            return res.body || [];
+          })
+        )
+        .subscribe((resBody: IArticle[]) => {
+          if (!revision.article || !revision.article.id) {
+            this.articles = resBody;
+          } else {
+            this.articleService
+              .find(revision.article.id)
+              .pipe(
+                map((subRes: HttpResponse<IArticle>) => {
+                  return subRes.body ? [subRes.body].concat(resBody) : resBody;
+                })
+              )
+              .subscribe((concatRes: IArticle[]) => (this.articles = concatRes));
+          }
+        });
+
       this.categoryTreeService.query().subscribe((res: HttpResponse<ICategoryTree[]>) => (this.categorytrees = res.body || []));
 
       this.articleTypeService.query().subscribe((res: HttpResponse<IArticleType[]>) => (this.articletypes = res.body || []));
-
-      this.articleService.query().subscribe((res: HttpResponse<IArticle[]>) => (this.articles = res.body || []));
     });
   }
 
@@ -72,16 +95,17 @@ export class RevisionUpdateComponent implements OnInit {
       id: revision.id,
       title: revision.title,
       summary: revision.summary,
-      reviewedByPeer: revision.reviewedByPeer,
-      returnNotes: revision.returnNotes,
+      isPeerReviewed: revision.isPeerReviewed,
+      country: revision.country,
       keywords: revision.keywords,
+      reviewDate: revision.reviewDate,
+      reviewNotes: revision.reviewNotes,
+      author: revision.author,
       reviewer: revision.reviewer,
       reviewState: revision.reviewState,
-      communityVotes: revision.communityVotes,
-      active: revision.active,
+      article: revision.article,
       ctrees: revision.ctrees,
-      atype: revision.atype,
-      article: revision.article
+      atype: revision.atype
     });
   }
 
@@ -121,16 +145,17 @@ export class RevisionUpdateComponent implements OnInit {
       id: this.editForm.get(['id'])!.value,
       title: this.editForm.get(['title'])!.value,
       summary: this.editForm.get(['summary'])!.value,
-      reviewedByPeer: this.editForm.get(['reviewedByPeer'])!.value,
-      returnNotes: this.editForm.get(['returnNotes'])!.value,
+      isPeerReviewed: this.editForm.get(['isPeerReviewed'])!.value,
+      country: this.editForm.get(['country'])!.value,
       keywords: this.editForm.get(['keywords'])!.value,
+      reviewDate: this.editForm.get(['reviewDate'])!.value,
+      reviewNotes: this.editForm.get(['reviewNotes'])!.value,
+      author: this.editForm.get(['author'])!.value,
       reviewer: this.editForm.get(['reviewer'])!.value,
       reviewState: this.editForm.get(['reviewState'])!.value,
-      communityVotes: this.editForm.get(['communityVotes'])!.value,
-      active: this.editForm.get(['active'])!.value,
+      article: this.editForm.get(['article'])!.value,
       ctrees: this.editForm.get(['ctrees'])!.value,
-      atype: this.editForm.get(['atype'])!.value,
-      article: this.editForm.get(['article'])!.value
+      atype: this.editForm.get(['atype'])!.value
     };
   }
 

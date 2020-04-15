@@ -16,17 +16,29 @@
                 <dd>
                     <span>{{ revision.summary }}</span>
                 </dd>
-                <dt><span>Reviewed By Peer</span></dt>
+                <dt><span>Is Peer Reviewed</span></dt>
                 <dd>
-                    <span>{{ revision.reviewedByPeer }}</span>
+                    <span>{{ revision.isPeerReviewed }}</span>
                 </dd>
-                <dt><span>Return Notes</span></dt>
+                <dt><span>Country</span></dt>
                 <dd>
-                    <span>{{ revision.returnNotes }}</span>
+                    <span>{{ revision.country }}</span>
                 </dd>
                 <dt><span>Keywords</span></dt>
                 <dd>
                     <span>{{ revision.keywords }}</span>
+                </dd>
+                <dt><span>Review Date</span></dt>
+                <dd>
+                    <span>{{ revision.reviewDate }}</span>
+                </dd>
+                <dt><span>Review Notes</span></dt>
+                <dd>
+                    <span>{{ revision.reviewNotes }}</span>
+                </dd>
+                <dt><span>Author</span></dt>
+                <dd>
+                    <span>{{ revision.author }}</span>
                 </dd>
                 <dt><span>Reviewer</span></dt>
                 <dd>
@@ -36,13 +48,11 @@
                 <dd>
                     <span>{{ revision.reviewState }}</span>
                 </dd>
-                <dt><span>Community Votes</span></dt>
+                <dt><span>Article</span></dt>
                 <dd>
-                    <span>{{ revision.communityVotes }}</span>
-                </dd>
-                <dt><span>Active</span></dt>
-                <dd>
-                    <span>{{ revision.active }}</span>
+                    <div *ngIf="revision.article">
+                        <a [routerLink]="['/article', revision.article?.id, 'view']">{{ revision.article?.articleTitle }}</a>
+                    </div>
                 </dd>
                 <dt><span>Ctree</span></dt>
                 <dd>
@@ -54,12 +64,6 @@
                 <dd>
                     <div *ngIf="revision.atype">
                         <a [routerLink]="['/article-type', revision.atype?.id, 'view']">{{ revision.atype?.itemName }}</a>
-                    </div>
-                </dd>
-                <dt><span>Article</span></dt>
-                <dd>
-                    <div *ngIf="revision.article">
-                        <a [routerLink]="['/article', revision.article?.id, 'view']">{{ revision.article?.articleTitle }}</a>
                     </div>
                 </dd>
             </dl>

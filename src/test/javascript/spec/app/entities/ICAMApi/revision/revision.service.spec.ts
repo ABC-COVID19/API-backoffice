@@ -1,5 +1,7 @@
 import { TestBed, getTestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import * as moment from 'moment';
+import { DATE_FORMAT } from 'app/shared/constants/input.constants';
 import { RevisionService } from 'app/entities/ICAMApi/revision/revision.service';
 import { IRevision, Revision } from 'app/shared/model/ICAMApi/revision.model';
 import { ReviewState } from 'app/shared/model/enumerations/review-state.model';
@@ -11,6 +13,7 @@ describe('Service Tests', () => {
     let httpMock: HttpTestingController;
     let elemDefault: IRevision;
     let expectedResult: IRevision | IRevision[] | boolean | null;
+    let currentDate: moment.Moment;
 
     beforeEach(() => {
       TestBed.configureTestingModule({
@@ -20,13 +23,31 @@ describe('Service Tests', () => {
       injector = getTestBed();
       service = injector.get(RevisionService);
       httpMock = injector.get(HttpTestingController);
+      currentDate = moment();
 
-      elemDefault = new Revision(0, 'AAAAAAA', 'AAAAAAA', false, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', ReviewState.Hold, 0, false);
+      elemDefault = new Revision(
+        0,
+        'AAAAAAA',
+        'AAAAAAA',
+        false,
+        'AAAAAAA',
+        'AAAAAAA',
+        currentDate,
+        'AAAAAAA',
+        'AAAAAAA',
+        'AAAAAAA',
+        ReviewState.Hold
+      );
     });
 
     describe('Service methods', () => {
       it('should find an element', () => {
-        const returnedFromService = Object.assign({}, elemDefault);
+        const returnedFromService = Object.assign(
+          {
+            reviewDate: currentDate.format(DATE_FORMAT)
+          },
+          elemDefault
+        );
 
         service.find(123).subscribe(resp => (expectedResult = resp.body));
 
@@ -38,12 +59,18 @@ describe('Service Tests', () => {
       it('should create a Revision', () => {
         const returnedFromService = Object.assign(
           {
-            id: 0
+            id: 0,
+            reviewDate: currentDate.format(DATE_FORMAT)
           },
           elemDefault
         );
 
-        const expected = Object.assign({}, returnedFromService);
+        const expected = Object.assign(
+          {
+            reviewDate: currentDate
+          },
+          returnedFromService
+        );
 
         service.create(new Revision()).subscribe(resp => (expectedResult = resp.body));
 
@@ -57,18 +84,24 @@ describe('Service Tests', () => {
           {
             title: 'BBBBBB',
             summary: 'BBBBBB',
-            reviewedByPeer: true,
-            returnNotes: 'BBBBBB',
+            isPeerReviewed: true,
+            country: 'BBBBBB',
             keywords: 'BBBBBB',
+            reviewDate: currentDate.format(DATE_FORMAT),
+            reviewNotes: 'BBBBBB',
+            author: 'BBBBBB',
             reviewer: 'BBBBBB',
-            reviewState: 'BBBBBB',
-            communityVotes: 1,
-            active: true
+            reviewState: 'BBBBBB'
           },
           elemDefault
         );
 
-        const expected = Object.assign({}, returnedFromService);
+        const expected = Object.assign(
+          {
+            reviewDate: currentDate
+          },
+          returnedFromService
+        );
 
         service.update(expected).subscribe(resp => (expectedResult = resp.body));
 
@@ -82,18 +115,24 @@ describe('Service Tests', () => {
           {
             title: 'BBBBBB',
             summary: 'BBBBBB',
-            reviewedByPeer: true,
-            returnNotes: 'BBBBBB',
+            isPeerReviewed: true,
+            country: 'BBBBBB',
             keywords: 'BBBBBB',
+            reviewDate: currentDate.format(DATE_FORMAT),
+            reviewNotes: 'BBBBBB',
+            author: 'BBBBBB',
             reviewer: 'BBBBBB',
-            reviewState: 'BBBBBB',
-            communityVotes: 1,
-            active: true
+            reviewState: 'BBBBBB'
           },
           elemDefault
         );
 
-        const expected = Object.assign({}, returnedFromService);
+        const expected = Object.assign(
+          {
+            reviewDate: currentDate
+          },
+          returnedFromService
+        );
 
         service.query().subscribe(resp => (expectedResult = resp.body));
 
