@@ -1,7 +1,6 @@
 import { Moment } from 'moment';
 import { IRevision } from 'app/shared/model/ICAMApi/revision.model';
 import { ISourceRepo } from 'app/shared/model/ICAMApi/source-repo.model';
-import { ReviewState } from 'app/shared/model/enumerations/review-state.model';
 
 export interface IArticle {
   id?: number;
@@ -11,12 +10,11 @@ export interface IArticle {
   articleDate?: string;
   articleTitle?: string;
   articleAbstract?: any;
-  articleDoi?: string;
+  articleLink?: string;
   articleJournal?: string;
+  articleCitation?: string;
   fetchDate?: Moment;
-  citation?: string;
-  reviewState?: ReviewState;
-  revisions?: IRevision[];
+  revision?: IRevision;
   srepo?: ISourceRepo;
 }
 
@@ -29,12 +27,11 @@ export class Article implements IArticle {
     public articleDate?: string,
     public articleTitle?: string,
     public articleAbstract?: any,
-    public articleDoi?: string,
+    public articleLink?: string,
     public articleJournal?: string,
+    public articleCitation?: string,
     public fetchDate?: Moment,
-    public citation?: string,
-    public reviewState?: ReviewState,
-    public revisions?: IRevision[],
+    public revision?: IRevision,
     public srepo?: ISourceRepo
   ) {}
 }

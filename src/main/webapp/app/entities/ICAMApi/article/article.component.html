@@ -29,12 +29,11 @@
                     <th scope="col"  jhiSortBy="articleDate"><span>Article Date</span> <i class="fa-sort"></i></th>
                     <th scope="col"  jhiSortBy="articleTitle"><span>Article Title</span> <i class="fa-sort"></i></th>
                     <th scope="col"  jhiSortBy="articleAbstract"><span>Article Abstract</span> <i class="fa-sort"></i></th>
-                    <th scope="col"  jhiSortBy="articleDoi"><span>Article Doi</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="articleLink"><span>Article Link</span> <i class="fa-sort"></i></th>
                     <th scope="col"  jhiSortBy="articleJournal"><span>Article Journal</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="articleCitation"><span>Article Citation</span> <i class="fa-sort"></i></th>
                     <th scope="col"  jhiSortBy="fetchDate"><span>Fetch Date</span> <i class="fa-sort"></i></th>
-                    <th scope="col"  jhiSortBy="citation"><span>Citation</span> <i class="fa-sort"></i></th>
-                    <th scope="col"  jhiSortBy="reviewState"><span>Review State</span> <i class="fa-sort"></i></th>
-                    <th scope="col"  jhiSortBy="srepo.itemName"><span>Source Repo</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="srepo.itemName"><span>Srepo</span> <i class="fa-sort"></i></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -47,11 +46,10 @@
                     <td>{{ article.articleDate }}</td>
                     <td>{{ article.articleTitle }}</td>
                     <td>{{ article.articleAbstract }}</td>
-                    <td>{{ article.articleDoi }}</td>
+                    <td>{{ article.articleLink }}</td>
                     <td>{{ article.articleJournal }}</td>
+                    <td>{{ article.articleCitation }}</td>
                     <td>{{ article.fetchDate | date:'mediumDate' }}</td>
-                    <td>{{ article.citation }}</td>
-                    <td>{{ article.reviewState }}</td>
                     <td>
                         <div *ngIf="article.srepo">
                             <a [routerLink]="['/source-repo', article.srepo?.id, 'view']" >{{ article.srepo?.itemName }}</a>

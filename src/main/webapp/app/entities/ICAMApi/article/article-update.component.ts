@@ -30,11 +30,10 @@ export class ArticleUpdateComponent implements OnInit {
     articleDate: [],
     articleTitle: [],
     articleAbstract: [],
-    articleDoi: [],
+    articleLink: [],
     articleJournal: [],
+    articleCitation: [],
     fetchDate: [],
-    citation: [],
-    reviewState: [null, [Validators.required]],
     srepo: []
   });
 
@@ -64,11 +63,10 @@ export class ArticleUpdateComponent implements OnInit {
       articleDate: article.articleDate,
       articleTitle: article.articleTitle,
       articleAbstract: article.articleAbstract,
-      articleDoi: article.articleDoi,
+      articleLink: article.articleLink,
       articleJournal: article.articleJournal,
+      articleCitation: article.articleCitation,
       fetchDate: article.fetchDate,
-      citation: article.citation,
-      reviewState: article.reviewState,
       srepo: article.srepo
     });
   }
@@ -113,11 +111,10 @@ export class ArticleUpdateComponent implements OnInit {
       articleDate: this.editForm.get(['articleDate'])!.value,
       articleTitle: this.editForm.get(['articleTitle'])!.value,
       articleAbstract: this.editForm.get(['articleAbstract'])!.value,
-      articleDoi: this.editForm.get(['articleDoi'])!.value,
+      articleLink: this.editForm.get(['articleLink'])!.value,
       articleJournal: this.editForm.get(['articleJournal'])!.value,
+      articleCitation: this.editForm.get(['articleCitation'])!.value,
       fetchDate: this.editForm.get(['fetchDate'])!.value,
-      citation: this.editForm.get(['citation'])!.value,
-      reviewState: this.editForm.get(['reviewState'])!.value,
       srepo: this.editForm.get(['srepo'])!.value
     };
   }

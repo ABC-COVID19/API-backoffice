@@ -1,22 +1,24 @@
+import { Moment } from 'moment';
+import { IArticle } from 'app/shared/model/ICAMApi/article.model';
 import { ICategoryTree } from 'app/shared/model/ICAMApi/category-tree.model';
 import { IArticleType } from 'app/shared/model/ICAMApi/article-type.model';
-import { IArticle } from 'app/shared/model/ICAMApi/article.model';
 import { ReviewState } from 'app/shared/model/enumerations/review-state.model';
 
 export interface IRevision {
   id?: number;
   title?: string;
   summary?: any;
-  reviewedByPeer?: boolean;
-  returnNotes?: any;
-  keywords?: string;
+  isPeerReviewed?: boolean;
+  country?: string;
+  keywords?: any;
+  reviewDate?: Moment;
+  reviewNotes?: any;
+  author?: string;
   reviewer?: string;
   reviewState?: ReviewState;
-  communityVotes?: number;
-  active?: boolean;
+  article?: IArticle;
   ctrees?: ICategoryTree[];
   atype?: IArticleType;
-  article?: IArticle;
 }
 
 export class Revision implements IRevision {
@@ -24,18 +26,18 @@ export class Revision implements IRevision {
     public id?: number,
     public title?: string,
     public summary?: any,
-    public reviewedByPeer?: boolean,
-    public returnNotes?: any,
-    public keywords?: string,
+    public isPeerReviewed?: boolean,
+    public country?: string,
+    public keywords?: any,
+    public reviewDate?: Moment,
+    public reviewNotes?: any,
+    public author?: string,
     public reviewer?: string,
     public reviewState?: ReviewState,
-    public communityVotes?: number,
-    public active?: boolean,
+    public article?: IArticle,
     public ctrees?: ICategoryTree[],
-    public atype?: IArticleType,
-    public article?: IArticle
+    public atype?: IArticleType
   ) {
-    this.reviewedByPeer = this.reviewedByPeer || false;
-    this.active = this.active || false;
+    this.isPeerReviewed = this.isPeerReviewed || false;
   }
 }

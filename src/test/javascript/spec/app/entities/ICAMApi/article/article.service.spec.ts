@@ -4,7 +4,6 @@ import * as moment from 'moment';
 import { DATE_FORMAT } from 'app/shared/constants/input.constants';
 import { ArticleService } from 'app/entities/ICAMApi/article/article.service';
 import { IArticle, Article } from 'app/shared/model/ICAMApi/article.model';
-import { ReviewState } from 'app/shared/model/enumerations/review-state.model';
 
 describe('Service Tests', () => {
   describe('Article Service', () => {
@@ -35,9 +34,8 @@ describe('Service Tests', () => {
         'AAAAAAA',
         'AAAAAAA',
         'AAAAAAA',
-        currentDate,
         'AAAAAAA',
-        ReviewState.Hold
+        currentDate
       );
     });
 
@@ -92,11 +90,10 @@ describe('Service Tests', () => {
             articleDate: 'BBBBBB',
             articleTitle: 'BBBBBB',
             articleAbstract: 'BBBBBB',
-            articleDoi: 'BBBBBB',
+            articleLink: 'BBBBBB',
             articleJournal: 'BBBBBB',
-            fetchDate: currentDate.format(DATE_FORMAT),
-            citation: 'BBBBBB',
-            reviewState: 'BBBBBB'
+            articleCitation: 'BBBBBB',
+            fetchDate: currentDate.format(DATE_FORMAT)
           },
           elemDefault
         );
@@ -125,11 +122,10 @@ describe('Service Tests', () => {
             articleDate: 'BBBBBB',
             articleTitle: 'BBBBBB',
             articleAbstract: 'BBBBBB',
-            articleDoi: 'BBBBBB',
+            articleLink: 'BBBBBB',
             articleJournal: 'BBBBBB',
-            fetchDate: currentDate.format(DATE_FORMAT),
-            citation: 'BBBBBB',
-            reviewState: 'BBBBBB'
+            articleCitation: 'BBBBBB',
+            fetchDate: currentDate.format(DATE_FORMAT)
           },
           elemDefault
         );

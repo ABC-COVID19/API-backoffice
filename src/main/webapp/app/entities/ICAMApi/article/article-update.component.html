@@ -52,9 +52,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" for="field_articleDoi">Article Doi</label>
-                    <input type="text" class="form-control" name="articleDoi" id="field_articleDoi"
-                           formControlName="articleDoi"/>
+                    <label class="form-control-label" for="field_articleLink">Article Link</label>
+                    <input type="text" class="form-control" name="articleLink" id="field_articleLink"
+                           formControlName="articleLink"/>
                 </div>
 
                 <div class="form-group">
@@ -64,35 +64,18 @@
                 </div>
 
                 <div class="form-group">
+                    <label class="form-control-label" for="field_articleCitation">Article Citation</label>
+                    <input type="text" class="form-control" name="articleCitation" id="field_articleCitation"
+                           formControlName="articleCitation"/>
+                </div>
+
+                <div class="form-group">
                     <label class="form-control-label" for="field_fetchDate">Fetch Date</label>
                     <div class="input-group">
                         <input id="field_fetchDate" type="text" class="form-control" name="fetchDate" ngbDatepicker #fetchDateDp="ngbDatepicker" formControlName="fetchDate"/>
                         <span class="input-group-append">
                             <button type="button" class="btn btn-secondary" (click)="fetchDateDp.toggle()"><i class="calendar-alt"></i></button>
                         </span>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" for="field_citation">Citation</label>
-                    <input type="text" class="form-control" name="citation" id="field_citation"
-                           formControlName="citation"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" for="field_reviewState">Review State</label>
-                    <select class="form-control" name="reviewState" formControlName="reviewState" id="field_reviewState">
-                        <option value="Hold">Hold</option>
-                        <option value="OnGoing">OnGoing</option>
-                        <option value="Pending">Pending</option>
-                        <option value="Reviewed">Reviewed</option>
-                        <option value="Accepted">Accepted</option>
-                    </select>
-                    <div *ngIf="editForm.get('reviewState')!.invalid && (editForm.get('reviewState')!.dirty || editForm.get('reviewState')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('reviewState')?.errors?.required">
-                        This field is required.
-                        </small>
                     </div>
                 </div>
 

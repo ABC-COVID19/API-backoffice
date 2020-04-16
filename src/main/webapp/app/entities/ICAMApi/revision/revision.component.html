@@ -25,16 +25,16 @@
                     <th scope="col"  jhiSortBy="id"><span>ID</span> <i class="fa-sort"></i></th>
                     <th scope="col"  jhiSortBy="title"><span>Title</span> <i class="fa-sort"></i></th>
                     <th scope="col"  jhiSortBy="summary"><span>Summary</span> <i class="fa-sort"></i></th>
-                    <th scope="col"  jhiSortBy="reviewedByPeer"><span>Reviewed By Peer</span> <i class="fa-sort"></i></th>
-                    <th scope="col"  jhiSortBy="returnNotes"><span>Return Notes</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="isPeerReviewed"><span>Is Peer Reviewed</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="country"><span>Country</span> <i class="fa-sort"></i></th>
                     <th scope="col"  jhiSortBy="keywords"><span>Keywords</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="reviewDate"><span>Review Date</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="reviewNotes"><span>Review Notes</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="author"><span>Author</span> <i class="fa-sort"></i></th>
                     <th scope="col"  jhiSortBy="reviewer"><span>Reviewer</span> <i class="fa-sort"></i></th>
                     <th scope="col"  jhiSortBy="reviewState"><span>Review State</span> <i class="fa-sort"></i></th>
-                    <th scope="col"  jhiSortBy="communityVotes"><span>Community Votes</span> <i class="fa-sort"></i></th>
-                    <th scope="col"  jhiSortBy="active"><span>Active</span> <i class="fa-sort"></i></th>
-                    <th scope="col"  jhiSortBy="atype.itemName"><span>Article Type</span> <i class="fa-sort"></i></th>
-                    <th scope="col"  jhiSortBy="ctree.itemName"><span>Category</span> <i class="fa-sort"></i></th>
                     <th scope="col"  jhiSortBy="article.articleTitle"><span>Article</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="atype.itemName"><span>Atype</span> <i class="fa-sort"></i></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -43,21 +43,22 @@
                     <td><a [routerLink]="['/revision', revision.id, 'view']">{{ revision.id }}</a></td>
                     <td>{{ revision.title }}</td>
                     <td>{{ revision.summary }}</td>
-                    <td>{{ revision.reviewedByPeer }}</td>
-                    <td>{{ revision.returnNotes }}</td>
+                    <td>{{ revision.isPeerReviewed }}</td>
+                    <td>{{ revision.country }}</td>
                     <td>{{ revision.keywords }}</td>
+                    <td>{{ revision.reviewDate | date:'mediumDate' }}</td>
+                    <td>{{ revision.reviewNotes }}</td>
+                    <td>{{ revision.author }}</td>
                     <td>{{ revision.reviewer }}</td>
                     <td>{{ revision.reviewState }}</td>
-                    <td>{{ revision.communityVotes }}</td>
-                    <td>{{ revision.active }}</td>
-                    <td>
-                        <div *ngIf="revision.atype">
-                            <a [routerLink]="['/article-type', revision.atype?.id, 'view']" >{{ revision.atype?.itemName }}</a>
-                        </div>
-                    </td>
                     <td>
                         <div *ngIf="revision.article">
                             <a [routerLink]="['/article', revision.article?.id, 'view']" >{{ revision.article?.articleTitle }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="revision.atype">
+                            <a [routerLink]="['/article-type', revision.atype?.id, 'view']" >{{ revision.atype?.itemName }}</a>
                         </div>
                     </td>
                     <td class="text-right">
