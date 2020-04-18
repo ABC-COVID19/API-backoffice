@@ -33,8 +33,6 @@ pipeline {
     }
 
     stages {
-
-    stages {
         stage('Recursive build Check') {
             steps {
                 script {
