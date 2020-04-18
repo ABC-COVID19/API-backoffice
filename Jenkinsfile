@@ -25,7 +25,8 @@ pipeline {
         // SLACK_CHANNEL = ''
         // SLACK_TEAM_DOMAIN = ''
         // SLACK_TOKEN = credentials('')
-        PROJECT_VERSION = "TBD"
+        PROJECT_VERSION = readFile(file: 'version.txt').trim()
+        NEW_VERSION = bumpVersion("${PROJECT_VERSION}","patch")
         GIT_USER = 'jenkins-icam@protonmail.com'
         GIT_USER_NAME = 'jenkins-icam'
 
@@ -33,44 +34,48 @@ pipeline {
 
     stages {
 
-        stage('Bump Version') {
-                      when {
-                branch "feature/*"
-            }
+    stages {
+        stage('Recursive build Check') {
             steps {
-                container('java11'){
-                    script {
-                        sh "./mvnw build-helper:parse-version versions:set -DnewVersion=\\\${parsedVersion.majorVersion}.\\\${parsedVersion.minorVersion}.\\\${parsedVersion.nextIncrementalVersion}-SNAPSHOT versions:commit"
-                        PROJECT_VERSION = readMavenPom().getVersion()
+                script {
+                    if (checkCommit("updated version to")){
+                        timeout(time: 20, unit: 'SECONDS') {
+                            input 'Do you want to Update Version anyway?'
+                        }
                     }
                 }
             }
         }
 
-        stage('Build and Test') {
+         stage('Bump CICD Version') {
+            when {
+                branch "develop"
+            }
             steps {
-                container('java11'){
-                    script {
-                        PROJECT_VERSION = readMavenPom().getVersion()
-                    }
+                 sh "echo ${NEW_VERSION} > version.txt"
+                 sh "cat version.txt || true"
+                 sh "echo The new version will be: ${NEW_VERSION}"
+            }
+        }
+
+        stage('Build') {
+            steps {
                     sh "unset MAVEN_CONFIG"
                     sh "./mvnw clean compile"
                     sh "./mvnw -ntp -Pprod jib:dockerBuild"
-                    sh "docker tag icambackoffice:latest ${DOCKER_HUB}/${DEPLOYMENT_NAME}:${PROJECT_VERSION}"
-                }
+                    sh "docker tag icambackoffice:latest ${DOCKER_HUB}/${DEPLOYMENT_NAME}:${NEW_VERSION}"
             }
         }
 
-        stage('Merge to Develop') {
+        stage('Update version on Develop') {
             when {
-                branch "feature/*"
+                branch "develop"
             }
              steps {
                         sh "git config --global user.email '${GIT_USER}'"
                         sh "git config --global user.name '${GIT_USER_NAME}'"
-                        sh "git checkout -f origin/develop"
-                        sh "git merge --ff ${env.GIT_COMMIT}"
-
+                        sh "git add -A"
+                        sh "git commit -m 'updated version to ${NEW_VERSION}'"
                         withCredentials([usernamePassword(credentialsId: 'Jenkins-ICAM2', usernameVariable: 'username', passwordVariable: 'password')]) {
                              sh "git push https://${username}:${password}@${GIT_REPO} HEAD:develop"
                         }
@@ -92,8 +97,6 @@ pipeline {
                         sh "git config --global user.name '${GIT_USER_NAME}'"
                         sh "git checkout -f origin/master"
                         sh "git merge --ff ${env.GIT_COMMIT}"
-
-
                         withCredentials([usernamePassword(credentialsId: 'Jenkins-ICAM2', usernameVariable: 'username', passwordVariable: 'password')]) {
                             sh "git push https://${username}:${password}@${GIT_REPO} HEAD:master"
 
@@ -111,13 +114,13 @@ pipeline {
             }
             steps {
                 container('az-kube'){
-                        sh "docker tag ${DOCKER_HUB}/${DEPLOYMENT_NAME}:${PROJECT_VERSION} ${DOCKER_HUB}/${DEPLOYMENT_NAME}:latest"
-                        sh "docker push ${DOCKER_HUB}/${DEPLOYMENT_NAME}:${PROJECT_VERSION}"
+                        sh "docker tag ${DOCKER_HUB}/${DEPLOYMENT_NAME}:${NEW_VERSION} ${DOCKER_HUB}/${DEPLOYMENT_NAME}:latest"
+                        sh "docker push ${DOCKER_HUB}/${DEPLOYMENT_NAME}:${NEW_VERSION}"
                         sh "docker push ${DOCKER_HUB}/${DEPLOYMENT_NAME}:latest"
                         withCredentials([azureServicePrincipal('Azure_login')]) {
                                     sh "az login --service-principal -u ${AZURE_CLIENT_ID} -p ${AZURE_CLIENT_SECRET} -t ${AZURE_TENANT_ID}"
                                     sh "az aks get-credentials --name icamch --resource-group icam-ch --overwrite-existing"
-                                    sh "kubectl set image deployment ${DEPLOYMENT_NAME} ${DEPLOYMENT_NAME}-app=${DOCKER_HUB}/${DEPLOYMENT_NAME}:${PROJECT_VERSION} --record -n ${NAMESPACE_DEV}"
+                                    sh "kubectl set image deployment ${DEPLOYMENT_NAME} ${DEPLOYMENT_NAME}-app=${DOCKER_HUB}/${DEPLOYMENT_NAME}:${NEW_VERSION} --record -n ${NAMESPACE_DEV}"
                                 }
                 }
             }
@@ -128,17 +131,15 @@ pipeline {
             }
             steps {
                 container('az-kube'){
-                        sh "docker tag ${DOCKER_HUB}/${DEPLOYMENT_NAME}:${PROJECT_VERSION} ${DOCKER_HUB}/${DEPLOYMENT_NAME}:latest"
-                        sh "docker push ${DOCKER_HUB}/${DEPLOYMENT_NAME}:${PROJECT_VERSION}"
+                        sh "docker tag ${DOCKER_HUB}/${DEPLOYMENT_NAME}:${NEW_VERSION} ${DOCKER_HUB}/${DEPLOYMENT_NAME}:latest"
+                        sh "docker push ${DOCKER_HUB}/${DEPLOYMENT_NAME}:${NEW_VERSION}"
                         sh "docker push ${DOCKER_HUB}/${DEPLOYMENT_NAME}:latest"
 
                         withCredentials([azureServicePrincipal('Azure_login')]) {
                                     sh "az login --service-principal -u ${AZURE_CLIENT_ID} -p ${AZURE_CLIENT_SECRET} -t ${AZURE_TENANT_ID}"
                                     sh "az aks get-credentials --name icamch --resource-group icam-ch --overwrite-existing"
-                                    sh "kubectl set image deployment ${DEPLOYMENT_NAME} ${DEPLOYMENT_NAME}-app=${DOCKER_HUB}/${DEPLOYMENT_NAME}:${PROJECT_VERSION} --record -n ${NAMESPACE_PROD}"
+                                    sh "kubectl set image deployment ${DEPLOYMENT_NAME} ${DEPLOYMENT_NAME}-app=${DOCKER_HUB}/${DEPLOYMENT_NAME}:${NEW_VERSION} --record -n ${NAMESPACE_PROD}"
                                 }
-
-
 
                 }
             }
