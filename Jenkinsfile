@@ -37,8 +37,8 @@ pipeline {
             steps {
                 script {
                     if (checkCommit("updated version to")){
-                        timeout(time: 20, unit: 'SECONDS') {
-                            input 'Do you want to Update Version anyway?'
+                        timeout(time: 10, unit: 'SECONDS') {
+                            input 'Recursive Run'
                         }
                     }
                 }
