@@ -28,6 +28,28 @@ export class RevisionService {
 
   constructor(protected http: HttpClient) {}
 
+  static convertToFlatRevision(revision: IRevision, truncateSummary = false): IFlatRevision {
+    const summary: string = revision.summary || '';
+    const ctreeArr: ICategoryTree[] = [];
+
+    if (revision.ctrees) {
+      for (let j = 0; j < revision.ctrees?.length; j++) {
+        const ctrees = revision.ctrees[j];
+        if (ctrees !== undefined) {
+          flatCategoryTree(ctrees, ctreeArr);
+        }
+      }
+    }
+
+    return {
+      ...revision,
+      summary: truncateSummary ? `${summary.substr(0, SUMMARY_TRUNC_LENGTH)}...` : summary,
+      categories: ctreeArr,
+      author: revision.article?.articleCitation || '',
+      date: revision.article?.articleDate || ''
+    };
+  }
+
   create(revision: IRevision): Observable<EntityResponseType> {
     const copy = this.convertDateFromClient(revision);
     return this.http
@@ -90,27 +112,10 @@ export class RevisionService {
       map(resp => {
         const body = resp.body || [];
         const returnArr: IFlatRevision[] = [];
-        const ctreeArr: ICategoryTree[] = [];
 
         for (let i = 0; i < body.length; i++) {
           const revision = body[i];
-          const summary: string = revision.summary || '';
-          if (revision.ctrees) {
-            for (let j = 0; j < revision.ctrees?.length; j++) {
-              const ctrees = revision.ctrees[j];
-              if (ctrees !== undefined) {
-                flatCategoryTree(ctrees, ctreeArr);
-              }
-            }
-            returnArr.push({
-              ...revision,
-              summary: truncateSummary ? `${summary.substr(0, SUMMARY_TRUNC_LENGTH)}...` : summary,
-              categories: ctreeArr,
-              author: revision.article?.articleCitation || '',
-              date: revision.article?.articleDate || ''
-            });
-            revision.ctrees = ctreeArr;
-          }
+          returnArr.push(RevisionService.convertToFlatRevision(revision, truncateSummary));
         }
         return returnArr;
       }),
