@@ -10,15 +10,20 @@ import { IcamBackOfficeEntityModule } from './entities/entity.module';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { MainComponent } from './layouts/main/main.component';
 import { SidebarAndContentModule } from './layouts/sidebar-and-content/sidebar-and-content.module';
+import { TopNavbarAndContentModule } from './layouts/topnavbar-and-content/topnavbar-and-content.module';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { ErrorComponent } from './layouts/error/error.component';
+
+import { ArticleListModule } from './articleList/articleList.module';
 
 @NgModule({
   imports: [
     BrowserModule,
+    ArticleListModule,
     IcamBackOfficeSharedModule,
     IcamBackOfficeCoreModule,
     SidebarAndContentModule,
+    TopNavbarAndContentModule,
     IcamBackOfficeHomeModule,
     // jhipster-needle-angular-add-module JHipster will add new module here
     IcamBackOfficeEntityModule,

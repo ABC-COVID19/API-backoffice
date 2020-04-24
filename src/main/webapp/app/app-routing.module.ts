@@ -5,7 +5,10 @@ import { DEBUG_INFO_ENABLED } from 'app/app.constants';
 import { Authority } from 'app/shared/constants/authority.constants';
 
 import { SidebarAndContentComponent } from 'app/layouts/sidebar-and-content/sidebar-and-content.component';
+import { TopNavbarAndContentComponent } from 'app/layouts/topnavbar-and-content/topnavbar-and-content.component';
 import { UserRouteAccessService } from 'app/core/auth/user-route-access-service';
+
+import { ArticleListModule } from './articleList/articleList.module';
 
 const LAYOUT_ROUTES = [...errorRoute];
 
@@ -42,6 +45,16 @@ const LAYOUT_ROUTES = [...errorRoute];
                   loadChildren: () => import('./layouts/top-search/top-search.module').then(m => m.TopSearchModule)
                 }
               ]
+            }
+          ]
+        },
+        {
+          path: 'backoffice',
+          component: TopNavbarAndContentComponent,
+          children: [
+            {
+              path: 'articleList',
+              loadChildren: () => import('app/articleList/articleList.module').then(m => m.ArticleListModule)
             }
           ]
         },
