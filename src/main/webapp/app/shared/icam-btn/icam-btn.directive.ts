@@ -5,8 +5,12 @@ export class IcamBtnDirective implements OnInit {
   @Input() btnText = '';
   @Input() rightArrow: boolean | undefined;
   @Input() leftArrow: boolean | undefined;
-  @Input() btnPadding = '15px 25px';
+  @Input() btnPadding = '8px 25px';
   @Input() btnWidth = '';
+  @Input() backgroundColor = '';
+  @Input() border = '';
+  @Input() btnHeight = '';
+  @Input() textColor = '#000000';
 
   constructor(private elRef: ElementRef, private renderer: Renderer2) {}
 
@@ -22,6 +26,18 @@ export class IcamBtnDirective implements OnInit {
       this.renderer.setStyle(this.elRef.nativeElement, 'width', this.btnWidth);
     }
 
+    if (this.backgroundColor) {
+      this.renderer.setStyle(this.elRef.nativeElement, 'background-color', this.backgroundColor);
+    }
+
+    if (this.border) {
+      this.renderer.setStyle(this.elRef.nativeElement, 'border', this.border);
+    }
+
+    if (this.btnHeight) {
+      this.renderer.setStyle(this.elRef.nativeElement, 'height', this.btnHeight);
+    }
+
     if (this.leftArrow !== undefined) {
       this.addArrowIcon('left');
       this.addTextNode();
@@ -34,7 +50,8 @@ export class IcamBtnDirective implements OnInit {
   addArrowIcon(direction: 'left' | 'right'): void {
     const span = this.renderer.createElement('span');
     const icon = this.renderer.createElement('i');
-    this.renderer.setStyle(span, 'color', '#151344');
+    //this.renderer.setStyle(span, 'color', '#151344');
+    this.renderer.setStyle(span, 'color', this.textColor);
     this.renderer.setStyle(icon, `margin-${direction === 'left' ? 'right' : 'left'}`, '12px');
     this.renderer.addClass(icon, 'fal');
     this.renderer.addClass(icon, `fa-arrow-${direction}`);
@@ -44,7 +61,8 @@ export class IcamBtnDirective implements OnInit {
 
   addTextNode(): void {
     const txtSpan = this.renderer.createElement('span');
-    this.renderer.setStyle(txtSpan, 'color', '#151344');
+    //this.renderer.setStyle(txtSpan, 'color', '#151344');
+    this.renderer.setStyle(txtSpan, 'color', this.textColor);
     this.renderer.setProperty(txtSpan, 'textContent', this.btnText);
     this.renderer.appendChild(this.elRef.nativeElement, txtSpan);
   }

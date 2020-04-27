@@ -16,5 +16,9 @@
         <div id="articlesTitle" class="col-3">
             Artigos
         </div>
+        <div id="addArticleBtn" class="offset-7 col-2">
+            <a icam-btn [btnText]="'Adicionar Artigo'" [btnWidth]="'196px'" [rightArrow]="true" [btnHeight]="'48px'" [backgroundColor]="'#EBBC51'"></a>
+        </div>
     </div>
+    <article-review-card *ngIf="isFetched" [article]="article"></article-review-card>
 </div>
