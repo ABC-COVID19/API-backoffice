@@ -1,6 +1,4 @@
-import { Component, Input, Output, EventEmitter, HostListener, AfterContentInit, OnInit } from '@angular/core';
-import * as moment from 'moment';
-import { IArticle } from '../model/ICAMApi/article.model';
+import { Component, Input, Output, EventEmitter, HostListener, AfterContentInit, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 //import { ICategoryTree } from '../model/ICAMApi/category-tree.model';
 
 @Component({
@@ -9,7 +7,7 @@ import { IArticle } from '../model/ICAMApi/article.model';
   styleUrls: ['./article-review-card.scss']
 })
 export class ArticleReviewCardComponent implements OnInit {
-  @Input() article: any;
+  @Input() articles: Array<any> = new Array<any>();
 
   /*   @Input() cardTitle = '';
   @Input() reviewState = '';
@@ -19,6 +17,12 @@ export class ArticleReviewCardComponent implements OnInit {
   @Output() cardClick = new EventEmitter<void>();
 
   constructor() {}
+
+  /* ngOnChanges( changes : SimpleChanges) : void{
+    if(changes['articles']){
+      this.articles = this.articles.slice();
+    }
+  } */
 
   ngOnInit(): void {}
 }

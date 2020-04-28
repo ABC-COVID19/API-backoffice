@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticleService } from '../entities/ICAMApi/article/article.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'articleList',
@@ -7,7 +8,7 @@ import { ArticleService } from '../entities/ICAMApi/article/article.service';
   styleUrls: ['./articleList.scss']
 })
 export class ArticleListComponent implements OnInit {
-  article: any;
+  articles: any;
   isFetched = false;
 
   constructor(private articleService: ArticleService) {}
@@ -15,8 +16,7 @@ export class ArticleListComponent implements OnInit {
   getArtictlesToReview(): void {
     this.articleService.getArticlesToReview().subscribe(
       res => {
-        console.log(res);
-        this.article = res[0];
+        this.articles = res;
         this.isFetched = true;
       },
       error => {
@@ -28,4 +28,21 @@ export class ArticleListComponent implements OnInit {
   ngOnInit(): void {
     this.getArtictlesToReview();
   }
+
+  /*  sortArrayDate(sorting : boolean) : void{
+    //false - DESC 
+    //true  - ASC
+
+    if(this.isFetched && this.articles){
+      this.articles.sort( (arctA : any, arctB : any) =>{
+        if(sorting){
+          return moment(arctA.articleDate) > moment(arctB.articleDate);
+        }
+        else{
+          return moment(arctA) <= moment(arctB);
+        }
+      }).slice();
+      
+    }
+  } */
 }

@@ -1,3 +1,4 @@
+<ng-container *ngFor="let article of articles">
 <div id="card-review" class="card">
     <div class="cardHeader card-header">
     <!--     {{cardTitle}} --> {{article?.articleTitle}}
@@ -7,39 +8,46 @@
             <div id="dgrid" class="col-2">
                 <div class="margintb col-12">
                     
-                    <span class="badge badge-pill badge-warning">{{article?.revision?.reviewState}}</span>
+                    <span class="articleDetailsColor badge badge-pill badge-warning">{{article?.revision?.reviewState}}</span>
                     
                 </div>
                 <div class="margintb col-12">
-                    <span>
+                    <span class="articleDetailsColor">
                         <i class="fal fa-calendar-alt"></i>
                     </span>
-                    <span>
-                        &nbsp; {{article?.articleDate}}
+                    <span class="articleDetailsColor">
+                        &nbsp; {{article?.repoDate}}
                     </span>
                     
                 </div>
                 <div class="margintb col-12">
-                    <span>
+                    <span class="articleDetailsColor">
                         <i class="fal fa-link"></i>
                     </span>
-                    <span>
+                    <span class="articleDetailsColor">
                         &nbsp; <a [attr.href]="article?.articleLink" target="_blank">Ver artigo original</a>
                     </span>
                     
                 </div>
                 <div class="margintb col-12">
-                    <span>
+                    <span class="articleDetailsColor">
                         <i class="fal fa-newspaper"></i>
                     </span>
-                    <span>
+                    <span class="articleDetailsColor">
                         {{article?.articleJournal}}
                     </span>
                 
                 </div>
                 <div class="margintb col-6">
                  <ng-container *ngFor="let cat of article?.revision?.ctrees">
-                    <span class="margintb badge badge-pill badge-light">{{cat.itemName}}</span><br>
+                    <span id="badgePill" class="articleDetailsColor badge badge-pill">
+                        <span class="articleDetailsColor">
+                            <i class="fal fa-list"></i>
+                        </span>
+                        <span class="articleDetailsColor">
+                            {{cat.itemName}}
+                        </span><br>
+                    </span>
                  </ng-container>
                 </div>
         </div>
@@ -67,3 +75,5 @@
        </div>
     </div>
 </div>
+
+</ng-container>

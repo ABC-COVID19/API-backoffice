@@ -20,5 +20,6 @@
             <a icam-btn [btnText]="'Adicionar Artigo'" [btnWidth]="'196px'" [rightArrow]="true" [btnHeight]="'48px'" [backgroundColor]="'#EBBC51'"></a>
         </div>
     </div>
-    <article-review-card *ngIf="isFetched" [article]="article"></article-review-card>
+    <!-- <button (click)="sortArrayDate(false)">TESTE</button> -->
+    <article-review-card *ngIf="isFetched" [articles]="articles"></article-review-card>
 </div>
