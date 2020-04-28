@@ -1,7 +1,42 @@
 <div class="section-heading">
-    <h1>Article Title</h1>
-    <h2>Summary</h2>
+    <h1>{{ revision?.title }}</h1>
+    <!-- <h2>{{ article?.articleAbstract }}</h2> -->
 </div>
 <div class="section-content">
-    <round-card></round-card>
+    <round-card paddingTop="20px" paddingBottom="20px" paddingLeft="20px" paddingRight="20px">
+        <span class="citation">{{ article?.articleCitation }}</span>
+    </round-card>
+    <div class="article-details">
+        <round-card paddingTop="20px" paddingBottom="20px" paddingLeft="20px" paddingRight="20px">
+            <h1>Sinopse</h1>
+            <p [innerHTML]="revision?.summary"></p>
+        </round-card>
+        <div class="details">
+            <h1>Detalhes</h1>
+            <span>
+                <i class="fal fa-calendar-alt"></i>
+                <span>{{ article?.articleDate }}</span>
+            </span>
+            <span>
+                <i class="fal fa-link"></i>
+                <span>
+                    <a [href]="article?.articleLink" target="_blank">Link directo de acesso ao artigo</a>
+                </span>
+            </span>
+            <div id="revision-categories">
+                <icam-badge
+                    *ngFor="let cat of revision?.categories"
+                    [text]="cat.itemName"
+                    iconClass="fa-list"
+                ></icam-badge>
+            </div>
+            <div>
+                <icam-badge
+                    *ngFor="let keyword of revision?.keywordArr"
+                    [text]="keyword"
+                    iconClass="fa-tag"
+                ></icam-badge>
+            </div>
+        </div>
+    </div>
 </div>

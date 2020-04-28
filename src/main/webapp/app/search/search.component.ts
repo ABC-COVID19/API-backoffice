@@ -3,6 +3,7 @@ import { CategoryTreeService } from '../entities/ICAMApi/category-tree/category-
 import { RevisionService, IFlatRevision } from '../entities/ICAMApi/revision/revision.service';
 import { ICategoryTree } from '../shared/model/ICAMApi/category-tree.model';
 import { getHighlightCategoryID } from '../shared/util/category-util';
+import { Router } from '@angular/router';
 // import { IRevision } from '../shared/model/ICAMApi/revision.model';
 
 @Component({
@@ -14,7 +15,7 @@ export class SearchComponent implements OnInit {
   categories: ICategoryTree[] = [];
   lastRevisedCards: IFlatRevision[] = [];
 
-  constructor(private categoryService: CategoryTreeService, private revisionService: RevisionService) {}
+  constructor(private categoryService: CategoryTreeService, private revisionService: RevisionService, private router: Router) {}
 
   ngOnInit(): void {
     this.categoryService.getMainCategories().subscribe(cats => {
@@ -27,5 +28,9 @@ export class SearchComponent implements OnInit {
         });
       }
     });
+  }
+
+  goToCard(revision: IFlatRevision): void {
+    this.router.navigate([`/articles/${revision.id}/view`]);
   }
 }

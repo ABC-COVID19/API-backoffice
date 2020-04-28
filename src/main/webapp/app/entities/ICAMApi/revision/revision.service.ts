@@ -15,6 +15,7 @@ export interface IFlatRevision extends IRevision {
   categories: ICategoryTree[];
   date: string;
   author: string;
+  keywordArr: string[];
 }
 
 const SUMMARY_TRUNC_LENGTH = 200;
@@ -29,8 +30,9 @@ export class RevisionService {
   constructor(protected http: HttpClient) {}
 
   static convertToFlatRevision(revision: IRevision, truncateSummary = false): IFlatRevision {
-    const summary: string = revision.summary || '';
     const ctreeArr: ICategoryTree[] = [];
+    let summary: string = revision.summary || '';
+    let keywordArr: string[] = [];
 
     if (revision.ctrees) {
       for (let j = 0; j < revision.ctrees?.length; j++) {
@@ -41,12 +43,19 @@ export class RevisionService {
       }
     }
 
+    if (revision.keywords && typeof revision.keywords === 'string') {
+      keywordArr = revision.keywords.split(';').map(k => k.trim());
+    }
+
+    summary = summary.replace(/(?:\r\n|\r|\n|↵)/g, '<br><br>');
+
     return {
       ...revision,
       summary: truncateSummary ? `${summary.substr(0, SUMMARY_TRUNC_LENGTH)}...` : summary,
       categories: ctreeArr,
       author: revision.article?.articleCitation || '',
-      date: revision.article?.articleDate || ''
+      date: revision.article?.articleDate || '',
+      keywordArr
     };
   }
 
