@@ -49,6 +49,16 @@ export class ArticleService {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
+  /**
+   * TODO : change to specified = false
+   */
+
+  getArticlesToReview(): Observable<EntityResponseType> {
+    return this.http
+      .get<EntityResponseType>(`${this.resourceUrl}?revisionId.specified=false`)
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+  }
+
   protected convertDateFromClient(article: IArticle): IArticle {
     const copy: IArticle = Object.assign({}, article, {
       repoDate: article.repoDate && article.repoDate.isValid() ? article.repoDate.format(DATE_FORMAT) : undefined,

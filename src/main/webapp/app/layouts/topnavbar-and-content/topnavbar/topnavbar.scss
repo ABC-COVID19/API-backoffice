@@ -1,0 +1,85 @@
+@import '../../../../content/scss/global-variables.scss';
+
+#navbar {
+  /*   top: 0px;
+  left: 0px;
+ 
+  width: 100%;*/
+  height: 80px;
+  background: $navbar-dark-blue 0% 0% padding-box;
+  //display: inline-block;
+}
+
+#divLogo {
+  max-height: 100%;
+  padding: 10px 0px 10px 10px;
+}
+
+#icamLogo {
+  /*   top: 23px;
+  left: 29px;
+  width: 33px;*/
+  //height: 100%;
+  //background: #EBBC51 0% 0% no-repeat padding-box;
+  /*  background-image: url('../../../../content/images/virus-amarelo.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-size: 100%;
+  opacity: 1; */
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  /* display: inline-block;
+  position: absolute; */
+}
+
+#icamTitle {
+  //layout
+  /*   top: 23px;
+  left: 76px;
+  width: 219px;
+  height: 34px; */
+
+  //UI
+  text-align: left;
+  font: normal normal normal 28px/34px Roboto;
+  letter-spacing: 0px;
+  color: $title-golden;
+  opacity: 1;
+  display: flex;
+  align-items: center;
+  padding: 0px;
+  /*   display: inline-block;
+  position: relative; */
+}
+
+#lightText {
+  /*   top: 32px;
+  left: 299px;
+  width: 102px;
+  height: 17px; */
+  text-align: left;
+  font: 14px/17px Roboto;
+  letter-spacing: 0px;
+  color: $light-text-color;
+  opacity: 1;
+  /*   display: inline-block;
+  position: absolute; */
+}
+
+#logout {
+  /*   top: 26px;
+  left: 1757px;
+  width: 107px;
+  height: 29px; */
+  opacity: 1;
+  color: white;
+  //position: absolute;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.spanLogout {
+  color: white !important;
+}
