@@ -14,7 +14,7 @@ type EntityArrayResponseType = HttpResponse<IArticle[]>;
 
 @Injectable({ providedIn: 'root' })
 export class ArticleService {
-  //public resourceUrl = SERVER_API_URL + 'services/icamapi/api/articles';
+  public resourceUrl = SERVER_API_URL + 'services/icamapi/api/articles';
   public resourceUrl = 'https://api.dev.icam.org.pt/services/icamapi/api/articles';
 
   constructor(protected http: HttpClient) {}
@@ -56,7 +56,7 @@ export class ArticleService {
 
   getArticlesToReview(): Observable<EntityResponseType> {
     return this.http
-      .get<EntityResponseType>(`${this.resourceUrl}?revisionId.specified=true`)
+      .get<EntityResponseType>(`${this.resourceUrl}?revisionId.specified=false`)
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
