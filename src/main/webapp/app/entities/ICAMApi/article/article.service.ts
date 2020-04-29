@@ -15,7 +15,6 @@ type EntityArrayResponseType = HttpResponse<IArticle[]>;
 @Injectable({ providedIn: 'root' })
 export class ArticleService {
   public resourceUrl = SERVER_API_URL + 'services/icamapi/api/articles';
-  public resourceUrl = 'https://api.dev.icam.org.pt/services/icamapi/api/articles';
 
   constructor(protected http: HttpClient) {}
 
