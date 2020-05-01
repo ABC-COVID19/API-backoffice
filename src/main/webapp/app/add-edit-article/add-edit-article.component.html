@@ -1,51 +1,73 @@
-<round-card>
-    <div class="container-fluid">
-
-        <form [formGroup]="form" class="row">
-            <div class="col-md-6">
-                <div class="row">
-                    <div class="col-md-6" formControlName="link">
-                        <div>Link</div>
-                        <input type="text">
-                    </div>
-                    <div class="col-md-6" formControlName="date">
-                        <div>Data de publicação</div>
-                        <input type="text">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12" formControlName="journal">
-                        <div>Revista | Entidade Publicadora</div>
-                        <input type="text">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12" formControlName="title">
-                        <div>Título</div>
-                        <input type="text">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="row">
-                    <div class="col-md-12" formControlName="keywords">
-                        <div>Palavras-chave</div>
-                        <input type="text">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12" formControlName="citation">
-                        <div>Referência Bibliográfica</div>
-                        <input type="text">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12" formControlName="abstract">
-                        <div>Sinopse</div>
-                        <input type="text">
-                    </div>
-                </div>
-            </div>
-        </form>
+<div class="top-backoffice-bar container-fluid">
+    <h1>Adicionar Artigo</h1>
+    <div class="top-backoffice-bar-buttons">
+        <button
+            icam-btn btnText="Cancelar"
+            [textColor]="styles.darkerBlue"
+            btnWidth="160px"
+            btnHeight="48px"
+            [borderColor]="styles.darkerBlue"
+            backgroundColor="white"
+        ></button>
+        <button
+            icam-btn btnText="Salvar"
+            textColor="white"
+            btnWidth="160px"
+            btnHeight="48px"
+            [backgroundColor]="styles.darkerBlue">
+        </button>
     </div>
-</round-card>
+</div>
+<div>
+    <h2>Dados do Artigo</h2>
+    <round-card paddingTop="35px" paddingBottom="35px" paddingLeft="35px" paddingRight="35px">
+        <div class="container-fluid">
+            <form [formGroup]="form" class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label for="id">Link</label>
+                            <input id="link" type="text" class="form-control" cals formControlName="link">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="date">Data de publicação</label>
+                            <input id="data" type="text" class="form-control" formControlName="date">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <label for="journal">Revista | Entidade Publicadora</label>
+                            <input id="journal" type="text" class="form-control" formControlName="journal">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <label for="title">Título</label>
+                            <input id="title" type="text" class="form-control" formControlName="title">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <label for="keywords">Palavras-chave</label>
+                            <input id="keywords" type="text" class="form-control" formControlName="keywords">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <label for="citation">Referência Bibliográfica</label>
+                            <input id="citation" type="text" class="form-control" formControlName="citation">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <label for="abstract" >Sinopse</label>
+                            <input id="abstract" type="text" class="form-control" formControlName="abstract">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </round-card>
+</div>

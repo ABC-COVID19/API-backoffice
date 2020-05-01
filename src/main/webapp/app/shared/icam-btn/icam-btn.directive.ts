@@ -11,6 +11,7 @@ export class IcamBtnDirective implements OnInit {
   @Input() border = '';
   @Input() btnHeight = '';
   @Input() textColor = '#000000';
+  @Input() borderColor = 'transparent';
 
   constructor(private elRef: ElementRef, private renderer: Renderer2) {}
 
@@ -18,7 +19,6 @@ export class IcamBtnDirective implements OnInit {
     this.renderer.setStyle(this.elRef.nativeElement, 'padding', this.btnPadding);
     this.renderer.setStyle(this.elRef.nativeElement, 'backgroundColor', '#f3dca7');
     this.renderer.setStyle(this.elRef.nativeElement, 'borderRadius', '20px');
-    this.renderer.setStyle(this.elRef.nativeElement, 'borderColor', 'transparent');
     this.renderer.setStyle(this.elRef.nativeElement, 'outline', 'none');
     this.renderer.setStyle(this.elRef.nativeElement, 'fontSize', '16px');
 
@@ -38,12 +38,18 @@ export class IcamBtnDirective implements OnInit {
       this.renderer.setStyle(this.elRef.nativeElement, 'height', this.btnHeight);
     }
 
+    if (this.borderColor) {
+      this.renderer.setStyle(this.elRef.nativeElement, 'border-color', this.borderColor);
+    }
+
     if (this.leftArrow !== undefined) {
       this.addArrowIcon('left');
       this.addTextNode();
     } else if (this.rightArrow !== undefined) {
       this.addTextNode();
       this.addArrowIcon('right');
+    } else {
+      this.addTextNode();
     }
   }
 
