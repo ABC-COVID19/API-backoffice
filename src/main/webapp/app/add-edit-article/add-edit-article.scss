@@ -4,10 +4,14 @@
   display: block;
 
   .top-backoffice-bar {
-    height: 80px;
+    min-height: 80px;
     background: white;
     box-shadow: 0px 3px 6px #00000029;
     padding: 16px 35px;
+
+    @media only screen and (max-width: 670px) {
+      text-align: center;
+    }
 
     h1 {
       display: inline;
@@ -19,8 +23,17 @@
     .top-backoffice-bar-buttons {
       float: right;
 
-      button:last-child {
-        margin-left: 16px;
+      @media only screen and (max-width: 670px) {
+        float: none;
+      }
+
+      button:first-child {
+        margin-right: 16px;
+
+        @media only screen and (max-width: 670px) {
+          margin-bottom: 15px;
+          margin-right: 0;
+        }
       }
     }
   }
@@ -42,6 +55,10 @@
           label {
             color: $text-color;
             font-size: 20px;
+            max-width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
           }
         }
       }
