@@ -50,7 +50,6 @@ export class IcamBtnDirective implements OnInit {
   addArrowIcon(direction: 'left' | 'right'): void {
     const span = this.renderer.createElement('span');
     const icon = this.renderer.createElement('i');
-    //this.renderer.setStyle(span, 'color', '#151344');
     this.renderer.setStyle(span, 'color', this.textColor);
     this.renderer.setStyle(icon, `margin-${direction === 'left' ? 'right' : 'left'}`, '12px');
     this.renderer.addClass(icon, 'fal');
@@ -61,7 +60,6 @@ export class IcamBtnDirective implements OnInit {
 
   addTextNode(): void {
     const txtSpan = this.renderer.createElement('span');
-    //this.renderer.setStyle(txtSpan, 'color', '#151344');
     this.renderer.setStyle(txtSpan, 'color', this.textColor);
     this.renderer.setProperty(txtSpan, 'textContent', this.btnText);
     this.renderer.appendChild(this.elRef.nativeElement, txtSpan);

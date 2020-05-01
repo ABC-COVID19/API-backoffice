@@ -1,5 +1,4 @@
-import { Component, Input, Output, EventEmitter, HostListener, AfterContentInit, OnInit, OnChanges, SimpleChanges } from '@angular/core';
-//import { ICategoryTree } from '../model/ICAMApi/category-tree.model';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 
 @Component({
   selector: 'article-review-card',

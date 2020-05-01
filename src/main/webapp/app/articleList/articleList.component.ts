@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticleService } from '../entities/ICAMApi/article/article.service';
-import * as moment from 'moment';
 
 @Component({
   selector: 'articleList',

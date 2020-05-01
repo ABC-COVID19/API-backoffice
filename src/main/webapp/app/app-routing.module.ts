@@ -8,8 +8,6 @@ import { SidebarAndContentComponent } from 'app/layouts/sidebar-and-content/side
 import { TopNavbarAndContentComponent } from 'app/layouts/topnavbar-and-content/topnavbar-and-content.component';
 import { UserRouteAccessService } from 'app/core/auth/user-route-access-service';
 
-import { ArticleListModule } from './articleList/articleList.module';
-
 const LAYOUT_ROUTES = [...errorRoute];
 
 @NgModule({
@@ -55,6 +53,10 @@ const LAYOUT_ROUTES = [...errorRoute];
             {
               path: 'articleList',
               loadChildren: () => import('app/articleList/articleList.module').then(m => m.ArticleListModule)
+            },
+            {
+              path: 'add-article',
+              loadChildren: () => import('app/add-edit-article/add-edit-article.module').then(m => m.AddEditArticleModule)
             }
           ]
         },

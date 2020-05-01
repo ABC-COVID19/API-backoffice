@@ -1,0 +1,51 @@
+<round-card>
+    <div class="container-fluid">
+
+        <form [formGroup]="form" class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6" formControlName="link">
+                        <div>Link</div>
+                        <input type="text">
+                    </div>
+                    <div class="col-md-6" formControlName="date">
+                        <div>Data de publicação</div>
+                        <input type="text">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" formControlName="journal">
+                        <div>Revista | Entidade Publicadora</div>
+                        <input type="text">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" formControlName="title">
+                        <div>Título</div>
+                        <input type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-12" formControlName="keywords">
+                        <div>Palavras-chave</div>
+                        <input type="text">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" formControlName="citation">
+                        <div>Referência Bibliográfica</div>
+                        <input type="text">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" formControlName="abstract">
+                        <div>Sinopse</div>
+                        <input type="text">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</round-card>
