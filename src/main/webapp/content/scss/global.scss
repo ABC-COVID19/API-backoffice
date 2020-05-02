@@ -72,6 +72,17 @@ input {
   padding: 0 30px 30px 30px;
 }
 
+.control-form-error {
+  label {
+    color: $error-color !important;
+  }
+
+  input,
+  textarea {
+    border-color: $error-color !important;
+  }
+}
+
 /* Increase contrast of links to get 100% on Lighthouse Accessability Audit. Override this color if you want to change the link color, or use a Bootswatch theme */
 a {
   color: #533f03;

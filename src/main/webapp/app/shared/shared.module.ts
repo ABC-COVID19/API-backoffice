@@ -5,6 +5,7 @@ import { AlertErrorComponent } from './alert/alert-error.component';
 import { LoginModalComponent } from './login/login.component';
 import { RoundCardComponent } from './round-card/round-card.component';
 import { IcamBtnDirective } from './icam-btn/icam-btn.directive';
+import { ControlFormErrorDirective } from './control-form-error/control-form-error.directive';
 import { IcamSearchComponent } from './icam-search/icarm-search.component';
 import { ArticleCardComponent } from './article-card/article-card.component';
 import { IcamBadgeComponent } from './icam-badge/icam-badge.component';
@@ -23,6 +24,7 @@ import { HasAnyAuthorityDirective } from './auth/has-any-authority.directive';
     ArticleCardComponent,
     IcamBadgeComponent,
     IcamBtnDirective,
+    ControlFormErrorDirective,
     ArticleReviewCardComponent
   ],
   entryComponents: [LoginModalComponent],
@@ -34,6 +36,7 @@ import { HasAnyAuthorityDirective } from './auth/has-any-authority.directive';
     HasAnyAuthorityDirective,
     RoundCardComponent,
     IcamBtnDirective,
+    ControlFormErrorDirective,
     IcamSearchComponent,
     ArticleCardComponent,
     IcamBadgeComponent,

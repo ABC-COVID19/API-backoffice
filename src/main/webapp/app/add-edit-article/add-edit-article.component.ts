@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import styles from '!!style-loader!css-loader!sass-loader!../../content/scss/global-variables.scss';
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators, AbstractControl } from '@angular/forms';
+
+const styles = require('!!style-loader!css-loader!sass-loader!../../content/scss/global-variables.scss');
 @Component({
   selector: 'add-edit-article',
   templateUrl: 'add-edit-article.component.html',
   styleUrls: ['./add-edit-article.scss']
 })
-export class AddEditArticleComponent implements OnInit {
+export class AddEditArticleComponent {
   styles = styles;
   form: FormGroup = new FormGroup({
     link: new FormControl('', [Validators.required]),
@@ -18,9 +19,16 @@ export class AddEditArticleComponent implements OnInit {
     abstract: new FormControl('', [Validators.required])
   });
 
-  constructor(private fb: FormBuilder) {
-    console.log(this.styles);
+  constructor() {}
+
+  get controls(): { [key: string]: AbstractControl } {
+    return this.form.controls;
   }
 
-  ngOnInit(): void {}
+  cancel(): void {}
+
+  save(): void {
+    console.log(this.controls.link);
+    console.log(this.form.valid);
+  }
 }

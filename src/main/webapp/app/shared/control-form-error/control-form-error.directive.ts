@@ -9,7 +9,6 @@ export class ControlFormErrorDirective implements OnInit {
 
   ngOnInit(): void {
     this.control?.valueChanges.subscribe(() => {
-      console.log('value change');
       if (this.control && this.control.dirty && !this.control.valid) {
         this.renderer.addClass(this.elRef.nativeElement, 'control-form-error');
       } else if (this.control?.valid) {
