@@ -5,14 +5,15 @@ import { Observable } from 'rxjs';
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared/util/request-util';
 import { ICategoryTree } from 'app/shared/model/ICAMApi/category-tree.model';
-import { map, catchError } from 'rxjs/operators';
+import { map, catchError, toArray } from 'rxjs/operators';
 
 type EntityResponseType = HttpResponse<ICategoryTree>;
 type EntityArrayResponseType = HttpResponse<ICategoryTree[]>;
 
 @Injectable({ providedIn: 'root' })
 export class CategoryTreeService {
-  public resourceUrl = SERVER_API_URL + 'services/icamapi/api/category-trees';
+  //public resourceUrl = SERVER_API_URL + 'services/icamapi/api/category-trees';
+  public resourceUrl = 'https://api.dev.icam.org.pt/services/icamapi/api/category-trees';
 
   constructor(protected http: HttpClient) {}
 
@@ -39,6 +40,10 @@ export class CategoryTreeService {
 
   delete(id: number): Observable<HttpResponse<{}>> {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
+  }
+
+  getCategories(): Observable<ICategoryTree[]> {
+    return this.http.get<ICategoryTree[]>(`${this.resourceUrl}`);
   }
 
   getMainCategories(): Observable<ICategoryTree[]> {

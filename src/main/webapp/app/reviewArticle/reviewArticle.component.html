@@ -1,0 +1,120 @@
+<div class="container-fluid">
+    <div id="mainReviewArticle" class="row">
+        <div id="reviewArticleTitle" class="col-3">
+            Rever Artigo
+        </div>
+        <div class="offset-5 col-4">
+
+        </div>
+
+    </div>
+    <div class="col-12 mt-3">
+        Dados do Artigo Original
+    </div>
+
+    <div id="card-review" class="card">
+        <div class="card-body">
+                <form>
+                    <div class="row">
+                        <div class="col-5">
+                           <!--  <div class="form-group"> -->
+                                <label for="title">Título</label>
+                                <input type="text" class="form-control" name="title" id="title" [(ngModel)]="article.articleTitle" readonly>
+                            <!-- </div> -->
+                        </div>
+                        <div class="col-4">
+                           <!--  <div class="form-group"> -->
+                                <label for="link">Link</label>
+                                <input type="text" class="form-control" name="link" id="link" [(ngModel)]="article.articleLink" readonly>
+                            <!-- </div> -->
+                        </div>
+                        <div class="col-3">
+                          <!--   <div class="form-group"> -->
+                                <label for="lastDate">Data Última Modificação</label>
+                                <input type="text" class="form-control" name="lastDate" id="lastDate" [(ngModel)]="article.repoDate" readonly>
+                           <!--  </div> -->
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12">
+        Dados de Revisão
+    </div>
+
+    <div id="card-review" class="card">
+        <div class="card-body">
+           <form>
+                <div class="row">
+                    <div class="col-3">
+                        <label for="keywords">Palavras Chave (separadas por ; )</label>
+                        <input type="text" class="form-control" id="keywords" name="keywords" [ngModel]="revision?.keywords" (ngModelChange)="revision.keywords=$event">
+                    </div>
+                    <div class="col-3">
+                        <label for="country">País</label>
+                        <input type="text" class="form-control" id="country" name="country" [ngModel]="revision?.country" (ngModelChange)="revision.country=$event">
+                    </div>
+                    <div class="col-3">
+                        <label for="categories">Categoria(s)</label>
+                        <ng-multiselect-dropdown name="categoryDropdown" [placeholder]="'Selecionar Categorias'" [data]="categoryDropdown" [(ngModel)]="categorySelected" [settings]="categoryDropdownSettings"></ng-multiselect-dropdown>
+                    </div>
+                    <div class="col-3">
+                        <label for="aType">Tipo de Artigo</label>
+                        <ng-multiselect-dropdown name="aType" [placeholder]="'Selecionar Tipo de Artigo'" [data]="aTypeDropdown" [(ngModel)]="aTypeSelected" [settings]="aTypeDropdownSettings"></ng-multiselect-dropdown>
+                    </div>
+                    <div class="col-6 mt-3">
+                        <label for="articleTopic">Tópico do Artigo</label>
+                        <textarea name="articleTopic" rows="10" [ngModel]="revision?.title" (ngModelChange)="revision.title=$event">
+                    </div>
+                    <div class="col-6 mt-3">
+                        <label for="summary">Sinopse</label>
+                        <textarea name="summary" rows="10" [ngModel]="revision?.summary" (ngModelChange)="revision.summary=$event">
+                    </div>
+                    <div class="col-6 mt-3">
+                        <div class="row">
+                        <div class="col-6">
+                            <label for="reviewer">Revisor</label>
+                            <input type="text" class="form-control" name="reviewer" [ngModel]="revision?.reviewer" (ngModelChange)="revision.reviewer">
+                        </div>
+                        <div class="col-6">
+                            <label for="author">Autor</label>
+                            <input type="text" class="form-control" name="author" [ngModel]="revision?.author" (ngModelChange)="revision.author">
+                        </div>
+                        <div class="col-6 mt-3">
+                            <label for="peerReviewed">Foi revisto por pares?</label>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-2">
+                                    <input type="checkbox" name="peerReviewed" [ngModel]="peerReviewed" (ngModelChange)="checkboxChanged($event)">
+                                </div>
+                                <div class="col-2">
+                                    <span>SIM</span>
+                                </div>
+                            </div>
+
+                            </div>
+                            <div class="col-12">
+                                <div class="row">
+                                <div class="col-2">
+                                    <input type="checkbox" name="noPeerReviewed" [ngModel]="noPeerReviewed" (ngModelChange)="checkboxChanged($event)">
+                                </div>
+                                <div class="col-2">
+                                    <span>NÃO</span>
+                                </div>
+                                </div>
+                            </div>
+                                </div>
+                           
+                          
+                           
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

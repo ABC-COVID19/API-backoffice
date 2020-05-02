@@ -15,6 +15,8 @@ import { FooterComponent } from './layouts/footer/footer.component';
 import { ErrorComponent } from './layouts/error/error.component';
 
 import { ArticleListModule } from './articleList/articleList.module';
+import { ReviewArticleModule } from './reviewArticle/reviewArticle.module';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
   imports: [
@@ -27,9 +29,11 @@ import { ArticleListModule } from './articleList/articleList.module';
     IcamBackOfficeHomeModule,
     // jhipster-needle-angular-add-module JHipster will add new module here
     IcamBackOfficeEntityModule,
-    IcamBackOfficeAppRoutingModule
+    IcamBackOfficeAppRoutingModule,
+    ReviewArticleModule
   ],
   declarations: [MainComponent, ErrorComponent, FooterComponent],
-  bootstrap: [MainComponent]
+  bootstrap: [MainComponent],
+  exports: []
 })
 export class IcamBackOfficeAppModule {}

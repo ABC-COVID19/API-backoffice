@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared/util/request-util';
@@ -11,7 +12,8 @@ type EntityArrayResponseType = HttpResponse<IArticleType[]>;
 
 @Injectable({ providedIn: 'root' })
 export class ArticleTypeService {
-  public resourceUrl = SERVER_API_URL + 'services/icamapi/api/article-types';
+  //public resourceUrl = SERVER_API_URL + 'services/icamapi/api/article-types';
+  public resourceUrl = 'https://api.dev.icam.org.pt/services/icamapi/api/article-types';
 
   constructor(protected http: HttpClient) {}
 
@@ -34,5 +36,9 @@ export class ArticleTypeService {
 
   delete(id: number): Observable<HttpResponse<{}>> {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
+  }
+
+  getArticleTypes(): Observable<IArticleType[]> {
+    return this.http.get<IArticleType[]>(`${this.resourceUrl}`);
   }
 }
