@@ -20,7 +20,7 @@
             btnHeight="48px"
             [backgroundColor]="styles.darkerBlue"
             (click)="save()"
-            [disabled]="!form.valid"
+            [disabled]="!form.valid || reqStatus === REQ_STATUS.SUBMITTING"
         >
         </button>
     </div>
@@ -32,49 +32,52 @@
             <form [formGroup]="form" class="row">
                 <div class="col-md-6">
                     <div class="row">
-                        <div class="col-md-6 form-group" control-form-error [control]="controls.link">
+                        <div class="col-md-6 form-group" control-form-error [control]="controls.articleLink">
                             <label class="control-label" for="id">Link</label>
-                            <input id="link" type="text" class="form-control" formControlName="link" required>
+                            <input id="link" type="text" class="form-control" formControlName="articleLink" required>
                         </div>
-                        <div class="col-md-6 form-group" control-form-error [control]="controls.date">
+                        <div class="col-md-6 form-group" control-form-error [control]="controls.articleDate">
                             <label class="control-label" for="date">Data de publicação</label>
-                            <input id="data" type="date" class="form-control" formControlName="date" required>
+                            <input id="date" type="date" class="form-control" formControlName="articleDate" required>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12 form-group" control-form-error [control]="controls.journal">
+                        <div class="col-md-12 form-group" control-form-error [control]="controls.articleJournal">
                             <label class="control-label" for="journal">Revista | Entidade Publicadora</label>
-                            <input id="journal" type="text" class="form-control" formControlName="journal" required>
+                            <input id="journal" type="text" class="form-control" formControlName="articleJournal" required>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12 form-group" control-form-error [control]="controls.title">
+                        <div class="col-md-12 form-group" control-form-error [control]="controls.articleTitle">
                             <label class="control-label" for="title">Título</label>
-                            <textarea rows="5" id="title" type="text" class="form-control" formControlName="title" required></textarea>
+                            <textarea rows="5" id="title" type="text" class="form-control" formControlName="articleTitle" required></textarea>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="row">
-                        <div class="col-md-12 form-group" control-form-error [control]="controls.keywords">
+                        <div class="col-md-12 form-group" control-form-error [control]="controls.repoKeywords">
                             <label class="control-label" for="keywords">Palavras-chave</label>
-                            <input id="keywords" type="text" class="form-control" formControlName="keywords" required>
+                            <input id="keywords" type="text" class="form-control" formControlName="repoKeywords" required>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12 form-group" control-form-error [control]="controls.citation">
+                        <div class="col-md-12 form-group" control-form-error [control]="controls.articleCitation">
                             <label class="control-label" for="citation">Referência Bibliográfica</label>
-                            <input id="citation" type="text" class="form-control" formControlName="citation" required>
+                            <input id="citation" type="text" class="form-control" formControlName="articleCitation" required>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12 form-group" control-form-error [control]="controls.abstract">
+                        <div class="col-md-12 form-group" control-form-error [control]="controls.articleAbstract">
                             <label class="control-label" for="abstract">Sinopse</label>
-                            <textarea rows="5" id="abstract" type="text" class="form-control" formControlName="abstract" required></textarea>
+                            <textarea rows="5" id="abstract" type="text" class="form-control" formControlName="articleAbstract" required></textarea>
                         </div>
                     </div>
                 </div>
             </form>
+            <div class="col-md-12 form-error-msg" *ngIf="reqStatus === REQ_STATUS.ERROR">
+                Erro ao adicionar artigo. Tente novamente
+            </div>
         </div>
     </round-card>
 </div>

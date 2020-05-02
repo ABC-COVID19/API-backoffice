@@ -65,6 +65,11 @@
             resize: none;
           }
         }
+
+        .form-error-msg {
+          padding-left: 0;
+          color: $error-color;
+        }
       }
     }
   }
