@@ -16,6 +16,7 @@ export class IcamBtnDirective implements OnInit {
   constructor(private elRef: ElementRef, private renderer: Renderer2) {}
 
   ngOnInit(): void {
+    this.renderer.addClass(this.elRef.nativeElement, 'icam-btn');
     this.renderer.setStyle(this.elRef.nativeElement, 'padding', this.btnPadding);
     this.renderer.setStyle(this.elRef.nativeElement, 'backgroundColor', '#f3dca7');
     this.renderer.setStyle(this.elRef.nativeElement, 'borderRadius', '20px');

@@ -20,6 +20,7 @@
             btnHeight="48px"
             [backgroundColor]="styles.darkerBlue"
             (click)="save()"
+            [disabled]="!form.valid"
         >
         </button>
     </div>
@@ -33,21 +34,21 @@
                     <div class="row">
                         <div class="col-md-6 form-group" control-form-error [control]="controls.link">
                             <label class="control-label" for="id">Link</label>
-                            <input id="link" type="text" class="form-control" cals formControlName="link" required>
+                            <input id="link" type="text" class="form-control" formControlName="link" required>
                         </div>
-                        <div class="col-md-6 form-group">
+                        <div class="col-md-6 form-group" control-form-error [control]="controls.date">
                             <label class="control-label" for="date">Data de publicação</label>
-                            <input id="data" type="text" class="form-control" formControlName="date" required>
+                            <input id="data" type="date" class="form-control" formControlName="date" required>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12 form-group">
+                        <div class="col-md-12 form-group" control-form-error [control]="controls.journal">
                             <label class="control-label" for="journal">Revista | Entidade Publicadora</label>
                             <input id="journal" type="text" class="form-control" formControlName="journal" required>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12 form-group">
+                        <div class="col-md-12 form-group" control-form-error [control]="controls.title">
                             <label class="control-label" for="title">Título</label>
                             <textarea rows="5" id="title" type="text" class="form-control" formControlName="title" required></textarea>
                         </div>
@@ -55,20 +56,20 @@
                 </div>
                 <div class="col-md-6">
                     <div class="row">
-                        <div class="col-md-12 form-group">
+                        <div class="col-md-12 form-group" control-form-error [control]="controls.keywords">
                             <label class="control-label" for="keywords">Palavras-chave</label>
                             <input id="keywords" type="text" class="form-control" formControlName="keywords" required>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12 form-group">
+                        <div class="col-md-12 form-group" control-form-error [control]="controls.citation">
                             <label class="control-label" for="citation">Referência Bibliográfica</label>
                             <input id="citation" type="text" class="form-control" formControlName="citation" required>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12 form-group">
-                            <label class="control-label" for="abstract" >Sinopse</label>
+                        <div class="col-md-12 form-group" control-form-error [control]="controls.abstract">
+                            <label class="control-label" for="abstract">Sinopse</label>
                             <textarea rows="5" id="abstract" type="text" class="form-control" formControlName="abstract" required></textarea>
                         </div>
                     </div>
