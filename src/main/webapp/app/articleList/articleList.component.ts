@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticleService } from '../entities/ICAMApi/article/article.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'articleList',
@@ -10,7 +11,7 @@ export class ArticleListComponent implements OnInit {
   articles: any;
   isFetched = false;
 
-  constructor(private articleService: ArticleService) {}
+  constructor(private articleService: ArticleService, private router: Router) {}
 
   getArtictlesToReview(): void {
     this.articleService.getArticlesToReview().subscribe(
@@ -26,6 +27,12 @@ export class ArticleListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getArtictlesToReview();
+  }
+
+  editArticle(id: number): void {
+    if (id >= 0) {
+      this.router.navigate(['/backoffice', 'edit-article', id]);
+    }
   }
 
   /*  sortArrayDate(sorting : boolean) : void{

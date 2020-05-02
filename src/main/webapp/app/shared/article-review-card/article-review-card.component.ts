@@ -14,6 +14,7 @@ export class ArticleReviewCardComponent implements OnInit {
   @Input() author = '';
   @Input() categories: ICategoryTree[] = []; */
   @Output() cardClick = new EventEmitter<void>();
+  @Output() onEdit = new EventEmitter<number>();
 
   constructor() {}
 

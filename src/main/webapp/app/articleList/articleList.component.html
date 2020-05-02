@@ -29,5 +29,5 @@
         </div>
     </div>
     <!-- <button (click)="sortArrayDate(false)">TESTE</button> -->
-    <article-review-card *ngIf="isFetched" [articles]="articles"></article-review-card>
+    <article-review-card *ngIf="isFetched" [articles]="articles" (onEdit)="editArticle($event)"></article-review-card>
 </div>
