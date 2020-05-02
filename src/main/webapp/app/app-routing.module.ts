@@ -49,6 +49,11 @@ const LAYOUT_ROUTES = [...errorRoute];
         component: TopNavbarAndContentComponent,
         children: [
           {
+            path: '',
+            redirectTo: '/backoffice/articleList',
+            pathMatch: 'full'
+          },
+          {
             path: 'articleList',
             loadChildren: () => import('app/articleList/articleList.module').then(m => m.ArticleListModule)
           },

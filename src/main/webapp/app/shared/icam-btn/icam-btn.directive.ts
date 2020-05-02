@@ -22,6 +22,7 @@ export class IcamBtnDirective implements OnInit {
     this.renderer.setStyle(this.elRef.nativeElement, 'borderRadius', '20px');
     this.renderer.setStyle(this.elRef.nativeElement, 'outline', 'none');
     this.renderer.setStyle(this.elRef.nativeElement, 'fontSize', '16px');
+    this.renderer.setStyle(this.elRef.nativeElement, 'white-space', 'nowrap');
 
     if (this.btnWidth) {
       this.renderer.setStyle(this.elRef.nativeElement, 'width', this.btnWidth);

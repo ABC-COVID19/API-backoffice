@@ -17,7 +17,15 @@
             Artigos
         </div>
         <div id="addArticleBtn" class="offset-7 col-2">
-            <a icam-btn [btnText]="'Adicionar Artigo'" [btnWidth]="'196px'" [rightArrow]="true" [btnHeight]="'48px'" [backgroundColor]="'#EBBC51'"></a>
+            <button
+                icam-btn
+                btnText="Adicionar Artigo"
+                [rightArrow]="true"
+                btnHeight="48px"
+                backgroundColor="#EBBC51"
+                [routerLink]="['/backoffice', 'add-article']"
+            >
+            </button>
         </div>
     </div>
     <!-- <button (click)="sortArrayDate(false)">TESTE</button> -->
