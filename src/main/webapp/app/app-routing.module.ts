@@ -55,6 +55,10 @@ const LAYOUT_ROUTES = [...errorRoute];
           {
             path: 'add-article',
             loadChildren: () => import('app/add-edit-article/add-edit-article.module').then(m => m.AddEditArticleModule)
+          },
+          {
+            path: 'edit-article/:id',
+            loadChildren: () => import('app/add-edit-article/add-edit-article.module').then(m => m.AddEditArticleModule)
           }
         ]
       },

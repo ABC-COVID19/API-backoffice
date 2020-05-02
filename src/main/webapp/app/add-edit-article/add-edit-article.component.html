@@ -1,5 +1,5 @@
 <div class="top-backoffice-bar container-fluid">
-    <h1>Adicionar Artigo</h1>
+    <h1>{{ editMode ? 'Editar' : 'Adicionar' }} Artigo</h1>
     <div class="top-backoffice-bar-buttons">
         <button
             icam-btn
@@ -20,7 +20,7 @@
             btnHeight="48px"
             [backgroundColor]="styles.darkerBlue"
             (click)="save()"
-            [disabled]="!form.valid || reqStatus === REQ_STATUS.SUBMITTING"
+            [disabled]="!form.valid || reqStatus === REQ_STATUS.SUBMITTING || (editMode && !formChanged)"
         >
         </button>
     </div>
