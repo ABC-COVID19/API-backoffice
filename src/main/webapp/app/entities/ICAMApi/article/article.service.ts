@@ -61,27 +61,27 @@ export class ArticleService {
   }
 
   addArticleToSpecialSourceRepo(article: IArticle): Observable<EntityResponseType> {
-    return this.repoService
-      .query({
-        'itemName.equals': 'special'
-      })
-      .pipe(
-        concatMap(r => {
-          const repos = r.body;
+    return this.repoService.query().pipe(
+      concatMap(r => {
+        const repos = r.body;
 
-          if (repos?.length) {
-            return of(repos[0].id);
+        if (repos?.length) {
+          for (let i = 0; i < repos.length; i++) {
+            if (repos[i].itemName === 'special') {
+              return of(repos[i].id);
+            }
           }
+        }
 
-          return this.repoService
-            .create({
-              active: true,
-              itemName: 'special'
-            })
-            .pipe(map(newRepo => newRepo.body?.id));
-        }),
-        concatMap(id => this.create({ ...article, srepo: { id } }))
-      );
+        return this.repoService
+          .create({
+            active: true,
+            itemName: 'special'
+          })
+          .pipe(map(newRepo => newRepo.body?.id));
+      }),
+      concatMap(id => this.create({ ...article, srepo: { id } }))
+    );
   }
 
   protected convertDateFromClient(article: IArticle): IArticle {
