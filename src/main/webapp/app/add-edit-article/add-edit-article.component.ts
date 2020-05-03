@@ -49,11 +49,11 @@ export class AddEditArticleComponent implements OnInit {
         this.form.patchValue(this.originalFormValues);
         this.editMode = true;
         this.formChanged = false;
-      }
-    });
 
-    this.form.valueChanges.subscribe(() => {
-      this.checkIfFormChanged();
+        this.form.valueChanges.subscribe(() => {
+          this.checkIfFormChanged();
+        });
+      }
     });
   }
 
