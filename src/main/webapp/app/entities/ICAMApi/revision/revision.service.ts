@@ -25,8 +25,7 @@ type EntityArrayResponseType = HttpResponse<IRevision[]>;
 
 @Injectable({ providedIn: 'root' })
 export class RevisionService {
-  //public resourceUrl = SERVER_API_URL + 'services/icamapi/api/revisions';
-  public resourceUrl = 'https://api.dev.icam.org.pt/services/icamapi/api/revisions';
+  public resourceUrl = SERVER_API_URL + 'services/icamapi/api/revisions';
 
   constructor(protected http: HttpClient) {}
 

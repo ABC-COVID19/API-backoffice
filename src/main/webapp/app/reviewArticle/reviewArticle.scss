@@ -22,7 +22,7 @@
   opacity: 1;
 }
 
-#card-review {
+.card-review {
   margin: 10px 15px 10px 15px;
   box-shadow: 0px 3px 6px #00000029;
   border-radius: 9px;
@@ -39,4 +39,10 @@ textarea {
   width: 100%;
   border: 1px solid #ced4da;
   border-radius: 2px;
+}
+
+.btnCenter {
+  display: flex !important;
+  align-items: center !important;
+  height: 100%;
 }

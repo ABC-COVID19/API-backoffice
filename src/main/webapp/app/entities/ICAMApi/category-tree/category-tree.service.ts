@@ -12,8 +12,7 @@ type EntityArrayResponseType = HttpResponse<ICategoryTree[]>;
 
 @Injectable({ providedIn: 'root' })
 export class CategoryTreeService {
-  //public resourceUrl = SERVER_API_URL + 'services/icamapi/api/category-trees';
-  public resourceUrl = 'https://api.dev.icam.org.pt/services/icamapi/api/category-trees';
+  public resourceUrl = SERVER_API_URL + 'services/icamapi/api/category-trees';
 
   constructor(protected http: HttpClient) {}
 
