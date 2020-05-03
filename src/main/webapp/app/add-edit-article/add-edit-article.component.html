@@ -34,23 +34,23 @@
                     <div class="row">
                         <div class="col-md-6 form-group" control-form-error [control]="controls.articleLink">
                             <label class="control-label" for="id">Link</label>
-                            <input id="link" type="text" class="form-control" formControlName="articleLink" required>
+                            <input id="link" type="text" class="form-control" formControlName="articleLink" maxlength="MAX_STR_LENGTH">
                         </div>
                         <div class="col-md-6 form-group" control-form-error [control]="controls.articleDate">
                             <label class="control-label" for="date">Data de publicação</label>
-                            <input id="date" type="text" class="form-control" formControlName="articleDate" required>
+                            <input id="date" type="text" class="form-control" formControlName="articleDate" maxlength="MAX_STR_LENGTH">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12 form-group" control-form-error [control]="controls.articleJournal">
                             <label class="control-label" for="journal">Revista | Entidade Publicadora</label>
-                            <input id="journal" type="text" class="form-control" formControlName="articleJournal" required>
+                            <input id="journal" type="text" class="form-control" formControlName="articleJournal" maxlength="MAX_STR_LENGTH">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12 form-group" control-form-error [control]="controls.articleTitle">
                             <label class="control-label" for="title">Título</label>
-                            <textarea rows="5" id="title" type="text" class="form-control" formControlName="articleTitle" required></textarea>
+                            <textarea rows="5" id="title" type="text" class="form-control" formControlName="articleTitle" maxlength="MAX_STR_LENGTH"></textarea>
                         </div>
                     </div>
                 </div>
@@ -58,19 +58,19 @@
                     <div class="row">
                         <div class="col-md-12 form-group" control-form-error [control]="controls.repoKeywords">
                             <label class="control-label" for="keywords">Palavras-chave</label>
-                            <input id="keywords" type="text" class="form-control" formControlName="repoKeywords" required>
+                            <input id="keywords" type="text" class="form-control" formControlName="repoKeywords" maxlength="MAX_BLOB_LENGTH">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12 form-group" control-form-error [control]="controls.articleCitation">
                             <label class="control-label" for="citation">Referência Bibliográfica</label>
-                            <input id="citation" type="text" class="form-control" formControlName="articleCitation" required>
+                            <input id="citation" type="text" class="form-control" formControlName="articleCitation" maxlength="MAX_STR_LENGTH">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12 form-group" control-form-error [control]="controls.articleAbstract">
                             <label class="control-label" for="abstract">Sinopse</label>
-                            <textarea rows="5" id="abstract" type="text" class="form-control" formControlName="articleAbstract" required></textarea>
+                            <textarea rows="5" id="abstract" type="text" class="form-control" formControlName="articleAbstract" maxlength="MAX_BLOB_LENGTH"></textarea>
                         </div>
                     </div>
                 </div>

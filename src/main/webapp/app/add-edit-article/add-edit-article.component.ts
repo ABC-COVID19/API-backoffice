@@ -29,14 +29,16 @@ export class AddEditArticleComponent implements OnInit {
   formChanged = false;
   originalFormValues: IArticle = {};
   articleID = 0;
+  readonly MAX_STR_LENGTH = 255;
+  readonly MAX_BLOB_LENGTH = 3000;
   form: FormGroup = new FormGroup({
-    articleLink: new FormControl('', [Validators.required]),
-    articleDate: new FormControl('', [Validators.required]),
-    repoKeywords: new FormControl('', [Validators.required]),
-    articleJournal: new FormControl('', [Validators.required]),
-    articleCitation: new FormControl('', [Validators.required]),
-    articleTitle: new FormControl('', [Validators.required]),
-    articleAbstract: new FormControl('', [Validators.required])
+    articleLink: new FormControl('', [Validators.maxLength(this.MAX_STR_LENGTH)]),
+    articleDate: new FormControl('', [Validators.maxLength(this.MAX_STR_LENGTH)]),
+    repoKeywords: new FormControl('', [Validators.maxLength(this.MAX_BLOB_LENGTH)]),
+    articleJournal: new FormControl('', [Validators.maxLength(this.MAX_STR_LENGTH)]),
+    articleCitation: new FormControl('', [Validators.maxLength(this.MAX_STR_LENGTH)]),
+    articleTitle: new FormControl('', [Validators.maxLength(this.MAX_STR_LENGTH)]),
+    articleAbstract: new FormControl('', [Validators.maxLength(this.MAX_BLOB_LENGTH)])
   });
 
   constructor(private articleService: ArticleService, private router: Router, private route: ActivatedRoute) {}
