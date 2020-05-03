@@ -28,7 +28,6 @@ export class AddEditArticleComponent implements OnInit {
   editMode = false;
   formChanged = false;
   originalFormValues: IArticle = {};
-  articleID = 0;
   readonly MAX_STR_LENGTH = 255;
   readonly MAX_BLOB_LENGTH = 3000;
   form: FormGroup = new FormGroup({
@@ -46,20 +45,10 @@ export class AddEditArticleComponent implements OnInit {
   ngOnInit(): void {
     this.route.data.subscribe(({ article }) => {
       if (article) {
-        const { articleLink, articleDate, repoKeywords, articleJournal, articleCitation, articleTitle, articleAbstract } = article;
-        this.originalFormValues = {
-          articleLink,
-          articleDate,
-          repoKeywords,
-          articleJournal,
-          articleCitation,
-          articleTitle,
-          articleAbstract
-        };
+        this.originalFormValues = article;
         this.form.patchValue(this.originalFormValues);
         this.editMode = true;
         this.formChanged = false;
-        this.articleID = article.id;
       }
     });
 
@@ -108,14 +97,14 @@ export class AddEditArticleComponent implements OnInit {
       this.addArticle$.unsubscribe();
       if (this.editMode) {
         call = this.articleService.update({
+          ...this.originalFormValues,
           articleLink,
           articleDate,
           repoKeywords,
           articleJournal,
           articleCitation,
           articleTitle,
-          articleAbstract,
-          id: this.articleID
+          articleAbstract
         });
       } else {
         call = this.articleService.addArticleToSpecialSourceRepo({
