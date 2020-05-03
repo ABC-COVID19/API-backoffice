@@ -11,16 +11,18 @@ export class IcamBtnDirective implements OnInit {
   @Input() border = '';
   @Input() btnHeight = '';
   @Input() textColor = '#000000';
+  @Input() borderColor = 'transparent';
 
   constructor(private elRef: ElementRef, private renderer: Renderer2) {}
 
   ngOnInit(): void {
+    this.renderer.addClass(this.elRef.nativeElement, 'icam-btn');
     this.renderer.setStyle(this.elRef.nativeElement, 'padding', this.btnPadding);
     this.renderer.setStyle(this.elRef.nativeElement, 'backgroundColor', '#f3dca7');
     this.renderer.setStyle(this.elRef.nativeElement, 'borderRadius', '20px');
-    this.renderer.setStyle(this.elRef.nativeElement, 'borderColor', 'transparent');
     this.renderer.setStyle(this.elRef.nativeElement, 'outline', 'none');
     this.renderer.setStyle(this.elRef.nativeElement, 'fontSize', '16px');
+    this.renderer.setStyle(this.elRef.nativeElement, 'white-space', 'nowrap');
 
     if (this.btnWidth) {
       this.renderer.setStyle(this.elRef.nativeElement, 'width', this.btnWidth);
@@ -38,19 +40,24 @@ export class IcamBtnDirective implements OnInit {
       this.renderer.setStyle(this.elRef.nativeElement, 'height', this.btnHeight);
     }
 
+    if (this.borderColor) {
+      this.renderer.setStyle(this.elRef.nativeElement, 'border-color', this.borderColor);
+    }
+
     if (this.leftArrow !== undefined) {
       this.addArrowIcon('left');
       this.addTextNode();
     } else if (this.rightArrow !== undefined) {
       this.addTextNode();
       this.addArrowIcon('right');
+    } else {
+      this.addTextNode();
     }
   }
 
   addArrowIcon(direction: 'left' | 'right'): void {
     const span = this.renderer.createElement('span');
     const icon = this.renderer.createElement('i');
-    //this.renderer.setStyle(span, 'color', '#151344');
     this.renderer.setStyle(span, 'color', this.textColor);
     this.renderer.setStyle(icon, `margin-${direction === 'left' ? 'right' : 'left'}`, '12px');
     this.renderer.addClass(icon, 'fal');
@@ -61,7 +68,6 @@ export class IcamBtnDirective implements OnInit {
 
   addTextNode(): void {
     const txtSpan = this.renderer.createElement('span');
-    //this.renderer.setStyle(txtSpan, 'color', '#151344');
     this.renderer.setStyle(txtSpan, 'color', this.textColor);
     this.renderer.setProperty(txtSpan, 'textContent', this.btnText);
     this.renderer.appendChild(this.elRef.nativeElement, txtSpan);

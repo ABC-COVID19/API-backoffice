@@ -9,3 +9,18 @@ $border-gray: #959595;
 $title-golden: #e8af00;
 $navbar-dark-blue: #1a1948;
 $light-text-color: #c2c1ea;
+$error-color: #ef4747;
+
+:export {
+  selectionYellow: $selection-yellow;
+  golden: $golden;
+  textColor: $text-color;
+  darkBlue: $dark-blue;
+  darkerBlue: $darker-blue;
+  bgColor: $bg-color;
+  fontFamily: $font-family;
+  borderGray: $border-gray;
+  titleGolden: $title-golden;
+  navbarDarkBlue: $navbar-dark-blue;
+  lightTextColor: $light-text-color;
+}

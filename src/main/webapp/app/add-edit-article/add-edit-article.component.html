@@ -1,0 +1,83 @@
+<div class="top-backoffice-bar container-fluid">
+    <h1>{{ editMode ? 'Editar' : 'Adicionar' }} Artigo</h1>
+    <div class="top-backoffice-bar-buttons">
+        <button
+            icam-btn
+            btnText="Cancelar"
+            [textColor]="styles.darkerBlue"
+            btnWidth="160px"
+            btnHeight="48px"
+            [borderColor]="styles.darkerBlue"
+            backgroundColor="white"
+            (click)="cancel()"
+        >
+        </button>
+        <button
+            icam-btn
+            btnText="Salvar"
+            textColor="white"
+            btnWidth="160px"
+            btnHeight="48px"
+            [backgroundColor]="styles.darkerBlue"
+            (click)="save()"
+            [disabled]="!form.valid || reqStatus === REQ_STATUS.SUBMITTING || (editMode && !formChanged)"
+        >
+        </button>
+    </div>
+</div>
+<div>
+    <h2>Dados do Artigo</h2>
+    <round-card paddingTop="35px" paddingBottom="35px" paddingLeft="35px" paddingRight="35px">
+        <div class="container-fluid">
+            <form [formGroup]="form" class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6 form-group" control-form-error [control]="controls.articleLink">
+                            <label class="control-label" for="id">Link</label>
+                            <input id="link" type="text" class="form-control" formControlName="articleLink" maxlength="MAX_STR_LENGTH">
+                        </div>
+                        <div class="col-md-6 form-group" control-form-error [control]="controls.articleDate">
+                            <label class="control-label" for="date">Data de publicação</label>
+                            <input id="date" type="text" class="form-control" formControlName="articleDate" maxlength="MAX_STR_LENGTH">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 form-group" control-form-error [control]="controls.articleJournal">
+                            <label class="control-label" for="journal">Revista | Entidade Publicadora</label>
+                            <input id="journal" type="text" class="form-control" formControlName="articleJournal" maxlength="MAX_STR_LENGTH">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 form-group" control-form-error [control]="controls.articleTitle">
+                            <label class="control-label" for="title">Título</label>
+                            <textarea rows="5" id="title" type="text" class="form-control" formControlName="articleTitle" maxlength="MAX_STR_LENGTH"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-12 form-group" control-form-error [control]="controls.repoKeywords">
+                            <label class="control-label" for="keywords">Palavras-chave</label>
+                            <input id="keywords" type="text" class="form-control" formControlName="repoKeywords" maxlength="MAX_BLOB_LENGTH">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 form-group" control-form-error [control]="controls.articleCitation">
+                            <label class="control-label" for="citation">Referência Bibliográfica</label>
+                            <input id="citation" type="text" class="form-control" formControlName="articleCitation" maxlength="MAX_STR_LENGTH">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 form-group" control-form-error [control]="controls.articleAbstract">
+                            <label class="control-label" for="abstract">Sinopse</label>
+                            <textarea rows="5" id="abstract" type="text" class="form-control" formControlName="articleAbstract" maxlength="MAX_BLOB_LENGTH"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="col-md-12 form-error-msg" *ngIf="reqStatus === REQ_STATUS.ERROR">
+                Erro ao adicionar artigo. Tente novamente
+            </div>
+        </div>
+    </round-card>
+</div>

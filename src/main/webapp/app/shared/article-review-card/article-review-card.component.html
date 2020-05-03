@@ -64,11 +64,25 @@
             </div>
             <div class="offset-7 col-2">
                 <div class="row">
-                <div class="col-5" icam-btn [btnText]="'Editar'" 
-                [backgroundColor]="'#FFFFFF'" [textColor]="'#1A1948'" [rightArrow]="true" [border]="'1px solid #1A1948'">
+                <div
+                    class="col-5"
+                    icam-btn
+                    [btnText]="'Editar'" 
+                    [backgroundColor]="'#FFFFFF'"
+                    [textColor]="'#1A1948'"
+                    [rightArrow]="true"
+                    [border]="'1px solid #1A1948'"
+                    (click)="onEdit.emit(article?.id)"
+                >
                 </div>
-                <div class="offset-1 col-5" icam-btn [btnText]="'Rever'" 
-                [backgroundColor]="'#1A1948'" [textColor]="'#FFFFFF'" [rightArrow]="true">
+                <div
+                    class="offset-1 col-5"
+                    icam-btn
+                    [btnText]="'Rever'" 
+                    [backgroundColor]="'#1A1948'"
+                    [textColor]="'#FFFFFF'"
+                    [rightArrow]="true"
+                >
                 </div>
             </div>
             </div>

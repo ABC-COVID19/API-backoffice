@@ -14,12 +14,9 @@ import { TopNavbarAndContentModule } from './layouts/topnavbar-and-content/topna
 import { FooterComponent } from './layouts/footer/footer.component';
 import { ErrorComponent } from './layouts/error/error.component';
 
-import { ArticleListModule } from './articleList/articleList.module';
-
 @NgModule({
   imports: [
     BrowserModule,
-    ArticleListModule,
     IcamBackOfficeSharedModule,
     IcamBackOfficeCoreModule,
     SidebarAndContentModule,
