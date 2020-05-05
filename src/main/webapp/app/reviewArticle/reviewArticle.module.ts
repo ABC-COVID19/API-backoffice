@@ -7,6 +7,7 @@ import { ArticleService } from '../entities/ICAMApi/article/article.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     RouterModule.forChild([REVIEWARTICLE_ROUTE]),
     NgMultiSelectDropDownModule.forRoot(),
     FormsModule,
-    CommonModule
+    CommonModule,
+    AngularMultiSelectModule
   ],
   exports: [],
   declarations: [ReviewArticleComponent],

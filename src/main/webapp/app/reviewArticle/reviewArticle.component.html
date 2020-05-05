@@ -26,15 +26,18 @@
                 <div class="row">
                     <div class="col-5">
                         <label for="title">Título</label>
-                        <input type="text" class="form-control" name="title" id="title" [(ngModel)]="article.articleTitle" readonly>
+                        <input type="text" class="form-control" name="title" id="title"
+                            [(ngModel)]="article.articleTitle" readonly>
                     </div>
                     <div class="col-4">
                         <label for="link">Link</label>
-                        <input type="text" class="form-control" name="link" id="link" [(ngModel)]="article.articleLink" readonly>
+                        <input type="text" class="form-control" name="link" id="link" [(ngModel)]="article.articleLink"
+                            readonly>
                     </div>
                     <div class="col-3">
                         <label for="lastDate">Data Última Modificação</label>
-                        <input type="text" class="form-control" name="lastDate" id="lastDate" [(ngModel)]="article.repoDate" readonly>
+                        <input type="text" class="form-control" name="lastDate" id="lastDate"
+                            [(ngModel)]="article.repoDate" readonly>
                     </div>
                 </div>
             </form>
@@ -50,46 +53,44 @@
                 <div class="row">
                     <div class="col-3">
                         <label for="keywords">Palavras Chave (separadas por ; )</label>
-                        <input type="text" class="form-control" id="keywords" name="keywords"
-                            [ngModel]="revision?.keywords" (ngModelChange)="revision.keywords=$event">
+                        <input type="text" class="form-control" id="keywords" name="keywords" [ngModel]="revision?.keywords" (ngModelChanged)="revision.keywords=$event">
                     </div>
                     <div class="col-3">
                         <label for="country">País</label>
-                        <input type="text" class="form-control" id="country" name="country"
-                            [ngModel]="revision?.country" (ngModelChange)="revision.country=$event">
+                        <input type="text" class="form-control" id="country" name="country" [ngModel]="revision?.country" (ngModelChanged)="revision.country=$event">
                     </div>
                     <div class="col-3">
                         <label for="categories">Categoria(s)</label>
-                        <ng-multiselect-dropdown name="categoryDropdown" [placeholder]="'Selecionar Categorias'"
-                            [data]="categoryDropdown" [(ngModel)]="categorySelected"
-                            [settings]="categoryDropdownSettings">
+                        <ng-multiselect-dropdown name="categories" [data]="categoryDropdown" [(ngModel)]="categorySelected"
+                             [settings]="categoryDropdownSettings">
                         </ng-multiselect-dropdown>
+                       
                     </div>
                     <div class="col-3">
                         <label for="aType">Tipo de Artigo</label>
-                        <ng-multiselect-dropdown name="aType" [placeholder]="'Selecionar Tipo de Artigo'"
-                            [data]="aTypeDropdown" [(ngModel)]="aTypeSelected" [settings]="aTypeDropdownSettings">
+                        <ng-multiselect-dropdown name="aType" [data]="aTypeDropdown" [(ngModel)]="aTypeSelected"
+                            [settings]="aTypeDropdownSettings">
                         </ng-multiselect-dropdown>
                     </div>
                     <div class="col-6 mt-3">
                         <label for="articleTopic">Tópico do Artigo</label>
-                        <textarea name="articleTopic" rows="10" [ngModel]="revision?.title"
-                            (ngModelChange)="revision.title=$event">
+                        <textarea name="articleTopic" rows="10" [ngModel]="revision?.title" (ngModelChanged)="revision.title=$event">
                         </div>
                     <div class="col-6 mt-3">
                             <label for="summary">Sinopse</label>
-                            <textarea name="summary" rows="10" [ngModel]="revision?.summary" (ngModelChange)="revision.summary=$event">
+                            <textarea name="summary" rows="10" [ngModel]="revision?.summary" (ngModelChanged)="revision.summary=$event">
                         </div>
                         <div class="col-6 mt-3">
                             <div class="row">
                             <div class="col-6">
                                 <label for="reviewer">Revisor</label>
-                                <input type="text" class="form-control" name="reviewer" [ngModel]="revision?.reviewer" (ngModelChange)="revision.reviewer">
+                                <input type="text" class="form-control" name="reviewer" [ngModel]="revision?.reviewer" (ngModelChanged)="revision.reviewer=$event">
                             </div>
                             <div class="col-6">
                                 <label for="author">Autor</label>
-                                <input type="text" class="form-control" name="author" [ngModel]="revision?.author" (ngModelChange)="revision.author">
+                                <input type="text" class="form-control" name="author" [ngModel]="revision?.author" (ngModelChanged)="revision.author=$event">
                             </div>
+                      
                             <div class="col-6 mt-3">
                                 <label for="peerReviewed">Foi revisto por pares?</label>
                                 <div class="row">

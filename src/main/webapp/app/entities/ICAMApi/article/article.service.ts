@@ -49,10 +49,6 @@ export class ArticleService {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
-  /**
-   * TODO : change to specified = false
-   */
-
   getArticlesToReview(): Observable<EntityResponseType> {
     return this.http
       .get<EntityResponseType>(`${this.resourceUrl}?revisionId.specified=false`)

@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter, HostListener, AfterContentInit, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Router } from '@angular/router';
 //import { ICategoryTree } from '../model/ICAMApi/category-tree.model';
 
 @Component({
@@ -16,7 +17,7 @@ export class ArticleReviewCardComponent implements OnInit {
   @Input() categories: ICategoryTree[] = []; */
   @Output() cardClick = new EventEmitter<void>();
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   /* ngOnChanges( changes : SimpleChanges) : void{
     if(changes['articles']){
@@ -25,4 +26,8 @@ export class ArticleReviewCardComponent implements OnInit {
   } */
 
   ngOnInit(): void {}
+
+  articleReviewRedirect(articleId: string): void {
+    this.router.navigate(['/backoffice/reviewArticle'], { queryParams: { articleId } });
+  }
 }

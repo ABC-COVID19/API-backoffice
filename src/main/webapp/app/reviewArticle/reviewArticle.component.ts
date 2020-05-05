@@ -33,7 +33,7 @@ export class ReviewArticleComponent implements OnInit {
   };
 
   //Dropdown Tipo de Artigo
-  aTypeDropdown: Array<IArticleType> = [];
+  aTypeDropdown: Array<any> = [];
   aTypeSelected: Array<any> = [];
   aTypeDropdownSettings: IDropdownSettings = {
     singleSelection: true,
@@ -59,6 +59,11 @@ export class ReviewArticleComponent implements OnInit {
   revision: Revision = new Revision();
 
   revisionExists: boolean | undefined;
+
+  fieldsRequiredMsg = '';
+
+  readonly MAX_STR_LENGTH = 255;
+  readonly MAX_BLOB_LENGTH = 3000;
 
   constructor(
     private aTypesService: ArticleTypeService,
@@ -92,6 +97,7 @@ export class ReviewArticleComponent implements OnInit {
         if (Array.isArray(res) && res.length === 0) {
           //Não existe revisão
           this.revisionExists = false;
+          this.onGoingState = true; //default
 
           //Temos de carregar as categorias todas e os tipos de artigos para o dropdown
           this.loadDropdownsData();
@@ -117,10 +123,8 @@ export class ReviewArticleComponent implements OnInit {
 
           if (this.revision.atype) {
             const atype = this.revision.atype;
-
             this.aTypeSelected.push({ id: atype.id, itemName: atype.itemName });
           }
-          console.log(this.aTypeSelected);
         }
       });
     }
@@ -128,7 +132,17 @@ export class ReviewArticleComponent implements OnInit {
 
   loadDropdownsData(): void {
     this.categoryService.getCategories().subscribe(categories => {
-      this.categoryDropdown = categories;
+      for (const cat of categories) {
+        if (cat.children && cat.children.length > 0) {
+          const catChildren = cat.children;
+          for (const subCat of catChildren) {
+            this.categoryDropdown.push({ id: subCat.id, itemName: `${cat.itemName} > ${subCat.itemName}` });
+          }
+        } else {
+          this.categoryDropdown.push({ id: cat.id, itemName: cat.itemName });
+        }
+      }
+      console.log(this.categoryDropdown);
     });
     this.aTypesService.getArticleTypes().subscribe(aTypes => {
       this.aTypeDropdown = aTypes;
@@ -227,54 +241,87 @@ export class ReviewArticleComponent implements OnInit {
     }
   }
 
+  checkRequiredFields(): boolean {
+    let fieldsOk = true;
+    if (!this.categoryDropdown || this.categoryDropdown.length === 0) {
+      this.fieldsRequiredMsg += 'Necessário escolher pelo menos uma categoria<br>';
+      fieldsOk = false;
+    }
+    if (!this.aTypeDropdown || this.aTypeDropdown.length === 0) {
+      this.fieldsRequiredMsg += 'Necessário escolher um tipo de artigo<br>';
+      fieldsOk = false;
+    }
+    if (this.revision.author === null || this.revision.author === undefined || this.revision.author.trim().length === 0) {
+      this.fieldsRequiredMsg += 'Campo Autor é obrigatório<br>';
+      fieldsOk = false;
+    }
+    if (this.revision.reviewer === null || this.revision.reviewer === undefined || this.revision.reviewer.trim().length === 0) {
+      this.fieldsRequiredMsg += 'Campo Revisor é obrigatório<br>';
+      fieldsOk = false;
+    }
+    if (this.revision.title === null || this.revision.title === undefined || this.revision.title.trim().length === 0) {
+      this.fieldsRequiredMsg += 'Campo Tópicos do artigo é obrigatório<br>';
+      fieldsOk = false;
+    }
+    if (this.revision.summary === null || this.revision.summary === undefined || this.revision.summary.trim().length === 0) {
+      this.fieldsRequiredMsg += 'Campo Sinopse é obrigatório<br>';
+      fieldsOk = false;
+    }
+    return fieldsOk;
+  }
+
   cancel(): void {
     this.router.navigate(['/backoffice/articleList']);
   }
 
   save(): void {
-    let revisionToSave: IRevision = {};
-    const caterogiesId = [];
-    for (const cat of this.categorySelected) {
-      caterogiesId.push(cat.id);
-    }
+    if (this.checkRequiredFields()) {
+      const now = moment.utc();
+      let revisionToSave: IRevision = {};
+      const caterogiesId = [];
+      for (const cat of this.categorySelected) {
+        caterogiesId.push(cat.id);
+      }
 
-    if (this.revisionExists === false) {
-      //nao existia revisao = POST
+      if (this.revisionExists === false) {
+        //nao existia revisao = POST
 
-      revisionToSave = {
-        ...this.revision,
-        reviewDate: moment.utc(),
-        article: { id: this.article.id },
-        atype: { id: this.aTypeSelected[0]['id'] },
-        ctrees: caterogiesId
-      };
+        revisionToSave = {
+          ...this.revision,
+          reviewDate: now,
+          article: { id: this.article.id },
+          atype: { id: this.aTypeSelected[0]['id'] },
+          ctrees: caterogiesId
+        };
+        console.log('false', revisionToSave);
+        this.revisionService.create(revisionToSave).subscribe(
+          () => {
+            //Criado com sucesso
+            this.router.navigate(['/backoffice/articleList']);
+          },
+          () => {
+            //error
+          }
+        );
+      } else if (this.revisionExists === true) {
+        //ja existia revisao = PUT
+        Object.assign(revisionToSave, this.revision);
+        revisionToSave.atype = { id: this.aTypeSelected[0]['id'] };
+        revisionToSave.ctrees = caterogiesId;
+        console.log(revisionToSave);
 
-      this.articleService.create(revisionToSave).subscribe(
-        () => {
-          //Criado com sucesso
-          this.router.navigate(['/backoffice/articleList']);
-        },
-        () => {
-          //error
-        }
-      );
-    } else if (this.revisionExists === true) {
-      //ja existia revisao = PUT
-      revisionToSave = {
-        ...this.revision,
-        id: this.revision.id,
-        atype: { id: this.aTypeSelected[0]['id'] },
-        ctrees: caterogiesId
-      };
-      this.revisionService.update(revisionToSave).subscribe(
-        () => {
-          //update com sucesso
-          this.router.navigate(['/backoffice/articleList']);
-        },
-        () => {
-          //erro
-        }
-      );
+        this.revisionService.update(revisionToSave).subscribe(
+          () => {
+            //update com sucesso
+            this.router.navigate(['/backoffice/articleList']);
+          },
+          () => {
+            //erro
+          }
+        );
+      }
+    } else {
+      alert(this.fieldsRequiredMsg);
     }
   }
 }
