@@ -29,7 +29,8 @@ export class ReviewArticleComponent implements OnInit {
     singleSelection: false,
     idField: 'id',
     textField: 'itemName',
-    enableCheckAll: false
+    enableCheckAll: false,
+    allowSearchFilter: true
   };
 
   //Dropdown Tipo de Artigo
@@ -132,17 +133,20 @@ export class ReviewArticleComponent implements OnInit {
 
   loadDropdownsData(): void {
     this.categoryService.getCategories().subscribe(categories => {
+      // ng-multiselect-dropdown doesn't work if list items are added iteratively with .push()
+      // so we make a temp array, fill it up, and then set categoryDropdown all at once in the end.
+      const cats = [];
       for (const cat of categories) {
         if (cat.children && cat.children.length > 0) {
           const catChildren = cat.children;
           for (const subCat of catChildren) {
-            this.categoryDropdown.push({ id: subCat.id, itemName: `${cat.itemName} > ${subCat.itemName}` });
+            cats.push({ id: subCat.id, itemName: `${cat.itemName} > ${subCat.itemName}` });
           }
         } else {
-          this.categoryDropdown.push({ id: cat.id, itemName: cat.itemName });
+          cats.push({ id: cat.id, itemName: cat.itemName });
         }
       }
-      console.log(this.categoryDropdown);
+      this.categoryDropdown = [...cats];
     });
     this.aTypesService.getArticleTypes().subscribe(aTypes => {
       this.aTypeDropdown = aTypes;
