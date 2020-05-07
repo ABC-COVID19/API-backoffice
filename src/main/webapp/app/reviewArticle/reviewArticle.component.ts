@@ -252,55 +252,90 @@ export class ReviewArticleComponent implements OnInit {
     }
   }
 
+  checkRequiredFields(): boolean {
+    let fieldsOk = true;
+    this.fieldsRequiredMsg = '';
+    if (!this.categorySelected || this.categorySelected.length === 0) {
+      this.fieldsRequiredMsg += 'Necessário escolher pelo menos uma categoria\n';
+      fieldsOk = false;
+    }
+    if (!this.aTypeSelected || this.aTypeSelected.length === 0) {
+      this.fieldsRequiredMsg += 'Necessário escolher um tipo de artigo\n';
+      fieldsOk = false;
+    }
+    if (this.revision.author === null || this.revision.author === undefined || this.revision.author.trim().length === 0) {
+      this.fieldsRequiredMsg += 'Campo "Autor" é obrigatório\n';
+      fieldsOk = false;
+    }
+    if (this.revision.reviewer === null || this.revision.reviewer === undefined || this.revision.reviewer.trim().length === 0) {
+      this.fieldsRequiredMsg += 'Campo "Revisor" é obrigatório\n';
+      fieldsOk = false;
+    }
+    if (this.revision.title === null || this.revision.title === undefined || this.revision.title.trim().length === 0) {
+      this.fieldsRequiredMsg += 'Campo "Tópico do Artigo" é obrigatório\n';
+      fieldsOk = false;
+    }
+    if (this.revision.summary === null || this.revision.summary === undefined || this.revision.summary.trim().length === 0) {
+      this.fieldsRequiredMsg += 'Campo "Sinopse" é obrigatório\n';
+      fieldsOk = false;
+    }
+    return fieldsOk;
+  }
+
   cancel(): void {
     this.router.navigate(['/backoffice/articleList']);
   }
 
   save(): void {
-    const now = moment.utc();
-    let revisionToSave: IRevision = {};
-    const caterogiesId = [];
-    for (const cat of this.categorySelected) {
-      caterogiesId.push({ id: cat.id });
-    }
+    if (this.checkRequiredFields()) {
+      const now = moment.utc();
+      let revisionToSave: IRevision = {};
+      const caterogiesId = [];
+      for (const cat of this.categorySelected) {
+        caterogiesId.push({ id: cat.id });
+      }
 
-    if (this.revisionExists === false) {
-      //nao existia revisao = POST
-      revisionToSave = {
-        ...this.revision,
-        reviewDate: now,
-        article: { id: this.article.id },
-        atype: { id: this.aTypeSelected[0]['id'] },
-        ctrees: caterogiesId
-      };
-      console.log('false', revisionToSave);
-      this.revisionService.create(revisionToSave).subscribe(
-        () => {
-          //Criado com sucesso
-          this.router.navigate(['/backoffice/articleList']);
-        },
-        () => {
-          //error
-        }
-      );
-    } else if (this.revisionExists === true) {
-      //ja existia revisao = PUT
-      Object.assign(revisionToSave, this.revision);
-      revisionToSave.atype = { id: this.aTypeSelected[0]['id'] };
-      revisionToSave.ctrees = caterogiesId;
-      // If revision already exists, reviewDate will come as a string, so we need to convert it to a Moment
-      revisionToSave.reviewDate = moment(revisionToSave.reviewDate);
-      console.log(revisionToSave);
+      if (this.revisionExists === false) {
+        //nao existia revisao = POST
 
-      this.revisionService.update(revisionToSave).subscribe(
-        () => {
-          //update com sucesso
-          this.router.navigate(['/backoffice/articleList']);
-        },
-        () => {
-          //erro
-        }
-      );
+        revisionToSave = {
+          ...this.revision,
+          reviewDate: now,
+          article: { id: this.article.id },
+          atype: { id: this.aTypeSelected[0]['id'] },
+          ctrees: caterogiesId
+        };
+        console.log('false', revisionToSave);
+        this.revisionService.create(revisionToSave).subscribe(
+          () => {
+            //Criado com sucesso
+            this.router.navigate(['/backoffice/articleList']);
+          },
+          () => {
+            //error
+          }
+        );
+      } else if (this.revisionExists === true) {
+        //ja existia revisao = PUT
+        Object.assign(revisionToSave, this.revision);
+        revisionToSave.atype = { id: this.aTypeSelected[0]['id'] };
+        revisionToSave.ctrees = caterogiesId;
+        // If revision already exists, reviewDate will come as a string, so we need to convert it to a Moment
+        revisionToSave.reviewDate = moment(revisionToSave.reviewDate);
+        console.log(revisionToSave);
+
+        this.revisionService.update(revisionToSave).subscribe(
+          () => {
+            //update com sucesso
+            this.router.navigate(['/backoffice/articleList']);
+          },
+          () => {
+            //erro
+          }
+        );
+      }
+    } else {
+      alert(this.fieldsRequiredMsg);
     }
   }
 }
