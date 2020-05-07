@@ -114,17 +114,23 @@ export class ReviewArticleComponent implements OnInit {
           this.loadRevisionState(this.revision.reviewState);
 
           if (this.revision.ctrees) {
+            // same ng-multiselect-dropdown mentioned below on this.loadDropdownsData()
+            const cats = [];
             for (const cat of this.revision.ctrees) {
               if (cat.parent) {
                 const catParent = cat.parent;
-                this.categorySelected.push({ id: catParent.id, itemName: catParent.itemName });
+                cats.push({ id: catParent.id, itemName: `${catParent.itemName} > ${cat.itemName}` });
+              } else {
+                cats.push({ id: cat.id, itemName: cat.itemName });
               }
             }
+            this.categorySelected = [...cats];
           }
 
           if (this.revision.atype) {
             const atype = this.revision.atype;
-            this.aTypeSelected.push({ id: atype.id, itemName: atype.itemName });
+            // Para já cada artigo só tem um article type!
+            this.aTypeSelected = [{ id: atype.id, itemName: atype.itemName }];
           }
         }
       });
