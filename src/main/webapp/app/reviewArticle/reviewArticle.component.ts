@@ -119,7 +119,7 @@ export class ReviewArticleComponent implements OnInit {
             for (const cat of this.revision.ctrees) {
               if (cat.parent) {
                 const catParent = cat.parent;
-                cats.push({ id: catParent.id, itemName: `${catParent.itemName} > ${cat.itemName}` });
+                cats.push({ id: cat.id, itemName: `${catParent.itemName} > ${cat.itemName}` });
               } else {
                 cats.push({ id: cat.id, itemName: cat.itemName });
               }
@@ -291,6 +291,7 @@ export class ReviewArticleComponent implements OnInit {
       const now = moment.utc();
       let revisionToSave: IRevision = {};
       const caterogiesId = [];
+      console.log('CATS', this.categorySelected);
       for (const cat of this.categorySelected) {
         caterogiesId.push({ id: cat.id });
       }
