@@ -4,10 +4,9 @@ import { RevisionService } from '../entities/ICAMApi/revision/revision.service';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryTreeService } from 'app/entities/ICAMApi/category-tree/category-tree.service';
-import { Revision, IRevision } from 'app/shared/model/ICAMApi/revision.model';
+import { IRevision, Revision } from 'app/shared/model/ICAMApi/revision.model';
 import { Article } from 'app/shared/model/ICAMApi/article.model';
 import { ArticleTypeService } from 'app/entities/ICAMApi/article-type/article-type.service';
-import { IArticleType } from 'app/shared/model/ICAMApi/article-type.model';
 import * as moment from 'moment';
 import { ReviewState } from 'app/shared/model/enumerations/review-state.model';
 
@@ -99,6 +98,7 @@ export class ReviewArticleComponent implements OnInit {
           //Não existe revisão
           this.revisionExists = false;
           this.onGoingState = true; //default
+          this.revision.reviewState = ReviewState.OnGoing; // Default state for a new revision
 
           //Temos de carregar as categorias todas e os tipos de artigos para o dropdown
           this.loadDropdownsData();
@@ -174,46 +174,47 @@ export class ReviewArticleComponent implements OnInit {
 
   stateCheckboxChanged($event: any, checkbox: string): void {
     if ($event) {
+      this.state = checkbox;
       if (checkbox === ReviewState.Hold) {
-        this.state = checkbox;
         this.onHoldState = $event;
         this.onGoingState = !$event;
         this.pendingState = !$event;
         this.reviewedState = !$event;
         this.acceptedState = !$event;
+        this.revision.reviewState = ReviewState.Hold;
       }
       if (checkbox === ReviewState.OnGoing) {
-        this.state = checkbox;
         this.onGoingState = $event;
         this.onHoldState = !$event;
         this.pendingState = !$event;
         this.reviewedState = !$event;
         this.acceptedState = !$event;
+        this.revision.reviewState = ReviewState.OnGoing;
       }
       if (checkbox === ReviewState.Pending) {
-        this.state = checkbox;
         this.pendingState = $event;
         this.onGoingState = !$event;
         this.onHoldState = !$event;
         this.reviewedState = !$event;
         this.acceptedState = !$event;
+        this.revision.reviewState = ReviewState.Pending;
       }
       if (checkbox === ReviewState.Reviewed) {
-        this.state = checkbox;
         this.reviewedState = $event;
         this.onGoingState = !$event;
         this.pendingState = !$event;
         this.onHoldState = !$event;
         this.acceptedState = !$event;
+        this.revision.reviewState = ReviewState.Reviewed;
       }
 
       if (checkbox === ReviewState.Accepted) {
-        this.state = checkbox;
         this.acceptedState = $event;
         this.onGoingState = !$event;
         this.pendingState = !$event;
         this.reviewedState = !$event;
         this.onHoldState = !$event;
+        this.revision.reviewState = ReviewState.Accepted;
       }
     }
   }
