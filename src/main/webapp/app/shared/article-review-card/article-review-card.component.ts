@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'article-review-card',
@@ -16,7 +17,7 @@ export class ArticleReviewCardComponent implements OnInit {
   @Output() cardClick = new EventEmitter<void>();
   @Output() onEdit = new EventEmitter<number>();
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   /* ngOnChanges( changes : SimpleChanges) : void{
     if(changes['articles']){
@@ -25,4 +26,8 @@ export class ArticleReviewCardComponent implements OnInit {
   } */
 
   ngOnInit(): void {}
+
+  articleReviewRedirect(articleId: string): void {
+    this.router.navigate(['/backoffice/reviewArticle'], { queryParams: { articleId } });
+  }
 }

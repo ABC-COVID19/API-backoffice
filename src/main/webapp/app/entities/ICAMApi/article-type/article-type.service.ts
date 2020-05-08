@@ -35,4 +35,8 @@ export class ArticleTypeService {
   delete(id: number): Observable<HttpResponse<{}>> {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
+
+  getArticleTypes(): Observable<IArticleType[]> {
+    return this.http.get<IArticleType[]>(`${this.resourceUrl}`);
+  }
 }

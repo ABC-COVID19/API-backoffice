@@ -41,6 +41,10 @@ export class CategoryTreeService {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
+  getCategories(): Observable<ICategoryTree[]> {
+    return this.http.get<ICategoryTree[]>(`${this.resourceUrl}`);
+  }
+
   getMainCategories(): Observable<ICategoryTree[]> {
     return this.query().pipe(
       map(resp => {

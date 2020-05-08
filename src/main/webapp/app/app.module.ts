@@ -27,6 +27,7 @@ import { ErrorComponent } from './layouts/error/error.component';
     IcamBackOfficeAppRoutingModule
   ],
   declarations: [MainComponent, ErrorComponent, FooterComponent],
-  bootstrap: [MainComponent]
+  bootstrap: [MainComponent],
+  exports: []
 })
 export class IcamBackOfficeAppModule {}

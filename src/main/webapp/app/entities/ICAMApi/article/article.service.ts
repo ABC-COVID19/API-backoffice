@@ -50,10 +50,6 @@ export class ArticleService {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
-  /**
-   * TODO : change to specified = false
-   */
-
   getArticlesToReview(): Observable<EntityResponseType> {
     return this.http
       .get<EntityResponseType>(`${this.resourceUrl}?revisionId.specified=false`)
@@ -82,6 +78,12 @@ export class ArticleService {
       }),
       concatMap(id => this.create({ ...article, srepo: { id } }))
     );
+  }
+
+  getById(articleId: string): Observable<EntityResponseType> {
+    return this.http
+      .get<EntityResponseType>(`${this.resourceUrl}?id.equals=${articleId}`)
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
   protected convertDateFromClient(article: IArticle): IArticle {

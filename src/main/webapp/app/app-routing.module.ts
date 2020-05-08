@@ -73,6 +73,10 @@ const LAYOUT_ROUTES = [...errorRoute];
           {
             path: 'edit-article/:id',
             loadChildren: () => import('app/add-edit-article/add-edit-article.module').then(m => m.AddEditArticleModule)
+          },
+          {
+            path: 'reviewArticle',
+            loadChildren: () => import('app/reviewArticle/reviewArticle.module').then(m => m.ReviewArticleModule)
           }
         ]
       },

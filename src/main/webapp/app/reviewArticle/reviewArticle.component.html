@@ -1,0 +1,185 @@
+<div class="container-fluid">
+    <div id="mainReviewArticle" class="row">
+        <div id="reviewArticleTitle" class="col-3">
+            Rever Artigo
+        </div>
+        <div class="offset-6 col-3 btnCenter">
+            <div class="col-6">
+                <button icam-btn [leftArrow]="true" [btnText]="'Cancelar'" [btnWidth]="'160px'" [btnHeight]="'48px'"
+                    [textColor]="'#1A1948'" [border]="'1px solid #1A1948'" [backgroundColor]="'white'"
+                    (click)="cancel()">
+                </button>
+            </div>
+            <div class="col-6">
+                <button icam-btn [rightArrow]="true" [btnText]="'Salvar'" [btnWidth]="'160px'" [btnHeight]="'48px'"
+                    [textColor]="'white'" [border]="'none'" [backgroundColor]="'#1A1948'" (click)="save()">
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 mt-5">
+        Dados do Artigo Original
+    </div>
+    <div class="card card-review">
+        <div class="card-body">
+            <form>
+                <div class="row">
+                    <div class="col-5">
+                        <label for="title">Título</label>
+                        <input type="text" class="form-control" name="title" id="title"
+                            [(ngModel)]="article.articleTitle" readonly>
+                    </div>
+                    <div class="col-4">
+                        <label for="link">Link</label>
+                        <input type="text" class="form-control" name="link" id="link" [(ngModel)]="article.articleLink"
+                            readonly>
+                    </div>
+                    <div class="col-3">
+                        <label for="lastDate">Data Última Modificação</label>
+                        <input type="text" class="form-control" name="lastDate" id="lastDate"
+                            [(ngModel)]="article.repoDate" readonly>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-12 mt-5">
+        Dados de Revisão
+    </div>
+
+    <div class="card card-review">
+        <div class="card-body">
+            <form>
+                <div class="row">
+                    <div class="col-3">
+                        <label for="keywords">Palavras Chave (separadas por ; )</label>
+                        <input type="text" class="form-control" id="keywords" name="keywords" [ngModel]="revision?.keywords" (ngModelChange)="revision.keywords=$event">
+                    </div>
+                    <div class="col-3">
+                        <label for="country">País</label>
+                        <input type="text" class="form-control" id="country" name="country" [ngModel]="revision?.country" (ngModelChange)="revision.country=$event">
+                    </div>
+                    <div class="col-3">
+                        <label for="categories">Categoria(s)</label>
+                        <ng-multiselect-dropdown id="categories" name="categories" [data]="categoryDropdown" [(ngModel)]="categorySelected"
+                             [settings]="categoryDropdownSettings" required>
+                        </ng-multiselect-dropdown>
+
+                    </div>
+                    <div class="col-3">
+                        <label for="aType">Tipo de Artigo</label>
+                        <ng-multiselect-dropdown id="aType" name="aType" [data]="aTypeDropdown" [(ngModel)]="aTypeSelected"
+                            [settings]="aTypeDropdownSettings" required>
+                        </ng-multiselect-dropdown>
+                    </div>
+                    <div class="col-6 mt-3">
+                        <label for="articleTopic">Tópico do Artigo</label>
+                        <textarea id="articleTopic" name="articleTopic" rows="10" [ngModel]="revision?.title" (ngModelChange)="revision.title=$event" required></textarea>
+                        </div>
+                    <div class="col-6 mt-3">
+                            <label for="summary">Sinopse</label>
+                        <textarea id="summary" name="summary" rows="10" [ngModel]="revision?.summary" (ngModelChange)="revision.summary=$event" required></textarea>
+                        </div>
+                        <div class="col-6 mt-3">
+                            <div class="row">
+                            <div class="col-6">
+                                <label for="reviewer">Revisor</label>
+                                <input id="reviewer" type="text" class="form-control" name="reviewer" [ngModel]="revision?.reviewer" (ngModelChange)="revision.reviewer=$event" required>
+                            </div>
+                            <div class="col-6">
+                                <label for="author">Autor</label>
+                                <input id="author" type="text" class="form-control" name="author" [ngModel]="revision?.author" (ngModelChange)="revision.author=$event" required>
+                            </div>
+
+                            <div class="col-6 mt-3">
+                                <label for="peerReviewed">Foi revisto por pares?</label>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="row mb-3">
+                                            <div class="col-2">
+                                        <input id="peerReviewed" type="checkbox" name="peerReviewed" [ngModel]="peerReviewed" (ngModelChange)="peerCheckboxChanged($event,'yes')">
+                                    </div>
+                                    <div class="col-2">
+                                        <span>Sim</span>
+                                    </div>
+                                </div>
+
+                                </div>
+                                <div class="col-12">
+                                    <div class="row">
+                                    <div class="col-2">
+                                        <input type="checkbox" name="noPeerReviewed" [ngModel]="noPeerReviewed" (ngModelChange)="peerCheckboxChanged($event,'no')">
+                                    </div>
+                                    <div class="col-2">
+                                        <span>Não</span>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col-6 mt-3">
+                                <label>Estado da Revisão</label>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="row mb-3">
+                                            <div class="col-3">
+                                                <input id="Hold" type="checkbox" name="onHold" [ngModel]="onHoldState" (ngModelChange)="stateCheckboxChanged($event,'Hold')">
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="Hold">Em Espera</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="row mb-3">
+                                            <div class="col-3">
+                                                <input id="OnGoing" type="checkbox" name="onGoing" [ngModel]="onGoingState" (ngModelChange)="stateCheckboxChanged($event,'OnGoing')">
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="OnGoing">Em curso</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="row mb-3">
+                                            <div class="col-3">
+                                                <input id="Pending" type="checkbox" name="pending" [ngModel]="pendingState" (ngModelChange)="stateCheckboxChanged($event,'Pending')">
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="Pending">Pendente</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="row mb-3">
+                                            <div class="col-3">
+                                                <input id="Reviewed" type="checkbox" name="reviewed" [ngModel]="reviewedState" (ngModelChange)="stateCheckboxChanged($event,'Reviewed')">
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="Reviewed">Revista</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="row mb-3">
+                                            <div class="col-3">
+                                                <input id="Accepted" type="checkbox" name="accepted" [ngModel]="acceptedState" (ngModelChange)="stateCheckboxChanged($event,'Accepted')">
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="Accepted">Aceite</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 mt-3">
+                        <label for="revisorNotes">Notas do Revisor</label>
+                        <textarea id="revisorNotes" name="revisorNotes" rows="10" [ngModel]="revision?.reviewNotes" (ngModelChange)="revision.reviewNotes=$event"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+</div>

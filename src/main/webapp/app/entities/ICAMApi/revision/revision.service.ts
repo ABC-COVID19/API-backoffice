@@ -59,6 +59,12 @@ export class RevisionService {
     };
   }
 
+  getArticleRevision(articleId: string): Observable<EntityResponseType> {
+    return this.http
+      .get<EntityResponseType>(`${this.resourceUrl}?id.equals=${articleId}`)
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+  }
+
   create(revision: IRevision): Observable<EntityResponseType> {
     const copy = this.convertDateFromClient(revision);
     return this.http
