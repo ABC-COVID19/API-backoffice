@@ -336,6 +336,8 @@ export class ReviewArticleComponent implements OnInit {
           }
         );
       }
+    } else {
+      alert(this.fieldsRequiredMsg);
     }
   }
 }

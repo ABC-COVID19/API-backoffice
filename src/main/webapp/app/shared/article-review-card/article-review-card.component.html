@@ -7,6 +7,15 @@
             <div id="rowH" class="row">
                 <div id="dgrid" class="col-2">
                     <div class="margintb col-12">
+                        <span class="articleDetailsColor">
+                            <i class="fal fa-hashtag"></i>
+                        </span>
+                        <span class="articleDetailsColor">
+                            &nbsp; {{article?.id}}
+                        </span>
+
+                    </div>
+                    <div class="margintb col-12">
 
                         <span class="articleDetailsColor badge badge-pill badge-warning">{{article?.revision?.reviewState}}</span>
 
@@ -58,34 +67,43 @@
         </div>
     </div>
     <div class="cardFooter card-footer">
-       <div id="rowH" class="row">
+       <div class="row">
             <div class="col-2">
-                <div icam-btn [btnText]="'Apagar'" [btnWidth]="'50%'" 
-                     [backgroundColor]="'#FFFFFF'" [textColor]="'#FF0000'" [rightArrow]="true"></div>
-            </div>
-            <div class="offset-7 col-2">
-                <div class="row">
-                <button
-                    class="col-5"
-                    icam-btn
-                    [btnText]="'Editar'" 
-                    [backgroundColor]="'#FFFFFF'"
-                    [textColor]="'#1A1948'"
-                    [rightArrow]="true"
-                    [border]="'1px solid #1A1948'"
-                    (click)="onEdit.emit(article?.id)"
-                >
-                </button>
                 <button
                     class="offset-1 col-5"
                     icam-btn
-                    [btnText]="'Rever'" 
-                    [backgroundColor]="'#1A1948'"
-                    [textColor]="'#FFFFFF'"
+                    [btnText]="'Apagar'"
+                    [backgroundColor]="'#FFFFFF'"
+                    [textColor]="'#FF0000'"
                     [rightArrow]="true"
-                    (click)="articleReviewRedirect(article.id)"
+                    (click)="articleDelete(article.id)"
                 >
                 </button>
+            </div>
+            <div class="offset-7 col-2">
+                <div class="row">
+                    <button
+                        class="col-5"
+                        icam-btn
+                        [btnText]="'Editar'"
+                        [backgroundColor]="'#FFFFFF'"
+                        [textColor]="'#1A1948'"
+                        [rightArrow]="true"
+                        [border]="'1px solid #1A1948'"
+                        (click)="onEdit.emit(article?.id)"
+                    >
+                    </button>
+                    <button
+                        class="offset-1 col-5"
+                        icam-btn
+                        [btnText]="'Rever'"
+                        [backgroundColor]="'#1A1948'"
+                        [textColor]="'#FFFFFF'"
+                        [rightArrow]="true"
+                        (click)="articleReviewRedirect(article.id)"
+                    >
+                    </button>
+                </div>
             </div>
         </div>
     </div>
