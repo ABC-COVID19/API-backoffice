@@ -1,10 +1,14 @@
+@import '../../../content/scss/global-variables.scss';
+
 .cardHeader {
-  background-color: white;
   text-align: left;
   font: 28px/38px Roboto;
+  padding: 35px 0;
   letter-spacing: 0px;
   color: #151344;
   opacity: 1;
+  height: 100px;
+  border-bottom: 1px solid #f2f2f4;
 }
 
 .margintb {
@@ -16,28 +20,144 @@
   color: #151344;
 }
 
-.cardFooter {
-  background-color: white;
-}
-
-#badgePill {
-  border: 1px solid #151344;
-}
-
-#card-review {
-  height: 700px;
+round-card {
+  min-height: 700px;
   margin-top: 50px;
-  box-shadow: 0px 3px 6px #00000029;
-  border-radius: 9px;
-  padding: 15px 15px;
-  border: none !important;
 }
 
 #rowH {
-  height: 100%;
+  padding: 35px 0;
+  border-top: 1px solid #f2f2f4;
+
+  & > span {
+    color: #ff0000;
+    line-height: 46px;
+    float: left;
+    width: 55px;
+  }
+
+  & > div {
+    width: auto;
+    overflow: hidden;
+    text-align: end;
+  }
 }
 
-#dgrid {
-  // display: grid;
-  border-right: 1px solid #f2f2f4;
+.article-card-body {
+  padding: 0;
+  height: 500px;
+
+  & > div:first-child {
+    height: 100%;
+    border-right: 1px solid #f2f2f4;
+    width: 300px;
+    float: left;
+    padding-top: 35px;
+
+    & > * {
+      display: block;
+      color: $dark-blue;
+
+      & > span {
+        margin-left: 12px;
+      }
+
+      &.review-status {
+        display: inline-block;
+        padding: 8px 16px;
+        background-color: rgba($golden, 0.1);
+        color: $golden;
+        border-radius: 20px;
+      }
+
+      &:not(:first-child) {
+        margin-top: 15px;
+      }
+    }
+
+    & span {
+      color: $dark-blue;
+    }
+
+    @media only screen and (max-width: 670px) {
+      width: 100%;
+      height: auto;
+      border: none;
+    }
+  }
+
+  & > div:last-child {
+    width: auto;
+    padding: 35px 0 35px 35px;
+    overflow: hidden;
+    height: 100%;
+
+    @media only screen and (max-width: 670px) {
+      height: 300px;
+    }
+
+    div {
+      word-break: break-all;
+      /* hide text if it more than N lines  */
+      overflow: hidden;
+      /* for set '...' in absolute position */
+      position: relative;
+      /* use this value to count block height */
+      // line-height: 1.2em;
+      /* max-height = line-height (1.2) * lines max number (3) */
+      max-height: 100%;
+      /* fix problem when last visible word doesn't adjoin right side  */
+      text-align: justify;
+      /* place for '...' */
+      margin-right: -20px;
+      padding-right: 20px;
+      line-height: 31px;
+
+      @media only screen and (max-width: 670px) {
+        margin-left: -35px;
+        line-height: 29px;
+      }
+
+      &:before {
+        /* points in the end */
+        content: '...';
+        /* absolute position */
+        position: absolute;
+        /* set position to right bottom corner of block */
+        right: 20px;
+        width: 25px;
+        bottom: -3px;
+        text-align: right;
+        line-height: 31px;
+        background-color: white;
+
+        @media only screen and (max-width: 670px) {
+          line-height: 29px;
+        }
+      }
+
+      &:after {
+        /* points in the end */
+        content: '';
+        /* absolute position */
+        position: absolute;
+        /* set position to right bottom corner of text */
+        right: 20px;
+        /* set width and height */
+        width: 25px;
+        height: 30px;
+        margin-top: 4px;
+        /* bg color = bg color under block */
+        background: white;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 670px) {
+    float: none;
+  }
+}
+
+button {
+  width: 160px;
 }

@@ -1,92 +1,58 @@
-<ng-container *ngFor="let article of articles">
-    <div id="card-review" class="card">
-        <div class="cardHeader card-header">
-            {{article?.articleTitle}}
+<round-card paddingTop="0" paddingBottom="0" paddingLeft="35px" paddingRight="35px" *ngFor="let article of articles">
+    <div class="cardHeader">
+        {{ article?.articleTitle }}
+    </div>
+    <div class="article-card-body">
+        <div>
+            <span *ngIf="article.revision" class="review-status">
+                {{ article.revision.status }}
+            </span>
+            <span class="articleDetailsColor">
+                <i class="fal fa-calendar-alt"></i>
+                <span>{{ article?.repoDate }}</span>
+            </span>
+            <a [attr.href]="article?.articleLink" target="_blank">
+                <i class="fal fa-link"></i>
+                <span>Ver artigo original</span>
+            </a>
+            <span>
+                <i class="fal fa-newspaper"></i>
+                <span>{{ article?.articleJournal }}</span>
+            </span>
+            <icam-badge
+                *ngFor="let cat of article?.revision?.ctrees"
+                iconClass="fa-list"
+                [text]="cat.itemName">
+            </icam-badge>
         </div>
-        <div class="card-body">
-            <div id="rowH" class="row">
-                <div id="dgrid" class="col-2">
-                    <div class="margintb col-12">
-
-                        <span class="articleDetailsColor badge badge-pill badge-warning">{{article?.revision?.reviewState}}</span>
-
-                    </div>
-                    <div class="margintb col-12">
-                        <span class="articleDetailsColor">
-                            <i class="fal fa-calendar-alt"></i>
-                        </span>
-                        <span class="articleDetailsColor">
-                            &nbsp; {{article?.repoDate}}
-                        </span>
-
-                    </div>
-                    <div class="margintb col-12">
-                        <span class="articleDetailsColor">
-                            <i class="fal fa-link"></i>
-                        </span>
-                        <span class="articleDetailsColor">
-                            &nbsp; <a [attr.href]="article?.articleLink" target="_blank">Ver artigo original</a>
-                        </span>
-
-                    </div>
-                    <div class="margintb col-12">
-                        <span class="articleDetailsColor">
-                            <i class="fal fa-newspaper"></i>
-                        </span>
-                        <span class="articleDetailsColor">
-                            {{article?.articleJournal}}
-                        </span>
-
-                    </div>
-                    <div class="margintb col-6">
-                        <ng-container *ngFor="let cat of article?.revision?.ctrees">
-                            <span id="badgePill" class="articleDetailsColor badge badge-pill">
-                                <span class="articleDetailsColor">
-                                    <i class="fal fa-list"></i>
-                                </span>
-                                <span class="articleDetailsColor">
-                                    {{cat.itemName}}
-                                </span><br>
-                            </span>
-                        </ng-container>
-                    </div>
-                </div>
-                <div class="col-10">
-                    {{article?.articleAbstract}}
-                </div>
+        <div>
+            <div>
+                {{ article?.articleAbstract }}
             </div>
         </div>
     </div>
-    <div class="cardFooter card-footer">
-       <div id="rowH" class="row">
-            <div class="col-2">
-                <div icam-btn [btnText]="'Apagar'" [btnWidth]="'50%'" 
-                     [backgroundColor]="'#FFFFFF'" [textColor]="'#FF0000'" [rightArrow]="true"></div>
-            </div>
-            <div class="offset-7 col-2">
-                <div class="row">
+    <div class="cardFooter">
+        <div id="rowH">
+            <span>Apagar</span>
+            <div>
                 <button
-                    class="col-5"
                     icam-btn
-                    [btnText]="'Editar'" 
-                    [backgroundColor]="'#FFFFFF'"
-                    [textColor]="'#1A1948'"
-                    [rightArrow]="true"
-                    [border]="'1px solid #1A1948'"
+                    btnText="Editar"
+                    backgroundColor="#FFFFFF"
+                    textColor="#1A1948"
+                    border="1px solid #1A1948"
                     (click)="onEdit.emit(article?.id)"
                 >
                 </button>
                 <button
-                    class="offset-1 col-5"
                     icam-btn
-                    [btnText]="'Rever'" 
-                    [backgroundColor]="'#1A1948'"
-                    [textColor]="'#FFFFFF'"
-                    [rightArrow]="true"
+                    btnText="Rever"
+                    backgroundColor="#1A1948"
+                    textColor="#FFFFFF"
                     (click)="articleReviewRedirect(article.id)"
                 >
                 </button>
             </div>
         </div>
     </div>
-</ng-container>
+</round-card>
