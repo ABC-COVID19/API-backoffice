@@ -1,5 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Article } from 'app/shared/model/ICAMApi/article.model';
+import { ArticleService } from 'app/entities/ICAMApi/article/article.service';
 
 @Component({
   selector: 'article-review-card',
@@ -17,7 +19,7 @@ export class ArticleReviewCardComponent implements OnInit {
   @Output() cardClick = new EventEmitter<void>();
   @Output() onEdit = new EventEmitter<number>();
 
-  constructor(private router: Router) {}
+  constructor(private articleService: ArticleService, private router: Router) {}
 
   /* ngOnChanges( changes : SimpleChanges) : void{
     if(changes['articles']){
@@ -29,5 +31,18 @@ export class ArticleReviewCardComponent implements OnInit {
 
   articleReviewRedirect(articleId: string): void {
     this.router.navigate(['/backoffice/reviewArticle'], { queryParams: { articleId } });
+  }
+  articleDelete(articleId: string): void {
+    if (confirm('Tem a certeza que quer apagar o artigo #' + articleId)) {
+      this.articleService.delete(+articleId).subscribe(
+        () => {
+          //  Apagado com sucesso
+          window.location.reload();
+        },
+        () => {
+          //  error
+        }
+      );
+    }
   }
 }

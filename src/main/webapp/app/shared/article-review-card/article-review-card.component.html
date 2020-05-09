@@ -8,6 +8,10 @@
                 {{ article.revision.status }}
             </span>
             <span class="articleDetailsColor">
+                <i class="fal fa-hashtag"></i>
+                <span>{{ article?.id }}</span>
+            </span>
+            <span class="articleDetailsColor">
                 <i class="fal fa-calendar-alt"></i>
                 <span>{{ article?.repoDate }}</span>
             </span>
@@ -33,7 +37,16 @@
     </div>
     <div class="cardFooter">
         <div id="rowH">
-            <span>Apagar</span>
+            <button
+                class="offset-1 col-5"
+                icam-btn
+                [btnText]="'Apagar'"
+                [backgroundColor]="'#FFFFFF'"
+                [textColor]="'#FF0000'"
+                [rightArrow]="true"
+                (click)="articleDelete(article.id)"
+            >
+            </button>
             <div>
                 <button
                     icam-btn
