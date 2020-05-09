@@ -27,6 +27,7 @@ span {
 
 body {
   background-color: $bg-color;
+  font-size: $font-size;
 }
 
 h1 {
@@ -51,6 +52,10 @@ h2 {
 
 p {
   color: $dark-blue;
+}
+
+a {
+  text-decoration: none !important;
 }
 
 h4 {
@@ -89,21 +94,6 @@ input {
     cursor: not-allowed;
     pointer-events: none;
   }
-}
-
-/* Increase contrast of links to get 100% on Lighthouse Accessability Audit. Override this color if you want to change the link color, or use a Bootswatch theme */
-a {
-  color: #533f03;
-  font-weight: bold;
-}
-
-a:hover {
-  color: #533f03;
-}
-
-/* override hover color for dropdown-item forced by bootstrap to all a:not([href]):not([tabindex]) elements in _reboot.scss */
-a:not([href]):not([tabindex]):hover.dropdown-item {
-  color: $dropdown-link-hover-color;
 }
 
 /* override .dropdown-item.active background-color on hover */

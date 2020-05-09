@@ -1,22 +1,7 @@
-<!-- 
-<div id="mainArticlesList">
-    <div id="articlesTitle">
-        Artigos
-    </div>
-    <div id="addArticleBtn">
-        <button icam-btn [btnText]="'Adicionar Artigo'" [btnWidth]="'192px'" [rightArrow]="true"></button>
-    </div>
-</div>
-
- -->
-
-
-<div class="container-fluid">
-    <div id="mainArticlesList" class="row">
-        <div id="articlesTitle" class="col-3">
-            Artigos
-        </div>
-        <div id="addArticleBtn" class="offset-7 col-2">
+<div>
+    <div class="top-backoffice-bar container-fluid">
+        <h1>Artigos</h1>
+        <div class="top-backoffice-bar-buttons">
             <button
                 icam-btn
                 btnText="Adicionar Artigo"
@@ -28,6 +13,5 @@
             </button>
         </div>
     </div>
-    <!-- <button (click)="sortArrayDate(false)">TESTE</button> -->
     <article-review-card *ngIf="isFetched" [articles]="articles" (onEdit)="editArticle($event)"></article-review-card>
 </div>

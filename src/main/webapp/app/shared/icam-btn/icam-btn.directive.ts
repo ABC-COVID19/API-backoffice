@@ -12,6 +12,7 @@ export class IcamBtnDirective implements OnInit {
   @Input() btnHeight = '';
   @Input() textColor = '#000000';
   @Input() borderColor = 'transparent';
+  @Input() fontSize = 'transparent';
 
   constructor(private elRef: ElementRef, private renderer: Renderer2) {}
 
@@ -21,8 +22,11 @@ export class IcamBtnDirective implements OnInit {
     this.renderer.setStyle(this.elRef.nativeElement, 'backgroundColor', '#f3dca7');
     this.renderer.setStyle(this.elRef.nativeElement, 'borderRadius', '20px');
     this.renderer.setStyle(this.elRef.nativeElement, 'outline', 'none');
-    this.renderer.setStyle(this.elRef.nativeElement, 'fontSize', '16px');
     this.renderer.setStyle(this.elRef.nativeElement, 'white-space', 'nowrap');
+
+    if (this.fontSize) {
+      this.renderer.setStyle(this.elRef.nativeElement, 'fontSize', this.fontSize);
+    }
 
     if (this.btnWidth) {
       this.renderer.setStyle(this.elRef.nativeElement, 'width', this.btnWidth);
