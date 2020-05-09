@@ -63,7 +63,6 @@ h4 {
 }
 
 input {
-  width: 100%;
   outline: none;
   color: $text-color;
 }
@@ -94,6 +93,12 @@ input {
     cursor: not-allowed;
     pointer-events: none;
   }
+}
+
+.ellipsis-overflowed {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 /* override .dropdown-item.active background-color on hover */
