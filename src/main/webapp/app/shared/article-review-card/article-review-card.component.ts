@@ -1,6 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Article } from 'app/shared/model/ICAMApi/article.model';
 import { ArticleService } from 'app/entities/ICAMApi/article/article.service';
 
 @Component({
@@ -10,22 +9,10 @@ import { ArticleService } from 'app/entities/ICAMApi/article/article.service';
 })
 export class ArticleReviewCardComponent implements OnInit {
   @Input() articles: Array<any> = new Array<any>();
-
-  /*   @Input() cardTitle = '';
-  @Input() reviewState = '';
-  @Input() articleDate = Date.now();
-  @Input() author = '';
-  @Input() categories: ICategoryTree[] = []; */
   @Output() cardClick = new EventEmitter<void>();
   @Output() onEdit = new EventEmitter<number>();
 
   constructor(private articleService: ArticleService, private router: Router) {}
-
-  /* ngOnChanges( changes : SimpleChanges) : void{
-    if(changes['articles']){
-      this.articles = this.articles.slice();
-    }
-  } */
 
   ngOnInit(): void {}
 

@@ -1,5 +1,9 @@
 @import '../../../content/scss/global-variables.scss';
 
+:host {
+  display: block;
+}
+
 .cardHeader {
   text-align: left;
   font: 28px/38px Roboto;
@@ -21,7 +25,7 @@
 }
 
 round-card {
-  min-height: 700px;
+  min-height: 500px;
   margin-top: 50px;
 }
 
@@ -31,9 +35,8 @@ round-card {
 
   & > span {
     color: #ff0000;
-    line-height: 46px;
+    line-height: 48px;
     float: left;
-    width: 55px;
   }
 
   & > div {
@@ -41,11 +44,28 @@ round-card {
     overflow: hidden;
     text-align: end;
   }
+
+  @media only screen and (max-width: 670px) {
+    text-align: center;
+
+    span {
+      display: block;
+      float: none;
+    }
+
+    & > div {
+      text-align: center;
+    }
+  }
 }
 
 .article-card-body {
   padding: 0;
-  height: 500px;
+  height: 300px;
+
+  @media only screen and (max-width: 670px) {
+    height: 500px;
+  }
 
   & > div:first-child {
     height: 100%;
