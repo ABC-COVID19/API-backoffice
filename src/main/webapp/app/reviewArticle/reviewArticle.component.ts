@@ -98,7 +98,7 @@ export class ReviewArticleComponent implements OnInit {
           // Já existe revisão
           this.revisionExists = true;
 
-          Object.assign(this.revision, res[0]);
+          Object.assign(this.revision, res.body);
 
           // Carregar dados para dropdowns e checkboxs
           this.loadDropdownsData();
