@@ -22,29 +22,19 @@
     </div>
     <div class="card card-review">
         <div class="card-body">
-            <form>
-                <div class="row">
-                    <div class="col-5">
-                        <label for="title">Título</label>
-                        <input type="text" class="form-control" name="title" id="title"
-                            [(ngModel)]="article.articleTitle" readonly>
-                    </div>
-                    <div class="col-4">
-                        <label for="link">Link</label>
-                        <input type="text" class="form-control" name="link" id="link" [(ngModel)]="article.articleLink"
-                            readonly>
-                    </div>
-                    <div class="col-3">
-                        <label for="lastDate">Data Última Modificação</label>
-                        <input type="text" class="form-control" name="lastDate" id="lastDate"
-                            [(ngModel)]="article.repoDate" readonly>
-                    </div>
-                </div>
-            </form>
+            <div class="row">
+                {{ article?.articleTitle }}
+            </div>
+            <div class="row">
+                <a [attr.href]="article?.articleLink" target="_blank">
+                    <i class="fal fa-link"></i>
+                    <span>Ver artigo original</span>
+                </a>
+            </div>
         </div>
     </div>
     <div class="col-12 mt-5">
-        Dados de Revisão
+        Dados de Revisão <span *ngIf="revision?.reviewDate">(criada {{ revision?.reviewDate.format("YYYY-MM-DD") }})</span>
     </div>
 
     <div class="card card-review">
