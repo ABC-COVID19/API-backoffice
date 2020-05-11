@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ArticleService } from '../entities/ICAMApi/article/article.service';
-import { RevisionService } from '../entities/ICAMApi/revision/revision.service';
+import { ArticleService } from '../../../entities/ICAMApi/article/article.service';
+import { RevisionService } from '../../../entities/ICAMApi/revision/revision.service';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryTreeService } from 'app/entities/ICAMApi/category-tree/category-tree.service';
@@ -16,9 +16,9 @@ const enum IS_PEER_REVIEWED {
 }
 
 @Component({
-  selector: 'reviewArticle',
-  templateUrl: 'reviewArticle.component.html',
-  styleUrls: ['./reviewArticle.scss']
+  selector: 'review-article',
+  templateUrl: 'review-article.component.html',
+  styleUrls: ['./review-article.scss']
 })
 export class ReviewArticleComponent implements OnInit {
   // Dropdown Categorias
@@ -284,7 +284,7 @@ export class ReviewArticleComponent implements OnInit {
   }
 
   cancel(): void {
-    this.router.navigate(['/backoffice/articleList']);
+    this.router.navigate(['/backoffice/articles']);
   }
 
   save(): void {
@@ -292,7 +292,7 @@ export class ReviewArticleComponent implements OnInit {
       const now = moment.utc();
       let revisionToSave: IRevision = {};
       const caterogiesId = [];
-      console.log('CATS', this.categorySelected);
+
       for (const cat of this.categorySelected) {
         caterogiesId.push({ id: cat.id });
       }
@@ -307,11 +307,11 @@ export class ReviewArticleComponent implements OnInit {
           atype: { id: this.aTypeSelected[0]['id'] },
           ctrees: caterogiesId
         };
-        console.log('false', revisionToSave);
+
         this.revisionService.create(revisionToSave).subscribe(
           () => {
             //  Criado com sucesso
-            this.router.navigate(['/backoffice/articleList']);
+            this.router.navigate(['/backoffice/articles']);
           },
           () => {
             //  error
@@ -324,7 +324,6 @@ export class ReviewArticleComponent implements OnInit {
         revisionToSave.ctrees = caterogiesId;
         //  If revision already exists, reviewDate will come as a string, so we need to convert it to a Moment
         revisionToSave.reviewDate = moment(revisionToSave.reviewDate);
-        console.log(revisionToSave);
 
         this.revisionService.update(revisionToSave).subscribe(
           () => {

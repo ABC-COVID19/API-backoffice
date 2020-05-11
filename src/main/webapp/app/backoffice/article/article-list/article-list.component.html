@@ -8,10 +8,14 @@
                 [rightArrow]="true"
                 btnHeight="48px"
                 backgroundColor="#EBBC51"
-                [routerLink]="['/backoffice', 'add-article']"
+                [routerLink]="['/backoffice', 'articles', 'add']"
             >
             </button>
         </div>
     </div>
-    <article-review-card *ngIf="isFetched" [articles]="articles" (onEdit)="editArticle($event)"></article-review-card>
+    <article-review-card
+        *ngIf="isFetched"
+        [articles]="articles"
+        (onEdit)="editArticle($event)">
+    </article-review-card>
 </div>

@@ -7,7 +7,7 @@ import { Subscription, Observable } from 'rxjs';
 import { AutoUnsubscribe } from 'app/shared/decorators/auto-unsubscribe';
 import { IArticle } from 'app/shared/model/ICAMApi/article.model';
 
-const styles = require('!!style-loader!css-loader!sass-loader!../../content/scss/global-variables.scss');
+const styles = require('!!style-loader!css-loader!sass-loader!../../../../content/scss/global-variables.scss');
 
 enum REQ_STATUS {
   NONE,

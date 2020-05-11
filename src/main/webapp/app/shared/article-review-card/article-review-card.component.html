@@ -37,7 +37,7 @@
     </div>
     <div class="cardFooter">
         <div id="rowH">
-            <span (click)="articleDelete(article.id)">Apagar</span>
+            <span (click)="onDelete.emit(article?.id)">Apagar</span>
             <div>
                 <button
                     icam-btn
@@ -53,7 +53,7 @@
                     btnText="Rever"
                     backgroundColor="#1A1948"
                     textColor="#FFFFFF"
-                    (click)="articleReviewRedirect(article.id)"
+                    (click)="onReview.emit(article?.id)"
                 >
                 </button>
             </div>
