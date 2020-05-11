@@ -34,7 +34,7 @@
         </div>
     </div>
     <div class="col-12 mt-5">
-        Dados de Revisão <span *ngIf="revision?.reviewDate">(criada {{ revision?.reviewDate.format("YYYY-MM-DD") }})</span>
+        Dados de Revisão <span *ngIf="revision?.reviewDate">(última modificação: {{ revision?.reviewDate.format("YYYY-MM-DD") }})</span>
     </div>
 
     <div class="card card-review">

@@ -322,8 +322,8 @@ export class ReviewArticleComponent implements OnInit {
         Object.assign(revisionToSave, this.revision);
         revisionToSave.atype = { id: this.aTypeSelected[0]['id'] };
         revisionToSave.ctrees = caterogiesId;
-        //  If revision already exists, reviewDate will come as a string, so we need to convert it to a Moment
-        revisionToSave.reviewDate = moment(revisionToSave.reviewDate);
+        // reset date last changed
+        revisionToSave.reviewDate = now;
         console.log(revisionToSave);
 
         this.revisionService.update(revisionToSave).subscribe(
