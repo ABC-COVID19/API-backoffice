@@ -1,0 +1,17 @@
+<div>
+    <div class="top-backoffice-bar container-fluid">
+        <h1>Artigos</h1>
+        <div class="top-backoffice-bar-buttons">
+            <button
+                icam-btn
+                btnText="Adicionar Artigo"
+                [rightArrow]="true"
+                btnHeight="48px"
+                backgroundColor="#EBBC51"
+                [routerLink]="['/backoffice', 'add-article']"
+            >
+            </button>
+        </div>
+    </div>
+    <article-review-card *ngIf="isFetched" [articles]="articles" (onEdit)="editArticle($event)"></article-review-card>
+</div>

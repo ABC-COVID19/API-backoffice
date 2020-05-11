@@ -1,0 +1,12 @@
+@import '../../../content/scss/global-variables.scss';
+
+:host {
+  #heading {
+    background-color: $darker-blue;
+    min-height: 260px;
+    padding-top: 70px;
+  }
+
+  #content-holder {
+  }
+}

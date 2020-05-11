@@ -1,0 +1,48 @@
+#mainReviewArticle {
+  /*   top: 80px;
+    left: 0px;
+    width: 1920px;*/
+  height: 80px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+  opacity: 1;
+}
+
+#reviewArticleTitle {
+  /*   top: 103px;
+    left: 35px;
+    width: 92px; */
+  padding-left: 35px;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  font: 28px/34px Roboto;
+  letter-spacing: 0px;
+  color: #1a1948;
+  opacity: 1;
+}
+
+.card-review {
+  margin: 10px 15px 10px 15px;
+  box-shadow: 0px 3px 6px #00000029;
+  border-radius: 9px;
+  padding: 15px 15px;
+  border: none !important;
+}
+
+#rowH {
+  height: 100%;
+}
+
+textarea {
+  resize: none;
+  width: 100%;
+  border: 1px solid #ced4da;
+  border-radius: 2px;
+}
+
+.btnCenter {
+  display: flex !important;
+  align-items: center !important;
+  height: 100%;
+}

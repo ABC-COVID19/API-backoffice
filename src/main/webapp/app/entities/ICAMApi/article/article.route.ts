@@ -10,7 +10,6 @@ import { UserRouteAccessService } from 'app/core/auth/user-route-access-service'
 import { IArticle, Article } from 'app/shared/model/ICAMApi/article.model';
 import { ArticleService } from './article.service';
 import { ArticleComponent } from './article.component';
-import { ArticleDetailComponent } from './article-detail.component';
 import { ArticleUpdateComponent } from './article-update.component';
 
 @Injectable({ providedIn: 'root' })
@@ -49,18 +48,18 @@ export const articleRoute: Routes = [
     },
     canActivate: [UserRouteAccessService]
   },
-  {
-    path: ':id/view',
-    component: ArticleDetailComponent,
-    resolve: {
-      article: ArticleResolve
-    },
-    data: {
-      authorities: [Authority.USER],
-      pageTitle: 'Articles'
-    },
-    canActivate: [UserRouteAccessService]
-  },
+  // {
+  //   path: ':id/view',
+  //   component: ArticleDetailComponent,
+  //   // resolve: {
+  //   //   article: ArticleResolve
+  //   // },
+  //   data: {
+  //     authorities: [Authority.USER],
+  //     pageTitle: 'Articles'
+  //   },
+  //   canActivate: [UserRouteAccessService]
+  // },
   {
     path: 'new',
     component: ArticleUpdateComponent,

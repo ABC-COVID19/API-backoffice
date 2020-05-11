@@ -3,7 +3,7 @@
         <span id="user-management-page-heading">Users</span>
 
         <button class="btn btn-primary float-right jh-create-entity" [routerLink]="['./new']">
-            <fa-icon icon="plus"></fa-icon> <span>Create a new User</span>
+            <i class="fa-plus"></i> <span>Create a new User</span>
         </button>
     </h2>
 
@@ -15,14 +15,14 @@
         <table class="table table-striped" aria-describedby="user-management-page-heading">
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="transition.bind(this)">
-                    <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="login"><span>Login</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="email"><span>Email</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="id"><span>ID</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="login"><span>Login</span> <i class="fa-sort"></i></th>
+                    <th scope="col"  jhiSortBy="email"><span>Email</span> <i class="fa-sort"></i></th>
                     <th scope="col"></th>
                     <th scope="col"><span>Profiles</span></th>
-                    <th scope="col" jhiSortBy="createdDate"><span>Created Date</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col" jhiSortBy="lastModifiedBy"><span>Last Modified By</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col" jhiSortBy="lastModifiedDate"><span>Last Modified Date</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col" jhiSortBy="createdDate"><span>Created Date</span> <i class="fa-sort"></i></th>
+                    <th scope="col" jhiSortBy="lastModifiedBy"><span>Last Modified By</span> <i class="fa-sort"></i></th>
+                    <th scope="col" jhiSortBy="lastModifiedDate"><span>Last Modified Date</span> <i class="fa-sort"></i></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -49,7 +49,7 @@
                             <button type="submit"
                                     [routerLink]="['./', user.login, 'view']"
                                     class="btn btn-info btn-sm">
-                                <fa-icon icon="eye"></fa-icon>
+                                <i class="fa-eye"></i>
                                 <span class="d-none d-md-inline">View</span>
                             </button>
 
@@ -57,13 +57,13 @@
                                     [routerLink]="['./', user.login, 'edit']"
                                     queryParamsHandling="merge"
                                     class="btn btn-primary btn-sm">
-                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <i class="pencil-alt"></i>
                                 <span class="d-none d-md-inline">Edit</span>
                             </button>
 
                             <button type="button" (click)="deleteUser(user)"
                                     class="btn btn-danger btn-sm" [disabled]="!currentAccount || currentAccount.login === user.login">
-                                <fa-icon icon="times"></fa-icon>
+                                <i class="fa-times"></i>
                                 <span class="d-none d-md-inline">Delete</span>
                             </button>
                         </div>

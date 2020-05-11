@@ -1,0 +1,57 @@
+@import '../../../../content/scss/global-variables.scss';
+
+#navbar {
+  height: 80px;
+  background: $navbar-dark-blue 0% 0% padding-box;
+  padding: 10px 35px;
+}
+
+#divLogo {
+  height: 100%;
+  display: inline-block;
+}
+
+#icamLogo {
+  height: 100%;
+}
+
+#icamTitle {
+  font: normal normal normal 28px/34px Roboto;
+  letter-spacing: 0px;
+  color: $title-golden;
+  display: inline;
+  vertical-align: middle;
+
+  @media only screen and (max-width: 400px) {
+    display: none;
+  }
+}
+
+#lightText {
+  text-align: left;
+  font: 14px/17px Roboto;
+  letter-spacing: 0px;
+  color: $light-text-color;
+}
+
+#logout {
+  float: right;
+  height: 100%;
+  padding-top: 15px;
+
+  span {
+    color: white;
+  }
+
+  @media only screen and (max-width: 670px) {
+    padding-top: 0;
+    font-size: 45px;
+  }
+}
+
+.logout-text {
+  color: white;
+  @media only screen and (max-width: 670px) {
+    display: none;
+  }
+}

@@ -1,0 +1,26 @@
+@import '../../../content/scss/global-variables.scss';
+
+:host {
+  display: inline-block;
+
+  button {
+    background-color: $selection-yellow;
+    border-radius: 20px;
+    padding: 15px 25px;
+    font-size: 16px;
+    border-color: transparent;
+    outline: none;
+
+    span {
+      color: $dark-blue;
+    }
+
+    .fa-arrow-left {
+      margin-right: 12px;
+    }
+
+    .fa-arrow-right {
+      margin-left: 12px;
+    }
+  }
+}

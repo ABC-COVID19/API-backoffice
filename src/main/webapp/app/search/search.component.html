@@ -1,0 +1,27 @@
+<div class="section-heading">
+	<h1>Informação Científica de Apoio aos Médicos</h1>
+</div>
+<div class="section-content">
+	<round-card paddingLeft="20px" paddingRight="20px">
+		<icam-search></icam-search>
+	</round-card>
+	<div id="categories">
+		<h1>Acesso direto por categoria:</h1>
+		<div id="category-list">
+			<category-tag *ngFor="let cat of categories">{{ cat.itemName }}</category-tag>
+		</div>
+	</div>
+	<div id="last-revised">
+		<h1>Últimos documentos revistos:</h1>
+		<article-card
+			*ngFor="let card of lastRevisedCards"
+			[title]="card.title"
+			[summary]="card.summary"
+			[articleDate]="card.date"
+			[author]="card.author"
+			[categories]="card.categories"
+			(cardClick)="goToCard(card)"
+		>
+		</article-card>
+	</div>
+</div>

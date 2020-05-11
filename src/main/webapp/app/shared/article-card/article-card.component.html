@@ -1,0 +1,19 @@
+<round-card borderRadius="9px" paddingLeft="20px" paddingRight="20px" paddingBottom="0">
+    <h2>{{ title }}</h2>
+    <h3>{{ summary }}</h3>
+    <div class="article-card-footer">
+        <div>
+            <div class="date-holder">
+                <span>
+                    <i class="fal fa-calendar-alt"></i>
+                </span>
+                <span class="article-card-date">{{ articleDate | date: 'dd/MM/yyyy' }}</span>
+            </div>
+            <span class="article-author">{{ author }}</span>
+        </div>
+        <div class="badge-section">
+            <icam-badge *ngFor="let cat of categories" iconClass="fa-list" [text]="cat.itemName"></icam-badge>
+        </div>
+    </div>
+</round-card>
+

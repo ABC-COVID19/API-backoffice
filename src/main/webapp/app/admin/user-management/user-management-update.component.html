@@ -107,11 +107,11 @@
 
             <div *ngIf="user">
                 <button type="button" class="btn btn-secondary" (click)="previousState()">
-                    <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+                    <i class="fa-ban"></i>&nbsp;<span>Cancel</span>
                 </button>
 
                 <button type="submit" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
-                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+                    <i class="fa-save"></i>&nbsp;<span>Save</span>
                 </button>
             </div>
         </form>

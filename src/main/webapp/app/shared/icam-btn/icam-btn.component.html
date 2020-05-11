@@ -1,0 +1,9 @@
+<button type="button" (click)="btnClick.emit()">
+	<span *ngIf="leftArrow">
+		<i class="fal fa-arrow-left"></i>
+	</span>
+	<span>{{ text }}</span>
+	<span *ngIf="rightArrow">
+		<i class="fal fa-arrow-right"></i>
+	</span>
+</button>

@@ -1,0 +1,87 @@
+@import '../../../../content/scss/global-variables.scss';
+:host {
+  display: inline-block;
+  width: 280px;
+
+  & > nav {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    padding: 30px;
+    box-shadow: 0px 3px 6px #00000029;
+    display: inline-block;
+    background-image: url('../../../../content/images/sidebar_bg.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: bottom left;
+    background-size: 100%;
+
+    img.logo {
+      width: 100%;
+      padding: 0 10px;
+    }
+
+    #menu {
+      margin-top: 20px;
+
+      .sidebar-link {
+        width: 100%;
+        display: block;
+        padding: 10px 15px;
+        font-size: 16px;
+        font-weight: normal;
+        text-decoration: none;
+        line-height: 20px;
+        border-radius: 8px;
+
+        &.active-link {
+          span {
+            color: $dark-blue;
+          }
+        }
+
+        &:hover {
+          background-color: $selection-yellow;
+        }
+
+        &:not(:last-child) {
+          margin-bottom: 15px;
+        }
+
+        & > span:first-child {
+          width: 16px;
+          display: inline-block;
+        }
+
+        & > span:last-child {
+          margin-left: 12px;
+        }
+      }
+    }
+
+    #admin-access {
+      position: absolute;
+      bottom: 30px;
+      padding-left: 15px;
+
+      a {
+        text-decoration: none;
+      }
+
+      span {
+        color: $darker-blue;
+
+        &:first-child {
+          display: inline-block;
+          width: 16px;
+        }
+
+        &:last-child {
+          margin-left: 12px;
+          font-size: 16px;
+          font-weight: normal;
+        }
+      }
+    }
+  }
+}

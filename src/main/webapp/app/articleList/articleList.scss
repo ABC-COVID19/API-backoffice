@@ -1,0 +1,57 @@
+@import '../../content/scss/global-variables.scss';
+
+.top-backoffice-bar {
+  min-height: 80px;
+  background: white;
+  box-shadow: 0px 3px 6px #00000029;
+  padding: 16px 35px;
+
+  @media only screen and (max-width: 670px) {
+    text-align: center;
+  }
+
+  h1 {
+    display: inline;
+    color: $darker-blue;
+    line-height: 48px;
+    font-size: 28px;
+  }
+
+  .top-backoffice-bar-buttons {
+    float: right;
+
+    @media only screen and (max-width: 670px) {
+      float: none;
+    }
+
+    button:first-child {
+      @media only screen and (max-width: 670px) {
+        margin-bottom: 15px;
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+article-review-card {
+  padding: 0 35px;
+}
+
+#articlesTitle {
+  padding-left: 35px;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  font: 28px/34px Roboto;
+  letter-spacing: 0px;
+  color: #1a1948;
+  opacity: 1;
+}
+
+#addArticleBtn {
+  opacity: 1;
+  padding-left: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,39 @@
+@import '../../content/scss/global-variables.scss';
+
+.section-content {
+  margin-top: -38px;
+}
+
+#categories {
+  margin-top: 30px;
+
+  h1 {
+    color: $darker-blue;
+  }
+
+  #category-list {
+    display: flex;
+    flex-wrap: wrap;
+
+    category-tag {
+      width: 240px;
+      margin-right: 15px;
+      margin-bottom: 15px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+}
+
+#last-revised {
+  h1 {
+    color: $darker-blue;
+  }
+
+  article-card {
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+  }
+}

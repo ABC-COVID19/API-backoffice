@@ -1,0 +1,62 @@
+<round-card paddingTop="0" paddingBottom="0" paddingLeft="35px" paddingRight="35px" *ngFor="let article of articles">
+    <div class="cardHeader ellipsis-overflowed">
+        {{ article?.articleTitle }}
+    </div>
+    <div class="article-card-body">
+        <div>
+            <span *ngIf="article.revision" class="review-status">
+                {{ article.revision.status }}
+            </span>
+            <span class="articleDetailsColor">
+                <i class="fal fa-hashtag"></i>
+                <span>{{ article?.id }}</span>
+            </span>
+            <span class="articleDetailsColor">
+                <i class="fal fa-calendar-alt"></i>
+                <span>{{ article?.repoDate }}</span>
+            </span>
+            <a [attr.href]="article?.articleLink" target="_blank">
+                <i class="fal fa-link"></i>
+                <span>Ver artigo original</span>
+            </a>
+            <span>
+                <i class="fal fa-newspaper"></i>
+                <span class="ellipsis-overflowed">{{ article?.articleJournal }}</span>
+            </span>
+            <icam-badge
+                *ngFor="let cat of article?.revision?.ctrees"
+                iconClass="fa-list"
+                [text]="cat.itemName">
+            </icam-badge>
+        </div>
+        <div>
+            <div>
+                {{ article?.articleAbstract }}
+            </div>
+        </div>
+    </div>
+    <div class="cardFooter">
+        <div id="rowH">
+            <span (click)="articleDelete(article.id)">Apagar</span>
+            <div>
+                <button
+                    icam-btn
+                    btnText="Editar"
+                    backgroundColor="#FFFFFF"
+                    textColor="#1A1948"
+                    border="1px solid #1A1948"
+                    (click)="onEdit.emit(article?.id)"
+                >
+                </button>
+                <button
+                    icam-btn
+                    btnText="Rever"
+                    backgroundColor="#1A1948"
+                    textColor="#FFFFFF"
+                    (click)="articleReviewRedirect(article.id)"
+                >
+                </button>
+            </div>
+        </div>
+    </div>
+</round-card>

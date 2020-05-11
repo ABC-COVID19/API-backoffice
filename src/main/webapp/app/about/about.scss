@@ -1,0 +1,10 @@
+@import '../../content/scss/global-variables.scss';
+
+.section-content {
+  margin-top: -20px;
+
+  span {
+    display: block;
+    color: $dark-blue;
+  }
+}
