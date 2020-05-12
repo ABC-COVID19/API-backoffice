@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ArticleService } from '../../../entities/ICAMApi/article/article.service';
 import { RevisionService } from '../../../entities/ICAMApi/revision/revision.service';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -68,74 +67,53 @@ export class ReviewArticleComponent implements OnInit {
   constructor(
     private aTypesService: ArticleTypeService,
     private revisionService: RevisionService,
-    private articleService: ArticleService,
     private categoryService: CategoryTreeService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
 
   ngOnInit(): void {
-    // get do ID do artigo passado da página articleList
-    let articleId = null;
-    this.route.queryParams.subscribe(params => {
-      if (params['articleId']) {
-        articleId = params['articleId'];
+    this.route.data.subscribe(({ revisionData }) => {
+      this.article = revisionData.article;
+
+      if (revisionData.revision) {
+        this.revision = revisionData.revision;
+        // Já existe revisão
+        this.revisionExists = true;
+
+        // Carregar dados para dropdowns e checkboxs
+        this.loadDropdownsData();
+        this.loadIsPeerReviewed(this.revision.isPeerReviewed);
+        this.loadRevisionState(this.revision.reviewState);
+
+        if (this.revision.ctrees) {
+          //  same ng-multiselect-dropdown mentioned below on this.loadDropdownsData()
+          const cats = [];
+          for (const cat of this.revision.ctrees) {
+            if (cat.parent) {
+              const catParent = cat.parent;
+              cats.push({ id: cat.id, itemName: `${catParent.itemName} > ${cat.itemName}` });
+            } else {
+              cats.push({ id: cat.id, itemName: cat.itemName });
+            }
+          }
+          this.categorySelected = [...cats];
+        }
+
+        if (this.revision.atype) {
+          const atype = this.revision.atype;
+          //  Para já cada artigo só tem um article type!
+          this.aTypeSelected = [{ id: atype.id, itemName: atype.itemName }];
+        }
+      } else {
+        this.revisionExists = false;
+        this.onGoingState = true; // default
+        this.revision.reviewState = ReviewState.OnGoing; //  Default state for a new revision
+
+        // Temos de carregar as categorias todas e os tipos de artigos para o dropdown
+        this.loadDropdownsData();
       }
     });
-
-    // carregar dados base do artigo
-    if (articleId) {
-      this.articleService.getById(articleId).subscribe(res => {
-        if (res) {
-          Object.assign(this.article, res[0]);
-        }
-      });
-    }
-
-    if (articleId) {
-      this.revisionService.find(articleId).subscribe(
-        res => {
-          // Já existe revisão
-          this.revisionExists = true;
-
-          Object.assign(this.revision, res.body);
-
-          // Carregar dados para dropdowns e checkboxs
-          this.loadDropdownsData();
-          this.loadIsPeerReviewed(this.revision.isPeerReviewed);
-          this.loadRevisionState(this.revision.reviewState);
-
-          if (this.revision.ctrees) {
-            //  same ng-multiselect-dropdown mentioned below on this.loadDropdownsData()
-            const cats = [];
-            for (const cat of this.revision.ctrees) {
-              if (cat.parent) {
-                const catParent = cat.parent;
-                cats.push({ id: cat.id, itemName: `${catParent.itemName} > ${cat.itemName}` });
-              } else {
-                cats.push({ id: cat.id, itemName: cat.itemName });
-              }
-            }
-            this.categorySelected = [...cats];
-          }
-
-          if (this.revision.atype) {
-            const atype = this.revision.atype;
-            //  Para já cada artigo só tem um article type!
-            this.aTypeSelected = [{ id: atype.id, itemName: atype.itemName }];
-          }
-        },
-        () => {
-          // Não existe revisão
-          this.revisionExists = false;
-          this.onGoingState = true; // default
-          this.revision.reviewState = ReviewState.OnGoing; //  Default state for a new revision
-
-          // Temos de carregar as categorias todas e os tipos de artigos para o dropdown
-          this.loadDropdownsData();
-        }
-      );
-    }
   }
 
   loadDropdownsData(): void {

@@ -16,6 +16,9 @@
     <article-review-card
         *ngIf="isFetched"
         [articles]="articles"
-        (onEdit)="editArticle($event)">
+        (onEdit)="editArticle($event)"
+        (onReview)="reviewArticle($event)"
+        (onDelete)="deleteArticle($event)"
+    >
     </article-review-card>
 </div>
