@@ -2,11 +2,11 @@ import { Component, Input, Output, EventEmitter, HostListener } from '@angular/c
 import { ICategoryTree } from '../model/ICAMApi/category-tree.model';
 
 @Component({
-  selector: 'article-card',
-  templateUrl: 'article-card.component.html',
-  styleUrls: ['./article-card.scss']
+  selector: 'revision-card',
+  templateUrl: 'revision-card.component.html',
+  styleUrls: ['./revision-card.scss']
 })
-export class ArticleCardComponent {
+export class RevisionCardComponent {
   @Input() title = '';
   @Input() summary = '';
   @Input() articleDate = Date.now();

@@ -7,7 +7,7 @@ import { RoundCardComponent } from './round-card/round-card.component';
 import { IcamBtnDirective } from './icam-btn/icam-btn.directive';
 import { ControlFormErrorDirective } from './control-form-error/control-form-error.directive';
 import { IcamSearchComponent } from './icam-search/icarm-search.component';
-import { ArticleCardComponent } from './article-card/article-card.component';
+import { RevisionCardComponent } from './revision-card/revision-card.component';
 import { IcamBadgeComponent } from './icam-badge/icam-badge.component';
 import { ArticleReviewCardComponent } from './article-review-card/article-review-card.component';
 import { HasAnyAuthorityDirective } from './auth/has-any-authority.directive';
@@ -21,7 +21,7 @@ import { HasAnyAuthorityDirective } from './auth/has-any-authority.directive';
     HasAnyAuthorityDirective,
     RoundCardComponent,
     IcamSearchComponent,
-    ArticleCardComponent,
+    RevisionCardComponent,
     IcamBadgeComponent,
     IcamBtnDirective,
     ControlFormErrorDirective,
@@ -38,7 +38,7 @@ import { HasAnyAuthorityDirective } from './auth/has-any-authority.directive';
     IcamBtnDirective,
     ControlFormErrorDirective,
     IcamSearchComponent,
-    ArticleCardComponent,
+    RevisionCardComponent,
     IcamBadgeComponent,
     ArticleReviewCardComponent
   ]
