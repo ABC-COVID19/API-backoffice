@@ -9,7 +9,7 @@ import { ControlFormErrorDirective } from './control-form-error/control-form-err
 import { IcamSearchComponent } from './icam-search/icarm-search.component';
 import { RevisionCardComponent } from './revision-card/revision-card.component';
 import { IcamBadgeComponent } from './icam-badge/icam-badge.component';
-import { ArticleReviewCardComponent } from './article-review-card/article-review-card.component';
+import { ArticleCardComponent } from './article-card/article-card.component';
 import { HasAnyAuthorityDirective } from './auth/has-any-authority.directive';
 
 @NgModule({
@@ -25,7 +25,7 @@ import { HasAnyAuthorityDirective } from './auth/has-any-authority.directive';
     IcamBadgeComponent,
     IcamBtnDirective,
     ControlFormErrorDirective,
-    ArticleReviewCardComponent
+    ArticleCardComponent
   ],
   entryComponents: [LoginModalComponent],
   exports: [
@@ -40,7 +40,7 @@ import { HasAnyAuthorityDirective } from './auth/has-any-authority.directive';
     IcamSearchComponent,
     RevisionCardComponent,
     IcamBadgeComponent,
-    ArticleReviewCardComponent
+    ArticleCardComponent
   ]
 })
 export class IcamBackOfficeSharedModule {}

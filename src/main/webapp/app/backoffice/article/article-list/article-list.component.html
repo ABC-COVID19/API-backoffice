@@ -13,12 +13,12 @@
             </button>
         </div>
     </div>
-    <article-review-card
+    <article-card
         *ngIf="isFetched"
         [articles]="articles"
         (onEdit)="editArticle($event)"
         (onReview)="reviewArticle($event)"
         (onDelete)="deleteArticle($event)"
     >
-    </article-review-card>
+    </article-card>
 </div>

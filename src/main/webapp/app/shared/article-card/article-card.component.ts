@@ -1,11 +1,11 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'article-review-card',
-  templateUrl: 'article-review-card.component.html',
-  styleUrls: ['./article-review-card.scss']
+  selector: 'article-card',
+  templateUrl: 'article-card.component.html',
+  styleUrls: ['./article-card.scss']
 })
-export class ArticleReviewCardComponent {
+export class ArticleCardComponent {
   @Input() articles: Array<any> = new Array<any>();
   @Output() cardClick = new EventEmitter<void>();
   @Output() onEdit = new EventEmitter<number>();
