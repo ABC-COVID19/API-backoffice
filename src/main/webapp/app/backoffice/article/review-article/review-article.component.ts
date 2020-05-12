@@ -145,8 +145,7 @@ export class ReviewArticleComponent implements OnInit {
       this.noPeerReviewed = !$event;
       this.peerReviewed = $event;
       this.revision.isPeerReviewed = true;
-    }
-    if (checkbox === IS_PEER_REVIEWED.NO) {
+    } else {
       this.peerReviewed = !$event;
       this.noPeerReviewed = $event;
       this.revision.isPeerReviewed = false;
@@ -156,46 +155,55 @@ export class ReviewArticleComponent implements OnInit {
   stateCheckboxChanged($event: any, checkbox: string): void {
     if ($event) {
       this.state = checkbox;
-      if (checkbox === ReviewState.Hold) {
-        this.onHoldState = $event;
-        this.onGoingState = !$event;
-        this.pendingState = !$event;
-        this.reviewedState = !$event;
-        this.acceptedState = !$event;
-        this.revision.reviewState = ReviewState.Hold;
-      }
-      if (checkbox === ReviewState.OnGoing) {
-        this.onGoingState = $event;
-        this.onHoldState = !$event;
-        this.pendingState = !$event;
-        this.reviewedState = !$event;
-        this.acceptedState = !$event;
-        this.revision.reviewState = ReviewState.OnGoing;
-      }
-      if (checkbox === ReviewState.Pending) {
-        this.pendingState = $event;
-        this.onGoingState = !$event;
-        this.onHoldState = !$event;
-        this.reviewedState = !$event;
-        this.acceptedState = !$event;
-        this.revision.reviewState = ReviewState.Pending;
-      }
-      if (checkbox === ReviewState.Reviewed) {
-        this.reviewedState = $event;
-        this.onGoingState = !$event;
-        this.pendingState = !$event;
-        this.onHoldState = !$event;
-        this.acceptedState = !$event;
-        this.revision.reviewState = ReviewState.Reviewed;
-      }
 
-      if (checkbox === ReviewState.Accepted) {
-        this.acceptedState = $event;
-        this.onGoingState = !$event;
-        this.pendingState = !$event;
-        this.reviewedState = !$event;
-        this.onHoldState = !$event;
-        this.revision.reviewState = ReviewState.Accepted;
+      switch (checkbox) {
+        case ReviewState.Hold:
+          this.onHoldState = $event;
+          this.onGoingState = !$event;
+          this.pendingState = !$event;
+          this.reviewedState = !$event;
+          this.acceptedState = !$event;
+          this.revision.reviewState = ReviewState.Hold;
+          break;
+
+        case ReviewState.OnGoing:
+          this.onGoingState = $event;
+          this.onHoldState = !$event;
+          this.pendingState = !$event;
+          this.reviewedState = !$event;
+          this.acceptedState = !$event;
+          this.revision.reviewState = ReviewState.OnGoing;
+          break;
+
+        case ReviewState.Pending:
+          this.pendingState = $event;
+          this.onGoingState = !$event;
+          this.onHoldState = !$event;
+          this.reviewedState = !$event;
+          this.acceptedState = !$event;
+          this.revision.reviewState = ReviewState.Pending;
+          break;
+
+        case ReviewState.Reviewed:
+          this.reviewedState = $event;
+          this.onGoingState = !$event;
+          this.pendingState = !$event;
+          this.onHoldState = !$event;
+          this.acceptedState = !$event;
+          this.revision.reviewState = ReviewState.Reviewed;
+          break;
+
+        case ReviewState.Accepted:
+          this.acceptedState = $event;
+          this.onGoingState = !$event;
+          this.pendingState = !$event;
+          this.reviewedState = !$event;
+          this.onHoldState = !$event;
+          this.revision.reviewState = ReviewState.Accepted;
+          break;
+
+        default:
+          break;
       }
     }
   }
