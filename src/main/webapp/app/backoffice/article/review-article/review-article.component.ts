@@ -8,6 +8,7 @@ import { Article } from 'app/shared/model/ICAMApi/article.model';
 import { ArticleTypeService } from 'app/entities/ICAMApi/article-type/article-type.service';
 import * as moment from 'moment';
 import { ReviewState } from 'app/shared/model/enumerations/review-state.model';
+const styles = require('!!style-loader!css-loader!sass-loader!../../../../content/scss/global-variables.scss');
 
 const enum IS_PEER_REVIEWED {
   YES = 'yes',
@@ -20,6 +21,7 @@ const enum IS_PEER_REVIEWED {
   styleUrls: ['./review-article.scss']
 })
 export class ReviewArticleComponent implements OnInit {
+  styles = styles;
   // Dropdown Categorias
   categoryDropdown: Array<any> = [];
   categorySelected: Array<any> = [];
