@@ -29,15 +29,15 @@
             <div>
                 {{ article?.articleAbstract }}
             </div>
+            <div>
+                <span>
+                    <i class="fal fa-newspaper"></i>
+                    <span>{{ article?.articleJournal }}</span>
+                </span>
+            </div>
         </div>
     </div>
     <div class="cardFooter">
-        <div>
-            <span>
-                <i class="fal fa-newspaper"></i>
-                <span class="ellipsis-overflowed">{{ article?.articleJournal }}</span>
-            </span>
-        </div>
         <div id="rowH">
             <span (click)="onDelete.emit(article?.id)">Apagar</span>
             <div>
