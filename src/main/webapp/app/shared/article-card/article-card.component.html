@@ -19,10 +19,6 @@
                 <i class="fal fa-link"></i>
                 <span>Ver artigo original</span>
             </a>
-            <span>
-                <i class="fal fa-newspaper"></i>
-                <span class="ellipsis-overflowed">{{ article?.articleJournal }}</span>
-            </span>
             <icam-badge
                 *ngFor="let cat of article?.revision?.ctrees"
                 iconClass="fa-list"
@@ -36,6 +32,12 @@
         </div>
     </div>
     <div class="cardFooter">
+        <div>
+            <span>
+                <i class="fal fa-newspaper"></i>
+                <span class="ellipsis-overflowed">{{ article?.articleJournal }}</span>
+            </span>
+        </div>
         <div id="rowH">
             <span (click)="onDelete.emit(article?.id)">Apagar</span>
             <div>
