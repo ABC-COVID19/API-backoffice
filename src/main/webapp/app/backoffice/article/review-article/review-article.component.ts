@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ArticleService } from '../entities/ICAMApi/article/article.service';
-import { RevisionService } from '../entities/ICAMApi/revision/revision.service';
+import { RevisionService } from '../../../entities/ICAMApi/revision/revision.service';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryTreeService } from 'app/entities/ICAMApi/category-tree/category-tree.service';
@@ -9,6 +8,7 @@ import { Article } from 'app/shared/model/ICAMApi/article.model';
 import { ArticleTypeService } from 'app/entities/ICAMApi/article-type/article-type.service';
 import * as moment from 'moment';
 import { ReviewState } from 'app/shared/model/enumerations/review-state.model';
+const styles = require('!!style-loader!css-loader!sass-loader!../../../../content/scss/global-variables.scss');
 
 const enum IS_PEER_REVIEWED {
   YES = 'yes',
@@ -16,11 +16,12 @@ const enum IS_PEER_REVIEWED {
 }
 
 @Component({
-  selector: 'reviewArticle',
-  templateUrl: 'reviewArticle.component.html',
-  styleUrls: ['./reviewArticle.scss']
+  selector: 'review-article',
+  templateUrl: 'review-article.component.html',
+  styleUrls: ['./review-article.scss']
 })
 export class ReviewArticleComponent implements OnInit {
+  styles = styles;
   // Dropdown Categorias
   categoryDropdown: Array<any> = [];
   categorySelected: Array<any> = [];
@@ -68,74 +69,53 @@ export class ReviewArticleComponent implements OnInit {
   constructor(
     private aTypesService: ArticleTypeService,
     private revisionService: RevisionService,
-    private articleService: ArticleService,
     private categoryService: CategoryTreeService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
 
   ngOnInit(): void {
-    // get do ID do artigo passado da página articleList
-    let articleId = null;
-    this.route.queryParams.subscribe(params => {
-      if (params['articleId']) {
-        articleId = params['articleId'];
+    this.route.data.subscribe(({ revisionData }) => {
+      this.article = revisionData.article;
+
+      if (revisionData.revision) {
+        this.revision = revisionData.revision;
+        // Já existe revisão
+        this.revisionExists = true;
+
+        // Carregar dados para dropdowns e checkboxs
+        this.loadDropdownsData();
+        this.loadIsPeerReviewed(this.revision.isPeerReviewed);
+        this.loadRevisionState(this.revision.reviewState);
+
+        if (this.revision.ctrees) {
+          //  same ng-multiselect-dropdown mentioned below on this.loadDropdownsData()
+          const cats = [];
+          for (const cat of this.revision.ctrees) {
+            if (cat.parent) {
+              const catParent = cat.parent;
+              cats.push({ id: cat.id, itemName: `${catParent.itemName} > ${cat.itemName}` });
+            } else {
+              cats.push({ id: cat.id, itemName: cat.itemName });
+            }
+          }
+          this.categorySelected = [...cats];
+        }
+
+        if (this.revision.atype) {
+          const atype = this.revision.atype;
+          //  Para já cada artigo só tem um article type!
+          this.aTypeSelected = [{ id: atype.id, itemName: atype.itemName }];
+        }
+      } else {
+        this.revisionExists = false;
+        this.onGoingState = true; // default
+        this.revision.reviewState = ReviewState.OnGoing; //  Default state for a new revision
+
+        // Temos de carregar as categorias todas e os tipos de artigos para o dropdown
+        this.loadDropdownsData();
       }
     });
-
-    // carregar dados base do artigo
-    if (articleId) {
-      this.articleService.getById(articleId).subscribe(res => {
-        if (res) {
-          Object.assign(this.article, res[0]);
-        }
-      });
-    }
-
-    if (articleId) {
-      this.revisionService.find(articleId).subscribe(
-        res => {
-          // Já existe revisão
-          this.revisionExists = true;
-
-          Object.assign(this.revision, res.body);
-
-          // Carregar dados para dropdowns e checkboxs
-          this.loadDropdownsData();
-          this.loadIsPeerReviewed(this.revision.isPeerReviewed);
-          this.loadRevisionState(this.revision.reviewState);
-
-          if (this.revision.ctrees) {
-            //  same ng-multiselect-dropdown mentioned below on this.loadDropdownsData()
-            const cats = [];
-            for (const cat of this.revision.ctrees) {
-              if (cat.parent) {
-                const catParent = cat.parent;
-                cats.push({ id: cat.id, itemName: `${catParent.itemName} > ${cat.itemName}` });
-              } else {
-                cats.push({ id: cat.id, itemName: cat.itemName });
-              }
-            }
-            this.categorySelected = [...cats];
-          }
-
-          if (this.revision.atype) {
-            const atype = this.revision.atype;
-            //  Para já cada artigo só tem um article type!
-            this.aTypeSelected = [{ id: atype.id, itemName: atype.itemName }];
-          }
-        },
-        () => {
-          // Não existe revisão
-          this.revisionExists = false;
-          this.onGoingState = true; // default
-          this.revision.reviewState = ReviewState.OnGoing; //  Default state for a new revision
-
-          // Temos de carregar as categorias todas e os tipos de artigos para o dropdown
-          this.loadDropdownsData();
-        }
-      );
-    }
   }
 
   loadDropdownsData(): void {
@@ -165,8 +145,7 @@ export class ReviewArticleComponent implements OnInit {
       this.noPeerReviewed = !$event;
       this.peerReviewed = $event;
       this.revision.isPeerReviewed = true;
-    }
-    if (checkbox === IS_PEER_REVIEWED.NO) {
+    } else {
       this.peerReviewed = !$event;
       this.noPeerReviewed = $event;
       this.revision.isPeerReviewed = false;
@@ -176,46 +155,55 @@ export class ReviewArticleComponent implements OnInit {
   stateCheckboxChanged($event: any, checkbox: string): void {
     if ($event) {
       this.state = checkbox;
-      if (checkbox === ReviewState.Hold) {
-        this.onHoldState = $event;
-        this.onGoingState = !$event;
-        this.pendingState = !$event;
-        this.reviewedState = !$event;
-        this.acceptedState = !$event;
-        this.revision.reviewState = ReviewState.Hold;
-      }
-      if (checkbox === ReviewState.OnGoing) {
-        this.onGoingState = $event;
-        this.onHoldState = !$event;
-        this.pendingState = !$event;
-        this.reviewedState = !$event;
-        this.acceptedState = !$event;
-        this.revision.reviewState = ReviewState.OnGoing;
-      }
-      if (checkbox === ReviewState.Pending) {
-        this.pendingState = $event;
-        this.onGoingState = !$event;
-        this.onHoldState = !$event;
-        this.reviewedState = !$event;
-        this.acceptedState = !$event;
-        this.revision.reviewState = ReviewState.Pending;
-      }
-      if (checkbox === ReviewState.Reviewed) {
-        this.reviewedState = $event;
-        this.onGoingState = !$event;
-        this.pendingState = !$event;
-        this.onHoldState = !$event;
-        this.acceptedState = !$event;
-        this.revision.reviewState = ReviewState.Reviewed;
-      }
 
-      if (checkbox === ReviewState.Accepted) {
-        this.acceptedState = $event;
-        this.onGoingState = !$event;
-        this.pendingState = !$event;
-        this.reviewedState = !$event;
-        this.onHoldState = !$event;
-        this.revision.reviewState = ReviewState.Accepted;
+      switch (checkbox) {
+        case ReviewState.Hold:
+          this.onHoldState = $event;
+          this.onGoingState = !$event;
+          this.pendingState = !$event;
+          this.reviewedState = !$event;
+          this.acceptedState = !$event;
+          this.revision.reviewState = ReviewState.Hold;
+          break;
+
+        case ReviewState.OnGoing:
+          this.onGoingState = $event;
+          this.onHoldState = !$event;
+          this.pendingState = !$event;
+          this.reviewedState = !$event;
+          this.acceptedState = !$event;
+          this.revision.reviewState = ReviewState.OnGoing;
+          break;
+
+        case ReviewState.Pending:
+          this.pendingState = $event;
+          this.onGoingState = !$event;
+          this.onHoldState = !$event;
+          this.reviewedState = !$event;
+          this.acceptedState = !$event;
+          this.revision.reviewState = ReviewState.Pending;
+          break;
+
+        case ReviewState.Reviewed:
+          this.reviewedState = $event;
+          this.onGoingState = !$event;
+          this.pendingState = !$event;
+          this.onHoldState = !$event;
+          this.acceptedState = !$event;
+          this.revision.reviewState = ReviewState.Reviewed;
+          break;
+
+        case ReviewState.Accepted:
+          this.acceptedState = $event;
+          this.onGoingState = !$event;
+          this.pendingState = !$event;
+          this.reviewedState = !$event;
+          this.onHoldState = !$event;
+          this.revision.reviewState = ReviewState.Accepted;
+          break;
+
+        default:
+          break;
       }
     }
   }
@@ -284,7 +272,7 @@ export class ReviewArticleComponent implements OnInit {
   }
 
   cancel(): void {
-    this.router.navigate(['/backoffice/articleList']);
+    this.router.navigate(['/backoffice/articles']);
   }
 
   save(): void {
@@ -292,7 +280,7 @@ export class ReviewArticleComponent implements OnInit {
       const now = moment.utc();
       let revisionToSave: IRevision = {};
       const caterogiesId = [];
-      console.log('CATS', this.categorySelected);
+
       for (const cat of this.categorySelected) {
         caterogiesId.push({ id: cat.id });
       }
@@ -307,11 +295,11 @@ export class ReviewArticleComponent implements OnInit {
           atype: { id: this.aTypeSelected[0]['id'] },
           ctrees: caterogiesId
         };
-        console.log('false', revisionToSave);
+
         this.revisionService.create(revisionToSave).subscribe(
           () => {
             //  Criado com sucesso
-            this.router.navigate(['/backoffice/articleList']);
+            this.router.navigate(['/backoffice/articles']);
           },
           () => {
             //  error
@@ -324,7 +312,6 @@ export class ReviewArticleComponent implements OnInit {
         revisionToSave.ctrees = caterogiesId;
         //  If revision already exists, reviewDate will come as a string, so we need to convert it to a Moment
         revisionToSave.reviewDate = moment(revisionToSave.reviewDate);
-        console.log(revisionToSave);
 
         this.revisionService.update(revisionToSave).subscribe(
           () => {

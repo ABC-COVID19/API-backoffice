@@ -1,17 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { errorRoute } from './layouts/error/error.route';
-import { Authority } from 'app/shared/constants/authority.constants';
-
 // import { SidebarAndContentComponent } from 'app/layouts/sidebar-and-content/sidebar-and-content.component';
-import { TopNavbarAndContentComponent } from 'app/layouts/topnavbar-and-content/topnavbar-and-content.component';
-import { UserRouteAccessService } from 'app/core/auth/user-route-access-service';
 
 const LAYOUT_ROUTES = [...errorRoute];
 
 @NgModule({
   imports: [
     RouterModule.forRoot([
+      {
+        path: '',
+        redirectTo: '/backoffice/articles',
+        pathMatch: 'full'
+      },
       // {
       //   path: '',
       //   children: [
@@ -44,42 +45,6 @@ const LAYOUT_ROUTES = [...errorRoute];
       //     }
       //   ]
       // },
-      {
-        path: '',
-        redirectTo: '/backoffice/articleList',
-        pathMatch: 'full'
-      },
-      {
-        path: 'backoffice',
-        component: TopNavbarAndContentComponent,
-        canActivate: [UserRouteAccessService],
-        data: {
-          authorities: [Authority.USER]
-        },
-        children: [
-          {
-            path: '',
-            redirectTo: '/backoffice/articleList',
-            pathMatch: 'full'
-          },
-          {
-            path: 'articleList',
-            loadChildren: () => import('app/articleList/articleList.module').then(m => m.ArticleListModule)
-          },
-          {
-            path: 'add-article',
-            loadChildren: () => import('app/add-edit-article/add-edit-article.module').then(m => m.AddEditArticleModule)
-          },
-          {
-            path: 'edit-article/:id',
-            loadChildren: () => import('app/add-edit-article/add-edit-article.module').then(m => m.AddEditArticleModule)
-          },
-          {
-            path: 'reviewArticle',
-            loadChildren: () => import('app/reviewArticle/reviewArticle.module').then(m => m.ReviewArticleModule)
-          }
-        ]
-      },
       // {
       //   path: 'legacy',
       //   children: [

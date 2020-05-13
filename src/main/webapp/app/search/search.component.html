@@ -13,7 +13,7 @@
 	</div>
 	<div id="last-revised">
 		<h1>Últimos documentos revistos:</h1>
-		<article-card
+		<revisiom-card
 			*ngFor="let card of lastRevisedCards"
 			[title]="card.title"
 			[summary]="card.summary"
@@ -22,6 +22,6 @@
 			[categories]="card.categories"
 			(cardClick)="goToCard(card)"
 		>
-		</article-card>
+		</revisiom-card>
 	</div>
 </div>
