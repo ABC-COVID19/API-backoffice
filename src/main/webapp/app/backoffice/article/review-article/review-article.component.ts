@@ -79,7 +79,6 @@ export class ReviewArticleComponent implements OnInit {
       this.article = revisionData.article;
 
       if (revisionData.revision) {
-        console.log('rev', revisionData);
         this.revision = revisionData.revision;
         // Já existe revisão
         this.revisionExists = true;
