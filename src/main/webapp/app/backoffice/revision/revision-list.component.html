@@ -1,0 +1,23 @@
+<div>
+  <div class="top-backoffice-bar container-fluid">
+    <h1>Revisões</h1>
+    <div class="top-backoffice-bar-buttons">
+      <select #selectState (change)="loadData(selectState.value)">
+        <option *ngFor="let st of states" [value]="st">{{ st }}</option>
+      </select>
+    </div>
+
+    <revision-card
+      *ngFor="let revision of revisions | async"
+      [title]="revision.title"
+      [summary]="revision.summary"
+      [articleDate]="revision.article.articleDate"
+      [categories]="revision.ctrees"
+      [state]="revision.reviewState"
+      (changeState)="updateRevisionState($event, revision)"
+    >
+    </revision-card>
+
+    <div *ngIf="(revisions | async)?.length === 0">Sem revisões</div>
+  </div>
+</div>

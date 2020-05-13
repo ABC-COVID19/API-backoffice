@@ -1,24 +1,23 @@
 <div>
-    <div class="top-backoffice-bar container-fluid">
-        <h1>Artigos</h1>
-        <div class="top-backoffice-bar-buttons">
-            <button
-                icam-btn
-                btnText="Adicionar Artigo"
-                [rightArrow]="true"
-                btnHeight="48px"
-                backgroundColor="#EBBC51"
-                [routerLink]="['/backoffice', 'articles', 'add']"
-            >
-            </button>
-        </div>
+  <div class="top-backoffice-bar container-fluid">
+    <h1>Artigos</h1>
+    <div class="top-backoffice-bar-buttons">
+      <button
+        icam-btn
+        btnText="Adicionar Artigo"
+        [rightArrow]="true"
+        btnHeight="48px"
+        backgroundColor="#EBBC51"
+        [routerLink]="['/backoffice', 'articles', 'add']"
+      ></button>
     </div>
-    <article-card
-        *ngIf="isFetched"
-        [articles]="articles"
-        (onEdit)="editArticle($event)"
-        (onReview)="reviewArticle($event)"
-        (onDelete)="deleteArticle($event)"
-    >
-    </article-card>
+  </div>
+  <article-card
+    *ngIf="isFetched"
+    [articles]="articles"
+    (onEdit)="editArticle($event)"
+    (onReview)="reviewArticle($event)"
+    (onDelete)="deleteArticle($event)"
+  >
+  </article-card>
 </div>

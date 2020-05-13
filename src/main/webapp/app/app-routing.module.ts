@@ -10,7 +10,7 @@ const LAYOUT_ROUTES = [...errorRoute];
     RouterModule.forRoot([
       {
         path: '',
-        redirectTo: '/backoffice/articles',
+        redirectTo: '/backoffice/articles', // routes definidas em backoffice/backoffice.module.ts
         pathMatch: 'full'
       },
       // {
