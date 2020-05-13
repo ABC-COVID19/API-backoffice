@@ -26,7 +26,7 @@ export class ReviewArticleResolver implements Resolve<IRevisionResolve | null> {
       return zip(article$, revision$).pipe(
         map(data => {
           const articleData = data[0];
-          const revisionData = data[0];
+          const revisionData = data[1];
 
           if (articleData && articleData.body) {
             return {
