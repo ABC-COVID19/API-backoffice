@@ -1,0 +1,35 @@
+@import '../../../content/scss/global-variables.scss';
+
+:host {
+  display: block;
+  cursor: pointer;
+
+  h2 {
+    color: $dark-blue;
+  }
+
+  .article-card-footer {
+    font-size: 16px !important;
+
+    .date-holder {
+      display: inline-block;
+    }
+
+    .badge-section {
+      margin-top: 8px;
+
+      icam-badge {
+        margin-right: 10px;
+      }
+    }
+
+    .fas,
+    .article-card-date {
+      color: $dark-blue;
+    }
+
+    .article-author {
+      color: $golden;
+    }
+  }
+}

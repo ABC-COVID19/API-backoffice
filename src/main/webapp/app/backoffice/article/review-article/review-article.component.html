@@ -1,22 +1,30 @@
-<div class="container-fluid">
-    <div id="mainReviewArticle" class="row">
-        <div id="reviewArticleTitle" class="col-3">
-            Rever Artigo
-        </div>
-        <div class="offset-6 col-3 btnCenter">
-            <div class="col-6">
-                <button icam-btn [leftArrow]="true" [btnText]="'Cancelar'" [btnWidth]="'160px'" [btnHeight]="'48px'"
-                    [textColor]="'#1A1948'" [border]="'1px solid #1A1948'" [backgroundColor]="'white'"
-                    (click)="cancel()">
-                </button>
-            </div>
-            <div class="col-6">
-                <button icam-btn [rightArrow]="true" [btnText]="'Salvar'" [btnWidth]="'160px'" [btnHeight]="'48px'"
-                    [textColor]="'white'" [border]="'none'" [backgroundColor]="'#1A1948'" (click)="save()">
-                </button>
-            </div>
-        </div>
+<div class="top-backoffice-bar container-fluid">
+    <h1>Rever Artigo</h1>
+    <div class="top-backoffice-bar-buttons">
+        <button
+            icam-btn
+            btnText="Cancelar"
+            [textColor]="styles.darkerBlue"
+            btnWidth="160px"
+            btnHeight="48px"
+            [borderColor]="styles.darkerBlue"
+            backgroundColor="white"
+            (click)="cancel()"
+        >
+        </button>
+        <button
+            icam-btn
+            btnText="Salvar"
+            textColor="white"
+            btnWidth="160px"
+            btnHeight="48px"
+            [backgroundColor]="styles.darkerBlue"
+            (click)="save()"
+        >
+        </button>
     </div>
+</div>
+<div class="container-fluid">
     <div class="col-12 mt-5">
         Dados do Artigo Original
     </div>
