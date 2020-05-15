@@ -19,10 +19,6 @@
                 <i class="fal fa-link"></i>
                 <span>Ver artigo original</span>
             </a>
-            <span>
-                <i class="fal fa-newspaper"></i>
-                <span class="ellipsis-overflowed">{{ article?.articleJournal }}</span>
-            </span>
             <icam-badge
                 *ngFor="let cat of article?.revision?.ctrees"
                 iconClass="fa-list"
@@ -32,6 +28,12 @@
         <div>
             <div>
                 {{ article?.articleAbstract }}
+            </div>
+            <div>
+                <span>
+                    <i class="fal fa-newspaper"></i>
+                    <span>{{ article?.articleJournal }}</span>
+                </span>
             </div>
         </div>
     </div>
