@@ -26,7 +26,7 @@ export class RevisionListComponent {
 
   editRevision(id: number): void {
     if (id >= 0) {
-      this.router.navigate(['/backoffice', 'articles', id, 'edit']);
+      this.router.navigate(['/backoffice', 'articles', id, 'review']);
     }
   }
 
