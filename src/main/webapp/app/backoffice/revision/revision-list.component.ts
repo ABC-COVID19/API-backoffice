@@ -24,7 +24,23 @@ export class RevisionListComponent {
     this.revisions = this.revisionService.query(params).pipe(map(r => r.body || []));
   }
 
-  onEdit(revision: IRevision): void {
-    alert('A EDITAR ' + revision.id);
+  editRevision(id: number): void {
+    if (id >= 0) {
+      this.router.navigate(['/backoffice', 'articles', id, 'edit']);
+    }
+  }
+
+  deleteRevision(id: number): void {
+    if (confirm(`Tem a certeza que quer apagar a revisão # ${id} ?`)) {
+      this.revisionService.delete(id).subscribe(
+        () => {
+          //  Apagado com sucesso
+          window.location.reload();
+        },
+        () => {
+          //  error
+        }
+      );
+    }
   }
 }

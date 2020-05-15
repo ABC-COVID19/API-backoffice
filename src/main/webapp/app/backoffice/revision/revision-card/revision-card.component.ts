@@ -17,5 +17,6 @@ export class RevisionCardComponent {
   @Input() article?: IArticle;
   @Output() cardClick = new EventEmitter<void>();
   @Output() onEdit = new EventEmitter<number>();
+  @Output() onDelete = new EventEmitter<number>();
   status?: string = '';
 }

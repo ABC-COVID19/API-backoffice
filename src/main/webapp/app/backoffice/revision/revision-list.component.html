@@ -10,7 +10,8 @@
     *ngFor="let revision of revisions | async"
     [revision]="revision"
     [article]="revision.article"
-    (onEdit)="onEdit(revision)"
+    (onEdit)="editRevision($event)"
+    (onDelete)="deleteRevision($event)"
   ></bo-revision-card>
 
   <div *ngIf="(revisions | async)?.length === 0">Sem revisões</div>
