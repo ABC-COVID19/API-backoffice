@@ -6,6 +6,8 @@ import { IcamBackOfficeSharedModule } from 'app/shared/shared.module';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { RouterModule } from '@angular/router';
 import { RevisionListComponent } from './revision-list.component';
+import { RevisionCardComponent } from './revision-card/revision-card.component';
+import { StatusFilterComponent } from './status-filter/status-filter.component';
 
 @NgModule({
   imports: [
@@ -21,6 +23,6 @@ import { RevisionListComponent } from './revision-list.component';
       }
     ])
   ],
-  declarations: [RevisionListComponent]
+  declarations: [RevisionListComponent, RevisionCardComponent, StatusFilterComponent]
 })
 export class RevisionModule {}
