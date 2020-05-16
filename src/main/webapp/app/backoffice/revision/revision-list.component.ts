@@ -5,6 +5,7 @@ import { ReviewState } from 'app/shared/model/enumerations/review-state.model';
 import { IRevision } from 'app/shared/model/ICAMApi/revision.model';
 import { EMPTY, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { StateStorageService } from 'app/core/auth/state-storage.service';
 
 @Component({
   selector: 'revision-list',
@@ -14,7 +15,7 @@ import { map } from 'rxjs/operators';
 export class RevisionListComponent {
   revisions: Observable<IRevision[]> = EMPTY;
 
-  constructor(private revisionService: RevisionService, private router: Router) {}
+  constructor(private revisionService: RevisionService, private router: Router, private stateStorageService: StateStorageService) {}
 
   loadData(states: ReviewState[]): void {
     const params = {
@@ -26,6 +27,7 @@ export class RevisionListComponent {
 
   editRevision(id: number): void {
     if (id >= 0) {
+      this.stateStorageService.storeUrl(this.router.routerState.snapshot.url);
       this.router.navigate(['/backoffice', 'articles', id, 'review']);
     }
   }

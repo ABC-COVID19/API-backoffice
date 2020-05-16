@@ -8,6 +8,7 @@ import { Article } from 'app/shared/model/ICAMApi/article.model';
 import { ArticleTypeService } from 'app/entities/ICAMApi/article-type/article-type.service';
 import * as moment from 'moment';
 import { ReviewState } from 'app/shared/model/enumerations/review-state.model';
+import { StateStorageService } from 'app/core/auth/state-storage.service';
 const styles = require('!!style-loader!css-loader!sass-loader!../../../../content/scss/global-variables.scss');
 
 const enum IS_PEER_REVIEWED {
@@ -71,7 +72,8 @@ export class ReviewArticleComponent implements OnInit {
     private revisionService: RevisionService,
     private categoryService: CategoryTreeService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private stateStorageService: StateStorageService
   ) {}
 
   ngOnInit(): void {
@@ -272,8 +274,18 @@ export class ReviewArticleComponent implements OnInit {
     return fieldsOk;
   }
 
+  navigateToPreviousUrl(): void {
+    const previousUrl = this.stateStorageService.getUrl();
+
+    if (previousUrl?.startsWith('/backoffice')) {
+      this.router.navigateByUrl(previousUrl);
+    } else {
+      this.router.navigate(['/backoffice']);
+    }
+  }
+
   cancel(): void {
-    this.router.navigate(['/backoffice/articles']);
+    this.navigateToPreviousUrl();
   }
 
   save(): void {
@@ -300,7 +312,7 @@ export class ReviewArticleComponent implements OnInit {
         this.revisionService.create(revisionToSave).subscribe(
           () => {
             //  Criado com sucesso
-            this.router.navigate(['/backoffice/articles']);
+            this.navigateToPreviousUrl();
           },
           () => {
             //  error
@@ -317,7 +329,7 @@ export class ReviewArticleComponent implements OnInit {
         this.revisionService.update(revisionToSave).subscribe(
           () => {
             //  update com sucesso
-            this.router.navigate(['/backoffice/articleList']);
+            this.navigateToPreviousUrl();
           },
           () => {
             //  erro
