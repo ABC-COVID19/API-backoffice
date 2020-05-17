@@ -124,7 +124,7 @@
                                                 <input id="Hold" type="checkbox" name="onHold" [ngModel]="onHoldState" (ngModelChange)="stateCheckboxChanged($event,'Hold')">
                                             </div>
                                             <div class="col-6">
-                                                <label for="Hold">Em Espera</label>
+                                                <label class="review-state" title="Ninguém ativamente a trabalhar nesta sinopse." for="Hold">Em Espera</label>
                                             </div>
                                         </div>
                                     </div>
@@ -134,7 +134,7 @@
                                                 <input id="OnGoing" type="checkbox" name="onGoing" [ngModel]="onGoingState" (ngModelChange)="stateCheckboxChanged($event,'OnGoing')">
                                             </div>
                                             <div class="col-6">
-                                                <label for="OnGoing">Em curso</label>
+                                                <label class="review-state" title="Sinopse em curso." for="OnGoing">Em curso</label>
                                             </div>
                                         </div>
                                     </div>
@@ -144,27 +144,27 @@
                                                 <input id="Pending" type="checkbox" name="pending" [ngModel]="pendingState" (ngModelChange)="stateCheckboxChanged($event,'Pending')">
                                             </div>
                                             <div class="col-6">
-                                                <label for="Pending">Pendente</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="row mb-3">
-                                            <div class="col-3">
-                                                <input id="Reviewed" type="checkbox" name="reviewed" [ngModel]="reviewedState" (ngModelChange)="stateCheckboxChanged($event,'Reviewed')">
-                                            </div>
-                                            <div class="col-6">
-                                                <label for="Reviewed">Revista</label>
+                                                <label class="review-state" title="Pronta para ser vista por um revisor." for="Pending">Pendente</label>
                                             </div>
                                         </div>
                                     </div>
                                     <div *jhiHasAnyAuthority="'ROLE_ADMIN'" class="col-6">
                                         <div class="row mb-3">
                                             <div class="col-3">
+                                                <input id="Reviewed" type="checkbox" name="reviewed" [ngModel]="reviewedState" (ngModelChange)="stateCheckboxChanged($event,'Reviewed')">
+                                            </div>
+                                            <div class="col-6">
+                                                <label class="review-state" title="Aprovada mas aguarda publicação." for="Reviewed">Revista</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div *jhiHasAnyAuthority="'ROLE_ADMIN'" class="col-6">
+                                        <div class="row mb-3" style="border: 1px solid red">
+                                            <div class="col-3">
                                                 <input id="Accepted" type="checkbox" name="accepted" [ngModel]="acceptedState" (ngModelChange)="stateCheckboxChanged($event,'Accepted')">
                                             </div>
                                             <div class="col-6">
-                                                <label for="Accepted">Aceite</label>
+                                                <label class="review-state" title="Sinopse fica pública." for="Accepted">Aceite</label>
                                             </div>
                                         </div>
                                     </div>
