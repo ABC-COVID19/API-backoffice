@@ -22,7 +22,7 @@
   display: inline;
   vertical-align: middle;
 
-  @media only screen and (max-width: 400px) {
+  @media only screen and (max-width: 560px) {
     display: none;
   }
 }
@@ -45,7 +45,7 @@
 
   @media only screen and (max-width: 670px) {
     padding-top: 0;
-    font-size: 45px;
+    font-size: 43px;
   }
 }
 
@@ -54,4 +54,10 @@
   @media only screen and (max-width: 670px) {
     display: none;
   }
+}
+
+#page-links {
+  padding-top: 15px;
+  float: right;
+  margin-right: 15px;
 }

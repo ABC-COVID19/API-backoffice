@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticleService } from '../../../entities/ICAMApi/article/article.service';
 import { Router } from '@angular/router';
+import { StateStorageService } from 'app/core/auth/state-storage.service';
 
 @Component({
   selector: 'article-list',
@@ -11,7 +12,7 @@ export class ArticleListComponent implements OnInit {
   articles: any;
   isFetched = false;
 
-  constructor(private articleService: ArticleService, private router: Router) {}
+  constructor(private articleService: ArticleService, private router: Router, private stateStorageService: StateStorageService) {}
 
   getArtictlesToReview(): void {
     this.articleService.getArticlesToReview().subscribe(
@@ -36,6 +37,7 @@ export class ArticleListComponent implements OnInit {
   }
 
   reviewArticle(id: number): void {
+    this.stateStorageService.storeUrl(this.router.routerState.snapshot.url);
     this.router.navigate(['/backoffice', 'articles', id, 'review']);
   }
 

@@ -1,20 +1,24 @@
 <div>
-    <div id="navbar">
-        <div id="divLogo">
-            <img id="icamLogo" src="../../../../content/images/virus-amarelo.png">
-        </div>
-        <div id="icamTitle">
-            ICAM BackOffice
-        </div>
-        <div id="logout" (click)="logout()">
-            <a>
-                <span>
-                    <i class="fal fa-sign-out-alt"></i>
-                </span>
-                <span class="logout-text">
-                    Logout
-                </span>
-            </a>
-        </div>
+  <div id="navbar">
+    <div id="divLogo">
+      <img id="icamLogo" src="../../../../content/images/virus-amarelo.png" />
     </div>
+    <div id="icamTitle">
+      ICAM BackOffice
+    </div>
+    <div id="logout" (click)="logout()">
+      <a>
+        <span>
+          <i class="fal fa-sign-out-alt"></i>
+        </span>
+        <span class="logout-text">
+          Logout
+        </span>
+      </a>
+    </div>
+    <div id="page-links">
+      <a [routerLink]="['/backoffice/articles']">Artigos</a>
+      <a [routerLink]="['/backoffice/revisions']">Revisões</a>
+    </div>
+  </div>
 </div>

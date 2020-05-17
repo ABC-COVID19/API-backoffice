@@ -1,0 +1,7 @@
+<icam-badge iconClass="fa-eye" (click)="hidden = !hidden" text="Estado da revisão" [ngStyle]="{ cursor: 'pointer' }"></icam-badge>
+<ul class="options" [hidden]="hidden">
+  <li *ngFor="let s of states">
+    <input type="checkbox" [id]="'s-' + s.value" [checked]="this.selected.has(s.value)" (change)="this.toggle($event, s.value)" />
+    <label [for]="'s-' + s.value">{{ s.label }}</label>
+  </li>
+</ul>

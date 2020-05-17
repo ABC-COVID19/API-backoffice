@@ -35,7 +35,7 @@ export class AccountService {
     return this.userIdentity.authorities.some((authority: string) => authorities.includes(authority));
   }
 
-  identity(force?: boolean): Observable<Account | null> {
+  identity(force?: boolean, redirect = false): Observable<Account | null> {
     if (!this.accountCache$ || force || !this.isAuthenticated()) {
       this.accountCache$ = this.fetch().pipe(
         catchError(() => {
@@ -44,7 +44,7 @@ export class AccountService {
         tap((account: Account | null) => {
           this.authenticate(account);
 
-          if (account) {
+          if (account && redirect) {
             this.navigateToStoredUrl();
           }
         }),

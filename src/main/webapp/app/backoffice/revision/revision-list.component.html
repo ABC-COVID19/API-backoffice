@@ -1,0 +1,18 @@
+<div>
+  <div class="top-backoffice-bar container-fluid">
+    <h1>Revisões</h1>
+    <div class="top-backoffice-bar-buttons">
+      <revision-status-filter (change)="loadData($event)"></revision-status-filter>
+    </div>
+  </div>
+
+  <bo-revision-card
+    *ngFor="let revision of revisions | async"
+    [revision]="revision"
+    [article]="revision.article"
+    (onEdit)="editRevision($event)"
+    (onDelete)="deleteRevision($event)"
+  ></bo-revision-card>
+
+  <div *ngIf="(revisions | async)?.length === 0">Sem revisões</div>
+</div>

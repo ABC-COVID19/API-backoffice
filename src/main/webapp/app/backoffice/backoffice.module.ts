@@ -19,12 +19,16 @@ import { TopNavbarAndContentModule } from './topnavbar-and-content/topnavbar-and
         children: [
           {
             path: '',
-            redirectTo: '/backoffice/articles',
+            redirectTo: 'articles',
             pathMatch: 'full'
           },
           {
             path: 'articles',
             loadChildren: () => import('app/backoffice/article/article.module').then(m => m.ArticleModule)
+          },
+          {
+            path: 'revisions',
+            loadChildren: () => import('app/backoffice/revision/revision.module').then(m => m.RevisionModule)
           }
         ]
       }
