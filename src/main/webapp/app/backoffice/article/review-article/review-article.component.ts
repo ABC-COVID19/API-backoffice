@@ -10,6 +10,9 @@ import * as moment from 'moment';
 import { ReviewState } from 'app/shared/model/enumerations/review-state.model';
 import { StateStorageService } from 'app/core/auth/state-storage.service';
 const styles = require('!!style-loader!css-loader!sass-loader!../../../../content/scss/global-variables.scss');
+import { AccountService } from 'app/core/auth/account.service';
+import { IUser } from 'app/core/user/user.model';
+import { UserService } from 'app/core/user/user.service';
 
 const enum IS_PEER_REVIEWED {
   YES = 'yes',
@@ -22,6 +25,8 @@ const enum IS_PEER_REVIEWED {
   styleUrls: ['./review-article.scss']
 })
 export class ReviewArticleComponent implements OnInit {
+  user!: IUser;
+
   styles = styles;
   // Dropdown Categorias
   categoryDropdown: Array<any> = [];
@@ -73,10 +78,18 @@ export class ReviewArticleComponent implements OnInit {
     private categoryService: CategoryTreeService,
     private route: ActivatedRoute,
     private router: Router,
-    private stateStorageService: StateStorageService
+    private stateStorageService: StateStorageService,
+    private accountService: AccountService,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
+    this.accountService.getAuthenticationState().subscribe(account => {
+      if (account) {
+        this.userService.find(account.login).subscribe(user => (this.user = user));
+      }
+    });
+
     this.route.data.subscribe(({ revisionData }) => {
       this.article = revisionData.article;
 
@@ -259,7 +272,11 @@ export class ReviewArticleComponent implements OnInit {
       this.fieldsRequiredMsg += 'Campo "Autor" é obrigatório\n';
       fieldsOk = false;
     }
-    if (this.revision.reviewer === null || this.revision.reviewer === undefined || this.revision.reviewer.trim().length === 0) {
+    // Campo revisor só é obrigatório para os revisores
+    if (
+      this.user.authorities?.includes('ROLE_ADMIN') &&
+      (this.revision.reviewer === null || this.revision.reviewer === undefined || this.revision.reviewer.trim().length === 0)
+    ) {
       this.fieldsRequiredMsg += 'Campo "Revisor" é obrigatório\n';
       fieldsOk = false;
     }
