@@ -35,7 +35,7 @@ export class AccountService {
     return this.userIdentity.authorities.some((authority: string) => authorities.includes(authority));
   }
 
-  identity(force?: boolean): Observable<Account | null> {
+  identity(force?: boolean, redirect = false): Observable<Account | null> {
     if (!this.accountCache$ || force || !this.isAuthenticated()) {
       this.accountCache$ = this.fetch().pipe(
         catchError(() => {
@@ -43,6 +43,10 @@ export class AccountService {
         }),
         tap((account: Account | null) => {
           this.authenticate(account);
+
+          if (account && redirect) {
+            this.navigateToStoredUrl();
+          }
         }),
         shareReplay()
       );
@@ -64,5 +68,15 @@ export class AccountService {
 
   private fetch(): Observable<Account> {
     return this.http.get<Account>(SERVER_API_URL + 'api/account');
+  }
+
+  private navigateToStoredUrl(): void {
+    // previousState can be set in the authExpiredInterceptor and in the userRouteAccessService
+    // if login is successful, go to stored previousState and clear previousState
+    const previousUrl = this.stateStorageService.getUrl();
+    if (previousUrl) {
+      this.stateStorageService.clearUrl();
+      this.router.navigateByUrl(previousUrl);
+    }
   }
 }
