@@ -50,7 +50,7 @@
             <form>
                 <div class="row">
                     <div class="col-3">
-                        <label for="keywords">Palavras Chave (separadas por ; )</label>
+                        <label for="keywords">Palavras Chave - separadas por ";"</label>
                         <input type="text" class="form-control" id="keywords" name="keywords" [ngModel]="revision?.keywords" (ngModelChange)="revision.keywords=$event">
                     </div>
                     <div class="col-3">
@@ -121,16 +121,6 @@
                                     <div class="col-6">
                                         <div class="row mb-3">
                                             <div class="col-3">
-                                                <input id="Hold" type="checkbox" name="onHold" [ngModel]="onHoldState" (ngModelChange)="stateCheckboxChanged($event,'Hold')">
-                                            </div>
-                                            <div class="col-6">
-                                                <label class="review-state" title="Ninguém ativamente a trabalhar nesta sinopse." for="Hold">Em Espera</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="row mb-3">
-                                            <div class="col-3">
                                                 <input id="OnGoing" type="checkbox" name="onGoing" [ngModel]="onGoingState" (ngModelChange)="stateCheckboxChanged($event,'OnGoing')">
                                             </div>
                                             <div class="col-6">
@@ -154,7 +144,7 @@
                                                 <input id="Reviewed" type="checkbox" name="reviewed" [ngModel]="reviewedState" (ngModelChange)="stateCheckboxChanged($event,'Reviewed')">
                                             </div>
                                             <div class="col-6">
-                                                <label class="review-state" title="Aprovada mas aguarda publicação." for="Reviewed">Revista</label>
+                                                <label class="review-state" title="Alterações propostas pelo revisor." for="Reviewed">Revista</label>
                                             </div>
                                         </div>
                                     </div>
@@ -173,7 +163,7 @@
                         </div>
                     </div>
                     <div class="col-6 mt-3">
-                        <label for="revisorNotes">Notas do Revisor</label>
+                        <label for="revisorNotes">Notas do Autor/Revisor</label>
                         <textarea id="revisorNotes" name="revisorNotes" rows="10" [ngModel]="revision?.reviewNotes" (ngModelChange)="revision.reviewNotes=$event"></textarea>
                         </div>
                     </div>
