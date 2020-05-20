@@ -80,7 +80,7 @@
                         </div>
                         <div class="col-md-6 mt-3">
                             <div class="row">
-                            <div class="col-6">
+                            <div class="col-md-6">
                                 <label for="reviewer">Revisor</label>
                                 <input id="reviewer" type="text" class="form-control" name="reviewer" [ngModel]="revision?.reviewer" (ngModelChange)="revision.reviewer=$event">
                             </div>
@@ -129,7 +129,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-6 mt-3">
+                    <div class="col-md-6 mt-3">
                         <label for="revisorNotes">Notas do Autor/Revisor</label>
                         <textarea id="revisorNotes" name="revisorNotes" rows="10" [ngModel]="revision?.reviewNotes" (ngModelChange)="revision.reviewNotes=$event"></textarea>
                         </div>
