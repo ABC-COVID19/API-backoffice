@@ -9,10 +9,11 @@ import { ArticleTypeService } from 'app/entities/ICAMApi/article-type/article-ty
 import * as moment from 'moment';
 import { ReviewState } from 'app/shared/model/enumerations/review-state.model';
 import { StateStorageService } from 'app/core/auth/state-storage.service';
-const styles = require('!!style-loader!css-loader!sass-loader!../../../../content/scss/global-variables.scss');
 import { AccountService } from 'app/core/auth/account.service';
 import { IUser } from 'app/core/user/user.model';
 import { UserService } from 'app/core/user/user.service';
+
+const styles = require('!!style-loader!css-loader!sass-loader!../../../../content/scss/global-variables.scss');
 
 const enum IS_PEER_REVIEWED {
   YES = 'yes',
@@ -286,6 +287,13 @@ export class ReviewArticleComponent implements OnInit {
     }
     if (this.revision.summary === null || this.revision.summary === undefined || this.revision.summary.trim().length === 0) {
       this.fieldsRequiredMsg += 'Campo "Sinopse" é obrigatório\n';
+      fieldsOk = false;
+    }
+    if (
+      this.user.authorities?.includes('ROLE_USER') &&
+      this.revision.reviewState !== ReviewState.OnGoing && this.revision.reviewState !== ReviewState.Pending
+    ) {
+      this.fieldsRequiredMsg += 'Para Salvar, marcar como "Em curso" ou "Pendente".\n';
       fieldsOk = false;
     }
     return fieldsOk;

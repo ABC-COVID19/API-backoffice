@@ -49,8 +49,7 @@
         <div class="card-body">
             <form>
                 <div class="row">
-                    <div class="col-md-3">
-                        <label for="keywords">Palavras Chave (separadas por ; )</label>
+                        <label for="keywords">Palavras Chave - separadas por ";"</label>
                         <input type="text" class="form-control" id="keywords" name="keywords" [ngModel]="revision?.keywords" (ngModelChange)="revision.keywords=$event">
                     </div>
                     <div class="col-md-3">
@@ -108,37 +107,33 @@
                             <div class="col-md-6 mt-3">
                                 <label>Estado da Revisão</label>
                                 <div class="row">
-
-                                    <div class="col-md-6">
-                                        <input id="Hold" type="checkbox" name="onHold" [ngModel]="onHoldState" (ngModelChange)="stateCheckboxChanged($event,'Hold')">
-                                        <label for="Hold">Em Espera</label>
-                                    </div>
-
+                                  
                                     <div class="col-md-6">
                                         <input id="OnGoing" type="checkbox" name="onGoing" [ngModel]="onGoingState" (ngModelChange)="stateCheckboxChanged($event,'OnGoing')">
-                                        <label for="OnGoing">Em curso</label>
+                                        <label class="review-state" title="Sinopse em curso." for="OnGoing">Em curso</label>
                                     </div>
 
                                     <div class="col-md-6">
                                         <input id="Pending" type="checkbox" name="pending" [ngModel]="pendingState" (ngModelChange)="stateCheckboxChanged($event,'Pending')">
-                                        <label for="Pending">Pendente</label>
+                                        <label class="review-state" title="Pronta para ser vista por um revisor." for="Pending">Pendente</label>
                                     </div>
 
                                     <div *jhiHasAnyAuthority="'ROLE_ADMIN'" class="col-md-6">
                                         <input id="Reviewed" type="checkbox" name="reviewed" [ngModel]="reviewedState" (ngModelChange)="stateCheckboxChanged($event,'Reviewed')">
-                                        <label for="Reviewed">Revista</label>
+                                        <label class="review-state" title="Alterações propostas pelo revisor." for="Reviewed">Revista</label>
                                     </div>
 
-                                    <div *jhiHasAnyAuthority="'ROLE_ADMIN'" class="col-md-6">
+                                    <div *jhiHasAnyAuthority="'ROLE_ADMIN'" class="col-md-6" style="border: 1px solid red">
                                         <input id="Accepted" type="checkbox" name="accepted" [ngModel]="acceptedState" (ngModelChange)="stateCheckboxChanged($event,'Accepted')">
-                                        <label for="Accepted">Aceite</label>
+                                        <label class="review-state" title="Sinopse fica pública." for="Accepted">Aceite</label>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                     <div class="col-md-6 mt-3">
-                        <label for="revisorNotes">Notas do Revisor</label>
+                        <label for="revisorNotes">Notas do Autor/Revisor</label>
                         <textarea id="revisorNotes" name="revisorNotes" rows="10" [ngModel]="revision?.reviewNotes" (ngModelChange)="revision.reviewNotes=$event"></textarea>
                         </div>
                     </div>
