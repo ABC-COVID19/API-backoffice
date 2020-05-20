@@ -92,27 +92,17 @@
                             <div class="col-md-6 mt-3">
                                 <label for="peerReviewed">Foi revisto por pares?</label>
                                 <div class="row">
-                                    <div class="col-12">
-                                        <div class="row mb-3">
-                                            <div class="col-2">
+
+                                    <div class="col-md-12">
                                         <input id="peerReviewed" type="checkbox" name="peerReviewed" [ngModel]="peerReviewed" (ngModelChange)="peerCheckboxChanged($event,'yes')">
-                                    </div>
-                                    <div class="col-2">
                                         <span>Sim</span>
                                     </div>
-                                </div>
 
-                                </div>
-                                <div class="col-12">
-                                    <div class="row">
-                                    <div class="col-2">
+                                    <div class="col-md-12">
                                         <input type="checkbox" name="noPeerReviewed" [ngModel]="noPeerReviewed" (ngModelChange)="peerCheckboxChanged($event,'no')">
-                                    </div>
-                                    <div class="col-2">
                                         <span>Não</span>
                                     </div>
-                                    </div>
-                                </div>
+
                                 </div>
                             </div>
                             <div class="col-6 mt-3">
