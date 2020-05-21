@@ -8,10 +8,10 @@ export class TopNavBarService {
   constructor(private http: HttpClient) {}
 
   revisionsCount(): Observable<{}> {
-    return this.http.get(SERVER_API_URL + 'services/icamapi/api/revisions/count');
+    return this.http.get(SERVER_API_URL + 'services/icamapi/api/revisions/count?reviewState.notEquals=Accepted');
   }
 
   articlesCount(): Observable<{}> {
-    return this.http.get(SERVER_API_URL + '/services/icamapi/api/articles/count');
+    return this.http.get(SERVER_API_URL + '/services/icamapi/api/articles/count?revisionId.specified=False');
   }
 }
