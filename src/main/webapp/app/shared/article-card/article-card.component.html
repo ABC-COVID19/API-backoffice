@@ -1,5 +1,5 @@
 <round-card paddingTop="0" paddingBottom="0" paddingLeft="35px" paddingRight="35px" *ngFor="let article of articles">
-    <div class="cardHeader ellipsis-overflowed">
+    <div class="cardHeader">
         {{ article?.articleTitle }}
     </div>
     <div class="article-card-body">
@@ -26,9 +26,8 @@
             </icam-badge>
         </div>
         <div>
-            <div>
-                {{ article?.articleAbstract }}
-            </div>
+            <div *ngIf="article?.articleAbstract as abstract; else noAbstract">{{abstract}}</div>
+            <ng-template #noAbstract>Não foi possível extrair o abstract - veja o original.</ng-template>
             <div>
                 <span>
                     <i class="fal fa-newspaper"></i>
