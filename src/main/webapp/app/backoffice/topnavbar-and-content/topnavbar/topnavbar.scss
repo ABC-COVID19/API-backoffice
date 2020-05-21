@@ -57,10 +57,17 @@
 }
 
 #page-links {
-  padding-top: 13px;
+  padding-top: 10px;
   float: right;
   margin-right: 15px;
   span {
     color: white;
+  }
+}
+
+.page-text {
+  color: white;
+  @media only screen and (max-width: 670px) {
+    display: none;
   }
 }
