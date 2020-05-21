@@ -57,7 +57,10 @@
 }
 
 #page-links {
-  padding-top: 15px;
+  padding-top: 13px;
   float: right;
   margin-right: 15px;
+  span {
+    color: white;
+  }
 }
