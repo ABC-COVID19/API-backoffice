@@ -1,25 +1,34 @@
 <div>
-  <div id="navbar">
-    <div id="divLogo">
-      <img id="icamLogo" src="../../../../content/images/virus-amarelo.png" />
+    <div id="navbar">
+
+        <div id="divLogo">
+            <img id="icamLogo" src="../../../../content/images/virus-amarelo.png" />
+        </div>
+
+        <div id="icamTitle">ICAM BackOffice</div>
+
+        <div id="logout" (click)="logout()">
+            <a>
+                <span><i class="fal fa-sign-out-alt"></i></span>
+                <span class="page-text">Logout</span>
+            </a>
+        </div>
+
+        <div id="page-links">
+
+            <a [routerLink]="['/backoffice/articles']">
+                <span><i class="fal fa-glasses"></i></span>
+                <span class="page-text">Artigos</span>
+                <span class="badge badge-danger">{{articlesNumber}}</span>
+            </a>
+
+            <a [routerLink]="['/backoffice/revisions']">
+                <span><i class="fal fa-newspaper"></i></span>
+                <span class="page-text">Revisões</span>
+                <span class="badge badge-danger">{{revisionsNumber}}</span>
+            </a>
+
+            <!-- <a [routerLink]="['/legacy/account/password']">Mudar Password</a> -->
+        </div>
     </div>
-    <div id="icamTitle">
-      ICAM BackOffice
-    </div>
-    <div id="logout" (click)="logout()">
-      <a>
-        <span>
-          <i class="fal fa-sign-out-alt"></i>
-        </span>
-        <span class="logout-text">
-          Logout
-        </span>
-      </a>
-    </div>
-    <div id="page-links">
-        <a [routerLink]="['/backoffice/articles']">Artigos</a>
-        <a [routerLink]="['/backoffice/revisions']">Revisões</a>
-        <!-- <a [routerLink]="['/legacy/account/password']">Mudar Password</a> -->
-    </div>
-  </div>
 </div>

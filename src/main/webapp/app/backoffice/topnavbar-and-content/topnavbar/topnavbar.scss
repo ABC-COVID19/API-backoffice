@@ -30,7 +30,7 @@
 #lightText {
   text-align: left;
   font: 14px/17px Roboto;
-  letter-spacing: 0px;
+  letter-spacing: 0;
   color: $light-text-color;
 }
 
@@ -43,16 +43,9 @@
     color: white;
   }
 
-  @media only screen and (max-width: 670px) {
+  @media only screen and (max-width: 720px) {
     padding-top: 0;
     font-size: 43px;
-  }
-}
-
-.logout-text {
-  color: white;
-  @media only screen and (max-width: 670px) {
-    display: none;
   }
 }
 
@@ -60,4 +53,18 @@
   padding-top: 15px;
   float: right;
   margin-right: 15px;
+  span {
+    color: white;
+  }
+  @media only screen and (max-width: 720px) {
+    padding-top: 10px;
+    font-size: 25px;
+  }
+}
+
+.page-text {
+  color: white;
+  @media only screen and (max-width: 720px) {
+    display: none;
+  }
 }
