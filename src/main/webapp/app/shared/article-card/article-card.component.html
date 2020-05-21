@@ -19,21 +19,13 @@
                 <i class="fal fa-link"></i>
                 <span>Ver artigo original</span>
             </a>
-            <icam-badge
-                *ngFor="let cat of article?.revision?.ctrees"
-                iconClass="fa-list"
-                [text]="cat.itemName">
-            </icam-badge>
+
         </div>
         <div>
-            <div *ngIf="article?.articleAbstract as abstract; else noAbstract">{{abstract}}</div>
-            <ng-template #noAbstract>Não foi possível extrair o abstract - veja o original.</ng-template>
-            <div>
-                <span>
-                    <i class="fal fa-newspaper"></i>
-                    <span>{{ article?.articleJournal }}</span>
-                </span>
-            </div>
+            <span>
+                <i class="fal fa-newspaper"></i>
+                <span>{{ article?.articleJournal }}</span>
+            </span>
         </div>
     </div>
     <div class="cardFooter">
