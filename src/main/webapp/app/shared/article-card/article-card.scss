@@ -1,4 +1,4 @@
-@import '../../../content/scss/global-variables.scss';
+@import 'src/main/webapp/content/scss/global-variables.scss';
 
 :host {
   display: block;
@@ -6,7 +6,7 @@
 
 .cardHeader {
   text-align: left;
-  font: 28px/38px Roboto;
+  font: 28px/38px $font-family;
   padding: 20px 0 5px 0;
   letter-spacing: 0px;
   color: #151344;

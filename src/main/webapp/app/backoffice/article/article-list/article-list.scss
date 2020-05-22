@@ -1,4 +1,4 @@
-@import '../../../../content/scss/global-variables.scss';
+@import 'src/main/webapp/content/scss/global-variables.scss';
 
 .top-backoffice-bar {
   min-height: 80px;
@@ -42,7 +42,7 @@ article-review-card {
   display: flex;
   align-items: center;
   height: 100%;
-  font: 28px/34px Roboto;
+  font: 28px/34px $font-family;
   letter-spacing: 0px;
   color: #1a1948;
   opacity: 1;
