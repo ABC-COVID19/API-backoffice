@@ -13,7 +13,7 @@ import { AccountService } from 'app/core/auth/account.service';
 import { IUser } from 'app/core/user/user.model';
 import { UserService } from 'app/core/user/user.service';
 
-const styles = require('!!style-loader!css-loader!sass-loader!src/main/webapp/content/scss/global-variables.scss');
+const styles = require('!!style-loader!css-loader!sass-loader!../../../../content/scss/global-variables.scss');
 
 const enum IS_PEER_REVIEWED {
   YES = 'yes',
