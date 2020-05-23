@@ -290,7 +290,7 @@ export class ReviewArticleComponent implements OnInit {
       fieldsOk = false;
     }
     if (
-      this.user.authorities?.includes('ROLE_USER') &&
+      !this.user.authorities?.includes('ROLE_ADMIN') &&
       this.revision.reviewState !== ReviewState.OnGoing &&
       this.revision.reviewState !== ReviewState.Pending
     ) {
