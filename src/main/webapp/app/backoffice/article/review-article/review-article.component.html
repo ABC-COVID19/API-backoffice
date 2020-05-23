@@ -49,41 +49,49 @@
         <div class="card-body">
             <form>
                 <div class="row">
-                    <div class="col-md-3">
+
+                    <div class="col-md-6 mt-3">
+                        <label for="articleTopic">Tópico do Artigo</label>
+                        <textarea id="articleTopic" name="articleTopic" rows="10" [ngModel]="revision?.title" (ngModelChange)="revision.title=$event"></textarea>
+                    </div>
+
+                    <div class="col-md-6 mt-3">
+                        <label for="summary">Sinopse</label>
+                        <textarea id="summary" name="summary" rows="10" [ngModel]="revision?.summary" (ngModelChange)="revision.summary=$event"></textarea>
+                    </div>
+
+                    <div class="col-md-6 mt-3">
                         <label for="keywords">Palavras Chave - separar por ";"</label>
                         <input type="text" class="form-control" id="keywords" name="keywords" [ngModel]="revision?.keywords" (ngModelChange)="revision.keywords=$event">
                     </div>
-                    <div class="col-md-3">
+
+                    <div class="col-md-3 mt-3">
                         <label for="country">País</label>
                         <input type="text" class="form-control" id="country" name="country" [ngModel]="revision?.country" (ngModelChange)="revision.country=$event">
                     </div>
-                    <div class="col-md-3">
+
+                    <div class="col-md-3 mt-3">
+                        <label for="aType">Tipo de Artigo</label>
+                        <ng-multiselect-dropdown id="aType" name="aType" [data]="aTypeDropdown" [(ngModel)]="aTypeSelected"
+                                                 [settings]="aTypeDropdownSettings">
+                        </ng-multiselect-dropdown>
+                    </div>
+
+                    <div class="col-md-12 mt-3">
                         <label for="categories">Categoria(s)</label>
                         <ng-multiselect-dropdown id="categories" name="categories" [data]="categoryDropdown" [(ngModel)]="categorySelected"
                              [settings]="categoryDropdownSettings">
                         </ng-multiselect-dropdown>
 
                     </div>
-                    <div class="col-md-3">
-                        <label for="aType">Tipo de Artigo</label>
-                        <ng-multiselect-dropdown id="aType" name="aType" [data]="aTypeDropdown" [(ngModel)]="aTypeSelected"
-                            [settings]="aTypeDropdownSettings">
-                        </ng-multiselect-dropdown>
-                    </div>
+
                     <div class="col-md-6 mt-3">
-                        <label for="articleTopic">Tópico do Artigo</label>
-                        <textarea id="articleTopic" name="articleTopic" rows="10" [ngModel]="revision?.title" (ngModelChange)="revision.title=$event"></textarea>
-                        </div>
-                    <div class="col-md-6 mt-3">
-                            <label for="summary">Sinopse</label>
-                        <textarea id="summary" name="summary" rows="10" [ngModel]="revision?.summary" (ngModelChange)="revision.summary=$event"></textarea>
-                        </div>
-                        <div class="col-md-6 mt-3">
-                            <div class="row">
+                        <div class="row">
                             <div class="col-md-6">
                                 <label for="reviewer">Revisor</label>
                                 <input id="reviewer" type="text" class="form-control" name="reviewer" [ngModel]="revision?.reviewer" (ngModelChange)="revision.reviewer=$event">
                             </div>
+
                             <div class="col-md-6">
                                 <label for="author">Autor</label>
                                 <input id="author" type="text" class="form-control" name="author" [ngModel]="revision?.author" (ngModelChange)="revision.author=$event">
@@ -102,6 +110,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="col-md-6 mt-3">
                                 <label>Estado da Revisão</label>
                                 <div class="row">
@@ -129,12 +138,13 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="col-md-6 mt-3">
                         <label for="revisorNotes">Notas do Autor/Revisor</label>
                         <textarea id="revisorNotes" name="revisorNotes" rows="10" [ngModel]="revision?.reviewNotes" (ngModelChange)="revision.reviewNotes=$event"></textarea>
-                        </div>
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
+    </div>
 </div>
