@@ -30,7 +30,7 @@ round-card {
 }
 
 #rowH {
-  padding: 35px 0;
+  padding: 5px 0 10px 0;
   border-top: 1px solid #f2f2f4;
 
   & > span {
@@ -62,12 +62,13 @@ round-card {
 .revision-card-body {
   padding: 0;
   height: 300px;
+  border-bottom: 1px solid #f2f2f4;
 
   @media only screen and (max-width: 670px) {
     height: 500px;
   }
 
-  & > div:first-child {
+  & > #info {
     height: 100%;
     border-right: 1px solid #f2f2f4;
     width: 300px;
@@ -106,9 +107,9 @@ round-card {
     }
   }
 
-  & > div:last-child {
+  & > #summary {
     width: auto;
-    padding: 35px 0 35px 35px;
+    padding: 35px 0 0 35px;
     overflow: hidden;
     height: 100%;
 
@@ -117,9 +118,10 @@ round-card {
     }
 
     div {
-      word-break: break-all;
+      white-space: pre-line;
+      word-break: break-word;
       /* hide text if it more than N lines  */
-      overflow: hidden;
+      overflow-y: scroll;
       /* for set '...' in absolute position */
       position: relative;
       /* use this value to count block height */
@@ -129,52 +131,50 @@ round-card {
       /* fix problem when last visible word doesn't adjoin right side  */
       text-align: justify;
       /* place for '...' */
-      margin-right: -20px;
-      padding-right: 20px;
       line-height: 31px;
 
       @media only screen and (max-width: 670px) {
         margin-left: -35px;
         line-height: 29px;
       }
-
-      &:before {
-        /* points in the end */
-        content: '...';
-        /* absolute position */
-        position: absolute;
-        /* set position to right bottom corner of block */
-        right: 20px;
-        width: 25px;
-        bottom: -3px;
-        text-align: right;
-        line-height: 31px;
-        background-color: white;
-
-        @media only screen and (max-width: 670px) {
-          line-height: 29px;
-        }
-      }
-
-      &:after {
-        /* points in the end */
-        content: '';
-        /* absolute position */
-        position: absolute;
-        /* set position to right bottom corner of text */
-        right: 20px;
-        /* set width and height */
-        width: 25px;
-        height: 30px;
-        margin-top: 4px;
-        /* bg color = bg color under block */
-        background: white;
-      }
     }
   }
 
   @media only screen and (max-width: 670px) {
     float: none;
+    border-bottom: none;
+  }
+}
+
+#authors {
+  padding: 10px 0;
+  height: auto;
+  display: flex;
+
+  & > div:first-child {
+    float: left;
+    min-width: 300px;
+    border-right: 1px solid #f2f2f4;
+
+    @media only screen and (max-width: 670px) {
+      width: 100%;
+      height: auto;
+      border: none;
+    }
+  }
+
+  & > div:last-child {
+    width: auto;
+    padding-left: 35px;
+
+    @media only screen and (max-width: 670px) {
+      padding-left: 0;
+    }
+  }
+
+  @media only screen and (max-width: 670px) {
+    flex-direction: column;
+    padding-top: 35px;
   }
 }
 
