@@ -1,18 +1,33 @@
 <div>
-  <div class="top-backoffice-bar container-fluid">
-    <h1>Revisões</h1>
-    <div class="top-backoffice-bar-buttons">
-      <revision-status-filter (change)="loadData($event)"></revision-status-filter>
+    <div class="top-backoffice-bar container-fluid">
+        <h1>Revisões</h1>
+        <div class="top-backoffice-bar-buttons">
+            <revision-status-filter (change)="loadData($event)"></revision-status-filter>
+            <icam-badge
+                *ngIf="destaquesOn"
+                iconClass="fa-eye"
+                text="Destaques"
+                [ngStyle]="{ cursor: 'pointer', background: 'yellow'}"
+                (click)="loadDestaques()"
+            ></icam-badge>
+            <icam-badge
+                *ngIf="!destaquesOn"
+                iconClass="fa-eye-slash"
+                text="Destaques"
+                [ngStyle]="{ cursor: 'pointer' }"
+                (click)="loadDestaques()"
+            ></icam-badge>
+        </div>
     </div>
-  </div>
 
-  <bo-revision-card
-    *ngFor="let revision of revisions | async"
-    [revision]="revision"
-    [article]="revision.article"
-    (onEdit)="editRevision($event)"
-    (onDelete)="deleteRevision($event)"
-  ></bo-revision-card>
+    <bo-revision-card
+        *ngFor="let revision of revisions | async"
+        [revision]="revision"
+        [article]="revision.article"
+        (onEdit)="editRevision($event)"
+        (onDelete)="deleteRevision($event)"
+    >
+    </bo-revision-card>
 
-  <div *ngIf="(revisions | async)?.length === 0">Sem revisões</div>
+    <div *ngIf="(revisions | async)?.length === 0">Sem revisões</div>
 </div>
